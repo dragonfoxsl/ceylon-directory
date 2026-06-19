@@ -28,10 +28,10 @@ type Props = {
 
 const initialState: ActionResult | null = null;
 
-function FieldError({ errors }: { errors?: string[] }) {
+function FieldError({ errors, id }: { errors?: string[]; id?: string }) {
   if (!errors?.length) return null;
   return (
-    <p role="alert" className="mt-1 text-sm text-red-600">
+    <p role="alert" id={id} className="mt-1 text-sm text-red-600">
       {errors[0]}
     </p>
   );
@@ -83,7 +83,7 @@ export function ListingForm({ categories, regions, listing }: Props) {
           className={inputClass(!!errors.title)}
           aria-describedby={errors.title ? "title-err" : undefined}
         />
-        <FieldError errors={errors.title} />
+        <FieldError errors={errors.title} id="title-err" />
       </div>
 
       {/* Category + Region */}

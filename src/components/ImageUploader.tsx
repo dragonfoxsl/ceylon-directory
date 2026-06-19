@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { createBrowserClient } from "@/lib/supabase/client";
 
 type ImageRow = {
@@ -12,7 +12,7 @@ type ImageRow = {
 };
 
 export function ImageUploader({ listingId }: { listingId: string }) {
-  const supabase = createBrowserClient();
+  const supabase = useMemo(() => createBrowserClient(), []);
   const fileRef = useRef<HTMLInputElement>(null);
   const [images, setImages] = useState<ImageRow[]>([]);
   const [uploading, setUploading] = useState(false);
@@ -39,7 +39,7 @@ export function ImageUploader({ listingId }: { listingId: string }) {
     return () => {
       active = false;
     };
-  }, [listingId]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [listingId, supabase]);
 
   async function handleFiles(e: React.ChangeEvent<HTMLInputElement>) {
     const files = Array.from(e.target.files ?? []);
