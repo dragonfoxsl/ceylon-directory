@@ -10,6 +10,20 @@ language sql stable security definer set search_path = public as $$
   select exists(select 1 from profiles where id = auth.uid() and role = 'admin');
 $$;
 
+-- helper: check privileged fields unchanged, bypassing RLS
+create function listing_privileged_unchanged(
+  lid uuid, new_status listing_status, new_active boolean, new_featured boolean
+) returns boolean
+language sql stable security definer set search_path = public as $$
+  select exists (
+    select 1 from listings l
+    where l.id = lid
+      and l.status = new_status
+      and l.is_active = new_active
+      and l.is_featured = new_featured
+  );
+$$;
+
 -- grant DML to authenticated and read to anon
 grant usage on schema public to anon, authenticated;
 grant select on categories, regions to anon, authenticated;
@@ -40,9 +54,7 @@ create policy "listings owner update" on listings for update
     is_admin()
     or (
       owner_id = auth.uid()
-      and status = (select l2.status from listings l2 where l2.id = listings.id)
-      and is_active = (select l2.is_active from listings l2 where l2.id = listings.id)
-      and is_featured = (select l2.is_featured from listings l2 where l2.id = listings.id)
+      and listing_privileged_unchanged(id, status, is_active, is_featured)
     )
     or (
       owner_id = auth.uid()
