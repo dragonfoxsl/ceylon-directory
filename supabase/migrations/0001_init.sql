@@ -71,4 +71,13 @@ create trigger on_auth_user_created
   after insert on auth.users
   for each row execute function handle_new_user();
 
+-- Automatically keep listings.updated_at current on every row update
+create function set_updated_at() returns trigger
+language plpgsql as $$
+begin new.updated_at = now(); return new; end;
+$$;
+create trigger listings_set_updated_at
+  before update on listings
+  for each row execute function set_updated_at();
+
 -- reviews: DEFERRED to a later phase; intentionally not created in v1.
