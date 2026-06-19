@@ -26,13 +26,14 @@ type FeaturedListing = {
 export default async function HomePage() {
   const supabase = await createServerClient();
 
-  const { data: categories } = await supabase
+  const { data: categories, error: categoriesErr } = await supabase
     .from("categories")
     .select("id, name, slug, icon, sort_order")
     .order("sort_order", { ascending: true });
+  if (categoriesErr) console.error("[home] categories query failed:", categoriesErr);
 
   const now = new Date().toISOString();
-  const { data: rawListings } = await supabase
+  const { data: rawListings, error: listingsErr } = await supabase
     .from("listings")
     .select("id, slug, title, price_info, status, is_active, is_featured, featured_until, created_at")
     .eq("status", "approved")
@@ -40,16 +41,18 @@ export default async function HomePage() {
     .eq("is_featured", true)
     .gt("featured_until", now)
     .limit(6);
+  if (listingsErr) console.error("[home] featured listings query failed:", listingsErr);
 
   const featuredListings: FeaturedListing[] = [];
   if (rawListings && rawListings.length > 0) {
     for (const listing of rawListings) {
-      const { data: imageRow } = await supabase
+      const { data: imageRow, error: imageErr } = await supabase
         .from("listing_images")
         .select("storage_path")
         .eq("listing_id", listing.id)
         .eq("is_cover", true)
         .single();
+      if (imageErr) console.error(`[home] cover image query failed for listing ${listing.id}:`, imageErr);
 
       let cover_url: string | null = null;
       if (imageRow?.storage_path) {
