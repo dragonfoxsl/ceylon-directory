@@ -4,8 +4,8 @@ import { listingSchema } from "@/lib/validation";
 const valid = {
   title: "Galle Fort Walking Tour",
   description: "A two hour guided walk around the historic fort.",
-  category_id: "11111111-1111-1111-1111-111111111111",
-  region_id: "22222222-2222-2222-2222-222222222222",
+  category_id: "a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11",
+  region_id: "b1ffc299-9c0b-4ef8-bb6d-6bb9bd380a22",
   contact_email: "guide@example.com",
 };
 
@@ -24,5 +24,11 @@ describe("listingSchema", () => {
   });
   it("requires category and region", () => {
     expect(listingSchema.safeParse({ ...valid, category_id: "" }).success).toBe(false);
+  });
+  it("rejects bad website url", () => {
+    expect(listingSchema.safeParse({ ...valid, website: "not-a-url" }).success).toBe(false);
+  });
+  it("accepts empty website", () => {
+    expect(listingSchema.safeParse({ ...valid, website: "" }).success).toBe(true);
   });
 });
