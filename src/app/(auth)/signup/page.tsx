@@ -11,6 +11,7 @@ export default function SignupPage() {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
   const [needsConfirmation, setNeedsConfirmation] = useState(false);
+  const [isDuplicate, setIsDuplicate] = useState(false);
   const [loading, setLoading] = useState(false);
 
   async function handleSubmit(e: React.FormEvent) {
@@ -34,11 +35,15 @@ export default function SignupPage() {
       return;
     }
 
-    // If identities is empty the user already exists but email not confirmed yet
-    const requiresConfirmation =
-      !data.session && data.user?.identities?.length !== 0;
+    // Detect the three outcomes from signUp:
+    // 1. Duplicate: user exists with empty identities (no session)
+    // 2. Needs confirmation: no session but not duplicate
+    // 3. Signed in: session present
+    const isDuplicate = data.user?.identities?.length === 0;
+    const requiresConfirmation = !data.session && !isDuplicate;
 
     setSuccess(true);
+    setIsDuplicate(isDuplicate);
     setNeedsConfirmation(requiresConfirmation);
     setLoading(false);
   }
@@ -60,14 +65,24 @@ export default function SignupPage() {
             </svg>
           </div>
           <h1 className="text-xl font-bold text-teal-900">
-            {needsConfirmation ? "Check your email" : "You're in!"}
+            {isDuplicate ? "Account already exists" : needsConfirmation ? "Check your email" : "You're in!"}
           </h1>
           <p className="mt-2 text-sm text-gray-600">
-            {needsConfirmation
+            {isDuplicate
+              ? "An account with this email already exists. Please log in instead."
+              : needsConfirmation
               ? "We've sent a confirmation link to your inbox. Click it to activate your account."
               : "Your account is ready. Head to your dashboard to get started."}
           </p>
-          {!needsConfirmation && (
+          {isDuplicate && (
+            <Link
+              href="/login"
+              className="mt-6 inline-block rounded-lg bg-teal-700 px-6 py-2.5 text-sm font-semibold text-white hover:bg-teal-600 transition-colors"
+            >
+              Sign in
+            </Link>
+          )}
+          {!isDuplicate && !needsConfirmation && (
             <Link
               href="/dashboard"
               className="mt-6 inline-block rounded-lg bg-teal-700 px-6 py-2.5 text-sm font-semibold text-white hover:bg-teal-600 transition-colors"
