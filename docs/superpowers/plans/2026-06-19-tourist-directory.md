@@ -919,7 +919,7 @@ git add -A && git commit -m "feat: signup, login, logout, auth callback"
 - [ ] **Step 1: Listing actions**
 
 Create `src/actions/listings.ts` (`"use server"`):
-- `createListing(formData)`: `requireUser()`; parse fields with `listingSchema`; build slug via `uniqueSlug(title, exists)` where `exists` checks `listings` by slug; insert with `owner_id=user.id`, `status='pending'`, `is_active=false`; return new id. Then `revalidatePath("/dashboard")`.
+- `createListing(formData)`: `requireUser()`; parse fields with `listingSchema`; build slug via `uniqueSlug(title, exists)` where `exists` checks `listings` by slug; insert with `owner_id=user.id`, `status='pending'`, `is_active=false`, `is_featured=false` (RLS insert policy from Task 3 REQUIRES exactly these three values — do not omit `is_featured=false`); return new id. Then `revalidatePath("/dashboard")`.
 - `updateListing(id, formData)`: `requireUser()`; verify ownership (select owner_id); parse; update fields AND reset `status='pending'`, `is_active=false`, `updated_at=now()` (re-review on edit — Global Constraint); `revalidatePath`.
 - `deleteListing(id)`: ownership check then delete; `revalidatePath`.
 
@@ -936,7 +936,7 @@ async function slugExists(supabase: any, slug: string, ignoreId?: string) {
 
 - [ ] **Step 2: ImageUploader (client)**
 
-Create `src/components/ImageUploader.tsx`: client component using `createBrowserClient`. Lets user select multiple files, uploads each to `listing-images` bucket at path `${listingId}/${crypto.randomUUID()}`, inserts a `listing_images` row (`storage_path`, `sort_order`, first one `is_cover=true`). Shows thumbnails; allows delete. Accepts `listingId` prop.
+Create `src/components/ImageUploader.tsx`: client component using `createBrowserClient`. Lets user select multiple files, uploads each to `listing-images` bucket. **The storage RLS write policy (Task 3) requires the object path's first folder to equal the uploader's `auth.uid()`** — so upload to `${userId}/${listingId}/${crypto.randomUUID()}-${file.name}` where `userId` comes from the current session (`supabase.auth.getUser()`). Store that full path in `listing_images.storage_path`. Insert a `listing_images` row (`storage_path`, `sort_order`, first one `is_cover=true`). Shows thumbnails; allows delete (delete is owner-scoped by RLS via the object `owner`). Accepts `listingId` prop. To render images, use the public URL from `supabase.storage.from('listing-images').getPublicUrl(storage_path)`.
 
 - [ ] **Step 3: ListingForm (client)**
 
