@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { X } from "lucide-react";
 import { createBrowserClient } from "@/lib/supabase/client";
 
 type ImageRow = {
@@ -125,19 +126,19 @@ export function ImageUploader({ listingId }: { listingId: string }) {
 
   return (
     <div className="space-y-3">
-      <p className="text-sm font-medium text-gray-700">Photos</p>
+      <p className="text-sm font-medium text-ink">Photos</p>
 
       {images.length > 0 && (
         <div className="grid grid-cols-3 gap-3 sm:grid-cols-4">
           {images.map((img) => (
-            <div key={img.id} className="relative group">
+            <div key={img.id} className="group relative">
               <img
                 src={img.publicUrl}
                 alt=""
-                className="h-24 w-full rounded-lg object-cover border border-gray-200"
+                className="h-24 w-full rounded-lg border border-hairline object-cover"
               />
               {img.is_cover && (
-                <span className="absolute top-1 left-1 rounded bg-amber-400 px-1.5 py-0.5 text-[10px] font-semibold text-amber-900">
+                <span className="chip chip-featured absolute left-1 top-1 !px-1.5 !py-0.5 !text-[10px]">
                   Cover
                 </span>
               )}
@@ -145,9 +146,9 @@ export function ImageUploader({ listingId }: { listingId: string }) {
                 type="button"
                 onClick={() => handleDelete(img)}
                 aria-label="Remove photo"
-                className="absolute top-1 right-1 hidden group-hover:flex items-center justify-center h-6 w-6 rounded-full bg-red-500 text-white text-xs font-bold shadow hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400"
+                className="absolute right-1 top-1 hidden h-6 w-6 items-center justify-center rounded-full bg-rejected text-xs font-bold text-white shadow group-hover:flex hover:opacity-90"
               >
-                ×
+                <X className="h-3.5 w-3.5" strokeWidth={2.5} />
               </button>
             </div>
           ))}
@@ -163,14 +164,14 @@ export function ImageUploader({ listingId }: { listingId: string }) {
           multiple
           onChange={handleFiles}
           disabled={uploading}
-          className="block w-full text-sm text-gray-500 file:mr-3 file:rounded-lg file:border-0 file:bg-teal-50 file:px-4 file:py-2 file:text-sm file:font-medium file:text-teal-700 hover:file:bg-teal-100 disabled:opacity-50"
+          className="block w-full text-sm text-muted file:mr-3 file:rounded-lg file:border-0 file:bg-surface file:px-4 file:py-2 file:text-sm file:font-medium file:text-brand hover:file:bg-accent/10 disabled:opacity-50"
         />
       </label>
       {uploading && (
-        <p className="text-sm text-teal-600 animate-pulse">Uploading…</p>
+        <p className="animate-pulse text-sm text-accent">Uploading…</p>
       )}
       {error && (
-        <p role="alert" className="text-sm text-red-600">
+        <p role="alert" className="text-sm text-rejected">
           {error}
         </p>
       )}

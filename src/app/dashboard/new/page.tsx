@@ -1,7 +1,8 @@
+import Link from "next/link";
+import { ChevronRight, Info } from "lucide-react";
 import { requireUser } from "@/lib/auth";
 import { createServerClient } from "@/lib/supabase/server";
 import { ListingForm } from "@/components/ListingForm";
-import Link from "next/link";
 
 export default async function NewListingPage() {
   await requireUser();
@@ -21,28 +22,35 @@ export default async function NewListingPage() {
   return (
     <div className="mx-auto max-w-2xl px-6 py-12">
       {/* Breadcrumb */}
-      <nav aria-label="Breadcrumb" className="mb-6 text-sm text-gray-500">
-        <Link href="/dashboard" className="hover:text-teal-700 transition-colors">
-          My Listings
+      <nav
+        aria-label="Breadcrumb"
+        className="flex items-center gap-1.5 text-sm text-muted"
+      >
+        <Link href="/dashboard" className="transition-colors hover:text-accent">
+          My listings
         </Link>
-        <span className="mx-2" aria-hidden="true">/</span>
-        <span className="text-gray-900 font-medium">New listing</span>
+        <ChevronRight className="h-3.5 w-3.5" strokeWidth={2} aria-hidden="true" />
+        <span className="font-medium text-ink">New listing</span>
       </nav>
 
-      <h1 className="text-3xl font-bold text-gray-900 tracking-tight mb-2">
+      <h1 className="mt-6 text-3xl font-bold tracking-tight text-ink">
         Add a new listing
       </h1>
-      <p className="text-gray-500 text-sm mb-8">
+      <p className="mt-2 text-sm text-muted">
         Fill in the details below. Your listing will be reviewed before it goes live.
       </p>
 
       {/* Photo note */}
-      <div className="mb-8 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
-        <span className="font-semibold">Photos:</span> Save first, then add photos on the edit screen.
-        Image upload requires a listing ID.
+      <div className="mt-8 flex items-start gap-3 rounded-xl border border-hairline bg-linen px-4 py-3 text-sm text-muted">
+        <Info className="mt-0.5 h-4 w-4 shrink-0 text-accent" strokeWidth={2} />
+        <span>
+          <span className="font-semibold text-ink">Photos: </span>
+          Save first, then add photos on the edit screen — image upload needs a
+          listing ID.
+        </span>
       </div>
 
-      <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+      <div className="card mt-8 p-6">
         <ListingForm categories={categories ?? []} regions={regions ?? []} />
       </div>
     </div>

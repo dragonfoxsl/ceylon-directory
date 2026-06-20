@@ -1,5 +1,14 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import {
+  ArrowLeft,
+  Check,
+  ChevronRight,
+  Clock,
+  CreditCard,
+  Landmark,
+  Star,
+} from "lucide-react";
 import { requireUser } from "@/lib/auth";
 import { createServerClient } from "@/lib/supabase/server";
 import { requestPromotion } from "@/actions/promotion";
@@ -37,162 +46,165 @@ export default async function PromoteListingPage({ params }: Props) {
     await requestPromotion(id);
   }
 
+  const fmtDate = (d: string) =>
+    new Date(d).toLocaleDateString("en-GB", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    });
+
   return (
     <div className="mx-auto max-w-2xl px-6 py-12">
       {/* Breadcrumb */}
-      <nav aria-label="Breadcrumb" className="mb-6 text-sm text-gray-500">
-        <Link href="/dashboard" className="hover:text-teal-700 transition-colors">
-          My Listings
+      <nav
+        aria-label="Breadcrumb"
+        className="flex flex-wrap items-center gap-1.5 text-sm text-muted"
+      >
+        <Link href="/dashboard" className="transition-colors hover:text-accent">
+          My listings
         </Link>
-        <span className="mx-2" aria-hidden="true">/</span>
-        <span className="text-gray-900 font-medium truncate max-w-xs inline-block align-bottom">
+        <ChevronRight className="h-3.5 w-3.5" strokeWidth={2} aria-hidden="true" />
+        <span className="inline-block max-w-[180px] truncate align-bottom font-medium text-ink">
           {listing.title}
         </span>
-        <span className="mx-2" aria-hidden="true">/</span>
-        <span className="text-gray-900 font-medium">Promote</span>
+        <ChevronRight className="h-3.5 w-3.5" strokeWidth={2} aria-hidden="true" />
+        <span className="font-medium text-ink">Promote</span>
       </nav>
 
-      <h1 className="text-3xl font-bold text-gray-900 tracking-tight mb-2">
+      <p className="eyebrow mt-6 flex items-center gap-2">
+        <Star className="h-3.5 w-3.5 text-gold" strokeWidth={2.5} />
+        Featured placement
+      </p>
+      <h1 className="mt-2 text-3xl font-bold tracking-tight text-ink">
         Promote your listing
       </h1>
-      <p className="text-gray-500 text-sm mb-8">
-        Get featured placement and reach more travellers exploring Sri Lanka.
+      <p className="mt-2 text-sm text-muted">
+        Reach more travellers planning their Sri Lanka trip.
       </p>
 
       {/* What you get */}
-      <div className="mb-8 rounded-xl border border-teal-200 bg-teal-50 px-6 py-5">
-        <h2 className="text-base font-semibold text-teal-900 mb-3">What featured placement includes</h2>
-        <ul className="space-y-2 text-sm text-teal-800">
-          <li className="flex items-start gap-2">
-            <span aria-hidden="true" className="mt-0.5 text-teal-500 font-bold">&#10003;</span>
-            Highlighted at the top of category and region search results
-          </li>
-          <li className="flex items-start gap-2">
-            <span aria-hidden="true" className="mt-0.5 text-teal-500 font-bold">&#10003;</span>
-            Featured badge on your listing card
-          </li>
-          <li className="flex items-start gap-2">
-            <span aria-hidden="true" className="mt-0.5 text-teal-500 font-bold">&#10003;</span>
-            Inclusion in &quot;Featured listings&quot; on the home page
-          </li>
+      <div className="mt-8 rounded-[1.5rem] border border-gold/30 bg-gold/[0.06] px-6 py-5">
+        <h2 className="text-base font-semibold text-ink">
+          What featured placement includes
+        </h2>
+        <ul className="mt-3 space-y-2.5 text-sm text-ink/90">
+          {[
+            "Highlighted at the top of category and region results",
+            "A temple-gold Featured badge on your listing card",
+            "A spot in “Featured experiences” on the home page",
+          ].map((item) => (
+            <li key={item} className="flex items-start gap-2.5">
+              <Check className="mt-0.5 h-4 w-4 shrink-0 text-gold" strokeWidth={2.5} />
+              {item}
+            </li>
+          ))}
         </ul>
       </div>
 
       {/* State: currently featured */}
       {isFeatured ? (
-        <div className="rounded-xl border border-emerald-200 bg-emerald-50 px-6 py-5 text-center">
-          <div className="text-3xl mb-2" aria-hidden="true">&#11088;</div>
-          <p className="text-emerald-800 font-semibold text-lg mb-1">Currently featured</p>
-          <p className="text-emerald-700 text-sm">
+        <div className="card mt-8 px-6 py-8 text-center">
+          <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-gold/15 text-gold">
+            <Star className="h-6 w-6" strokeWidth={1.75} />
+          </span>
+          <p className="mt-3 text-lg font-semibold text-ink">Currently featured</p>
+          <p className="mt-1 text-sm text-muted">
             Your listing is featured until{" "}
-            <span className="font-medium">
-              {new Date(listing.featured_until!).toLocaleDateString("en-GB", {
-                day: "numeric",
-                month: "long",
-                year: "numeric",
-              })}
+            <span className="num font-medium text-ink">
+              {fmtDate(listing.featured_until!)}
             </span>
             .
           </p>
         </div>
       ) : alreadyRequested ? (
         /* State: promotion requested, awaiting admin */
-        <div className="rounded-xl border border-amber-200 bg-amber-50 px-6 py-5 text-center">
-          <div className="text-3xl mb-2" aria-hidden="true">&#128336;</div>
-          <p className="text-amber-800 font-semibold text-lg mb-1">
-            Promotion requested — pending admin activation
+        <div className="card mt-8 px-6 py-8 text-center">
+          <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-pending/15 text-pending">
+            <Clock className="h-6 w-6" strokeWidth={1.75} />
+          </span>
+          <p className="mt-3 text-lg font-semibold text-ink">
+            Promotion requested
           </p>
-          <p className="text-amber-700 text-sm">
+          <p className="mt-1 text-sm text-muted">
             Requested on{" "}
-            <span className="font-medium">
-              {new Date(listing.promotion_requested_at!).toLocaleDateString("en-GB", {
-                day: "numeric",
-                month: "long",
-                year: "numeric",
-              })}
+            <span className="num font-medium text-ink">
+              {fmtDate(listing.promotion_requested_at!)}
             </span>
-            . We will activate your featured placement after confirming payment.
+            . We&apos;ll activate your featured placement after confirming payment.
           </p>
         </div>
       ) : (
-        /* State: not yet requested — show payment instructions + request button */
+        /* State: not yet requested — payment instructions + request button */
         <>
           {/* Payment instructions — CONFIGURABLE PLACEHOLDERS */}
           {/* ⚠️ SITE OPERATOR: Replace all placeholder values below with your real payment details */}
-          <div className="mb-8 rounded-xl border border-amber-200 bg-amber-50 px-6 py-5">
-            <h2 className="text-base font-semibold text-amber-900 mb-1">
-              How to pay — step 1 of 2
-            </h2>
-            <p className="text-amber-800 text-sm mb-4">
-              Choose a payment method below and complete the transfer. Then click
-              &quot;Request promotion&quot; to notify us.
+          <div className="mt-8">
+            <p className="eyebrow">Step 1 of 2</p>
+            <h2 className="mt-2 text-lg font-semibold text-ink">How to pay</h2>
+            <p className="mt-1 text-sm text-muted">
+              Complete payment with one of the methods below, then request the
+              promotion to notify us.
             </p>
 
-            <div className="space-y-5">
+            <div className="mt-5 space-y-4">
               {/* Bank transfer */}
-              <div className="rounded-lg border border-amber-100 bg-white px-4 py-4">
-                <p className="text-sm font-semibold text-gray-800 mb-2">
+              <div className="card p-5">
+                <p className="flex items-center gap-2 text-sm font-semibold text-ink">
+                  <Landmark className="h-4 w-4 text-brand" strokeWidth={2} />
                   Option A — Bank transfer
                 </p>
                 {/* SITE OPERATOR: replace with your real bank details */}
-                <dl className="text-sm text-gray-700 space-y-1">
+                <dl className="mt-3 space-y-1.5 text-sm">
+                  {[
+                    ["Bank", "[Bank name — replace me]"],
+                    ["Account name", "[Account name — replace me]"],
+                    ["Account number", "[Account number — replace me]"],
+                    ["Amount", "[Price in LKR — replace me]"],
+                  ].map(([label, value]) => (
+                    <div key={label} className="flex gap-2">
+                      <dt className="w-32 shrink-0 text-muted">{label}</dt>
+                      <dd className="font-medium italic text-accent">{value}</dd>
+                    </div>
+                  ))}
                   <div className="flex gap-2">
-                    <dt className="w-32 shrink-0 text-gray-500">Bank</dt>
-                    <dd className="font-medium text-amber-700 italic">[Bank name — replace me]</dd>
-                  </div>
-                  <div className="flex gap-2">
-                    <dt className="w-32 shrink-0 text-gray-500">Account name</dt>
-                    <dd className="font-medium text-amber-700 italic">[Account name — replace me]</dd>
-                  </div>
-                  <div className="flex gap-2">
-                    <dt className="w-32 shrink-0 text-gray-500">Account number</dt>
-                    <dd className="font-medium text-amber-700 italic">[Account number — replace me]</dd>
-                  </div>
-                  <div className="flex gap-2">
-                    <dt className="w-32 shrink-0 text-gray-500">Amount</dt>
-                    <dd className="font-medium text-amber-700 italic">[Price — replace me]</dd>
-                  </div>
-                  <div className="flex gap-2">
-                    <dt className="w-32 shrink-0 text-gray-500">Reference</dt>
-                    <dd className="font-mono text-xs text-gray-600 break-all">{id}</dd>
+                    <dt className="w-32 shrink-0 text-muted">Reference</dt>
+                    <dd className="num break-all text-xs text-ink">{id}</dd>
                   </div>
                 </dl>
-                <p className="mt-2 text-xs text-gray-500">
-                  Please use your listing ID as the payment reference so we can match your payment.
+                <p className="mt-3 text-xs text-muted">
+                  Use your listing ID as the payment reference so we can match it.
                 </p>
               </div>
 
               {/* PayHere */}
-              <div className="rounded-lg border border-amber-100 bg-white px-4 py-4">
-                <p className="text-sm font-semibold text-gray-800 mb-2">
+              <div className="card p-5">
+                <p className="flex items-center gap-2 text-sm font-semibold text-ink">
+                  <CreditCard className="h-4 w-4 text-brand" strokeWidth={2} />
                   Option B — Pay online via PayHere
                 </p>
                 {/* SITE OPERATOR: replace with your real PayHere payment link */}
-                <p className="text-sm text-amber-700 italic mb-2">
-                  [PayHere payment link placeholder — replace me]
+                <p className="mt-2 text-sm italic text-accent">
+                  [PayHere payment link — replace me]
                 </p>
-                <p className="text-xs text-gray-500">
-                  After completing payment on PayHere, return here and click &quot;Request
-                  promotion&quot; below.
+                <p className="mt-1 text-xs text-muted">
+                  After paying on PayHere, return here and request the promotion.
                 </p>
               </div>
             </div>
           </div>
 
           {/* Request button — step 2 */}
-          <div className="rounded-xl border border-gray-200 bg-white px-6 py-6 text-center shadow-sm">
-            <h2 className="text-base font-semibold text-gray-800 mb-1">
-              Step 2 — Notify us after payment
+          <div className="card mt-6 px-6 py-7 text-center">
+            <p className="eyebrow">Step 2 of 2</p>
+            <h2 className="mt-2 text-lg font-semibold text-ink">
+              Notify us after payment
             </h2>
-            <p className="text-sm text-gray-500 mb-5">
-              Once you have sent your payment, click below. An admin will verify and
-              activate your featured placement (usually within 24 hours).
+            <p className="mx-auto mt-1 max-w-md text-sm text-muted">
+              Once you&apos;ve sent payment, request the promotion. An admin will
+              verify and activate your featured placement, usually within 24 hours.
             </p>
-            <form action={handleRequestPromotion}>
-              <button
-                type="submit"
-                className="inline-flex items-center gap-2 rounded-full bg-amber-500 px-8 py-3 text-sm font-semibold text-white shadow hover:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2 transition-colors"
-              >
+            <form action={handleRequestPromotion} className="mt-5">
+              <button type="submit" className="btn btn-primary">
                 I&apos;ve paid — request promotion
               </button>
             </form>
@@ -201,12 +213,13 @@ export default async function PromoteListingPage({ params }: Props) {
       )}
 
       {/* Back link */}
-      <div className="mt-8 text-center">
+      <div className="mt-8">
         <Link
           href="/dashboard"
-          className="text-sm text-gray-500 hover:text-teal-700 transition-colors"
+          className="inline-flex items-center gap-1.5 text-sm text-muted transition-colors hover:text-accent"
         >
-          &larr; Back to my listings
+          <ArrowLeft className="h-4 w-4" strokeWidth={2} />
+          Back to my listings
         </Link>
       </div>
     </div>

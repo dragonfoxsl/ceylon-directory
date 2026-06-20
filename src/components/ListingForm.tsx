@@ -31,20 +31,14 @@ const initialState: ActionResult | null = null;
 function FieldError({ errors, id }: { errors?: string[]; id?: string }) {
   if (!errors?.length) return null;
   return (
-    <p role="alert" id={id} className="mt-1 text-sm text-red-600">
+    <p role="alert" id={id} className="mt-1.5 text-sm text-rejected">
       {errors[0]}
     </p>
   );
 }
 
 function inputClass(hasError: boolean) {
-  return [
-    "block w-full rounded-lg border px-3 py-2 text-sm shadow-sm",
-    "focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500",
-    hasError
-      ? "border-red-400 bg-red-50"
-      : "border-gray-300 bg-white hover:border-gray-400",
-  ].join(" ");
+  return hasError ? "field !border-rejected/60" : "field";
 }
 
 export function ListingForm({ categories, regions, listing }: Props) {
@@ -70,8 +64,8 @@ export function ListingForm({ categories, regions, listing }: Props) {
     <form action={formAction} className="space-y-5">
       {/* Title */}
       <div>
-        <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-1">
-          Title <span aria-hidden="true" className="text-red-500">*</span>
+        <label htmlFor="title" className="mb-1.5 block text-sm font-medium text-ink">
+          Title <span aria-hidden="true" className="text-accent">*</span>
         </label>
         <input
           id="title"
@@ -89,8 +83,8 @@ export function ListingForm({ categories, regions, listing }: Props) {
       {/* Category + Region */}
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
         <div>
-          <label htmlFor="category_id" className="block text-sm font-medium text-gray-700 mb-1">
-            Category <span aria-hidden="true" className="text-red-500">*</span>
+          <label htmlFor="category_id" className="mb-1.5 block text-sm font-medium text-ink">
+            Category <span aria-hidden="true" className="text-accent">*</span>
           </label>
           <select
             id="category_id"
@@ -110,8 +104,8 @@ export function ListingForm({ categories, regions, listing }: Props) {
         </div>
 
         <div>
-          <label htmlFor="region_id" className="block text-sm font-medium text-gray-700 mb-1">
-            Region <span aria-hidden="true" className="text-red-500">*</span>
+          <label htmlFor="region_id" className="mb-1.5 block text-sm font-medium text-ink">
+            Region <span aria-hidden="true" className="text-accent">*</span>
           </label>
           <select
             id="region_id"
@@ -133,8 +127,8 @@ export function ListingForm({ categories, regions, listing }: Props) {
 
       {/* Description */}
       <div>
-        <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-1">
-          Description <span aria-hidden="true" className="text-red-500">*</span>
+        <label htmlFor="description" className="mb-1.5 block text-sm font-medium text-ink">
+          Description <span aria-hidden="true" className="text-accent">*</span>
         </label>
         <textarea
           id="description"
@@ -150,7 +144,7 @@ export function ListingForm({ categories, regions, listing }: Props) {
       {/* Optional fields */}
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
         <div>
-          <label htmlFor="price_info" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="price_info" className="mb-1.5 block text-sm font-medium text-ink">
             Price info
           </label>
           <input
@@ -165,7 +159,7 @@ export function ListingForm({ categories, regions, listing }: Props) {
         </div>
 
         <div>
-          <label htmlFor="website" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="website" className="mb-1.5 block text-sm font-medium text-ink">
             Website
           </label>
           <input
@@ -180,7 +174,7 @@ export function ListingForm({ categories, regions, listing }: Props) {
         </div>
 
         <div>
-          <label htmlFor="contact_email" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="contact_email" className="mb-1.5 block text-sm font-medium text-ink">
             Email
           </label>
           <input
@@ -194,7 +188,7 @@ export function ListingForm({ categories, regions, listing }: Props) {
         </div>
 
         <div>
-          <label htmlFor="contact_phone" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="contact_phone" className="mb-1.5 block text-sm font-medium text-ink">
             Phone
           </label>
           <input
@@ -208,7 +202,7 @@ export function ListingForm({ categories, regions, listing }: Props) {
         </div>
 
         <div>
-          <label htmlFor="contact_whatsapp" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="contact_whatsapp" className="mb-1.5 block text-sm font-medium text-ink">
             WhatsApp
           </label>
           <input
@@ -224,21 +218,21 @@ export function ListingForm({ categories, regions, listing }: Props) {
 
       {/* Image uploader — only in edit mode */}
       {isEdit && (
-        <div className="rounded-xl border border-gray-200 bg-gray-50 p-4">
+        <div className="rounded-xl border border-hairline bg-linen p-4">
           <ImageUploader listingId={listing.id} />
         </div>
       )}
 
       {/* Server-level error */}
       {serverError && (
-        <p role="alert" className="rounded-lg bg-red-50 border border-red-200 px-4 py-3 text-sm text-red-700">
+        <p role="alert" className="rounded-lg border border-rejected/30 bg-rejected/10 px-4 py-3 text-sm text-rejected">
           {serverError}
         </p>
       )}
 
       {/* Success feedback */}
       {state?.ok && (
-        <p role="status" className="rounded-lg bg-teal-50 border border-teal-200 px-4 py-3 text-sm text-teal-700">
+        <p role="status" className="rounded-lg border border-approved/30 bg-approved/10 px-4 py-3 text-sm text-approved">
           {isEdit ? "Listing updated — it will be reviewed before going live." : "Listing submitted for review."}
         </p>
       )}
@@ -247,7 +241,7 @@ export function ListingForm({ categories, regions, listing }: Props) {
         <button
           type="submit"
           disabled={pending}
-          className="rounded-lg bg-teal-600 px-5 py-2.5 text-sm font-semibold text-white shadow hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed transition-colors"
+          className="btn btn-primary disabled:cursor-not-allowed disabled:opacity-60"
         >
           {pending ? "Saving…" : isEdit ? "Save changes" : "Submit listing"}
         </button>
