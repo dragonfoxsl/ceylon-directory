@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ceylon Directory | Curated Heritage &amp; Luxury</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "pure-surface": "#FFFFFF",
+                "primary-fixed-dim": "#a1d1b8",
+                "surface-tint": "#3a6752",
+                "surface-container-highest": "#e2e3df",
+                "terracotta-glow": "#D98463",
+                "on-secondary-fixed-variant": "#7f2b11",
+                "on-secondary-container": "#75240a",
+                "error-container": "#ffdad6",
+                "on-error-container": "#93000a",
+                "on-primary-fixed-variant": "#214f3c",
+                "surface-container-low": "#f3f4f0",
+                "primary": "#003322",
+                "tertiary": "#491f1f",
+                "on-tertiary-container": "#de9d9c",
+                "surface-dim": "#d9dad7",
+                "on-tertiary-fixed-variant": "#693939",
+                "status-rejected": "#9C4A3C",
+                "tertiary-fixed-dim": "#f9b5b4",
+                "parchment": "#F0E9DB",
+                "surface": "#f9faf6",
+                "inverse-on-surface": "#f0f1ee",
+                "deep-forest": "#143A2B",
+                "surface-container-high": "#e7e8e5",
+                "tertiary-container": "#633434",
+                "secondary-container": "#ff8b69",
+                "muted-sand": "#A79C8A",
+                "on-primary": "#ffffff",
+                "warm-ink": "#241F1A",
+                "elevated-surface": "#26231C",
+                "surface-container": "#edeeeb",
+                "status-pending": "#B7791F",
+                "on-primary-fixed": "#002114",
+                "tertiary-fixed": "#ffdad8",
+                "on-tertiary": "#ffffff",
+                "secondary-fixed-dim": "#ffb5a0",
+                "primary-fixed": "#bceed3",
+                "on-background": "#1a1c1a",
+                "error": "#ba1a1a",
+                "on-primary-container": "#89b9a0",
+                "temple-gold": "#C19A4B",
+                "canvas-ivory": "#FAF6EF",
+                "surface-container-lowest": "#ffffff",
+                "inverse-primary": "#a1d1b8",
+                "outline-variant": "#c0c9c2",
+                "status-approved": "#2F7D5B",
+                "on-surface-variant": "#414944",
+                "warm-hairline": "#E6DCCB",
+                "primary-container": "#1c4a37",
+                "jade-green": "#5FA882",
+                "inverse-surface": "#2e312f",
+                "on-secondary": "#ffffff",
+                "warm-ink": "#241F1A",
+                "warm-linen": "#F3ECE0",
+                "on-tertiary-fixed": "#350f10",
+                "surface-variant": "#e2e3df",
+                "background": "#f9faf6",
+                "secondary": "#9e4126",
+                "surface-bright": "#f9faf6",
+                "raised-surface": "#1E1C17",
+                "warm-hairline-dark": "#39342B",
+                "outline": "#717973",
+                "secondary-fixed": "#ffdbd1",
+                "on-surface": "#1a1c1a",
+                "on-error": "#ffffff",
+                "temple-gold-bright": "#D9B65E",
+                "on-secondary-fixed": "#3b0a00",
+                "char-green": "#14130F"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "margin-mobile": "1.5rem",
+                "margin-desktop": "4rem",
+                "gutter-mobile": "1rem",
+                "container-max": "1320px",
+                "gutter-desktop": "2rem"
+            },
+            "fontFamily": {
+                "numeric-data": ["JetBrains Mono"],
+                "headline-md": ["Plus Jakarta Sans"],
+                "headline-lg-mobile": ["Plus Jakarta Sans"],
+                "body-md": ["Plus Jakarta Sans"],
+                "headline-lg": ["Plus Jakarta Sans"],
+                "body-lg": ["Plus Jakarta Sans"],
+                "label-eyebrow": ["Plus Jakarta Sans"],
+                "display-hero": ["Plus Jakarta Sans"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .featured-ribbon {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 85%, 0 100%);
+        }
+    </style>
+</head>
+<body class="bg-canvas-ivory text-on-surface antialiased">
+<!-- TopNavBar -->
+<nav class="bg-pure-surface dark:bg-raised-surface border-b border-warm-hairline dark:border-warm-hairline-dark sticky top-0 z-50">
+<div class="flex justify-between items-center px-margin-desktop py-4 max-w-container-max mx-auto">
+<div class="font-headline-md text-headline-md font-bold text-deep-forest dark:text-primary-fixed-dim">
+                Ceylon Directory
+            </div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="font-body-md text-body-md text-primary dark:text-primary-fixed-dim border-b-2 border-primary dark:border-primary-fixed-dim pb-1" href="#">Browse</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Categories</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Map</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">About</a>
+</div>
+<div class="flex items-center space-x-6">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">dark_mode</button>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary" href="#">Log in</a>
+<button class="bg-primary text-parchment px-6 py-2 rounded-lg font-body-md text-body-md hover:scale-[0.98] transition-transform duration-150">
+                    List your service
+                </button>
+</div>
+</div>
+</nav>
+<main>
+<!-- Hero Section -->
+<section class="max-w-container-max mx-auto px-margin-desktop pt-16 pb-24 grid grid-cols-12 gap-gutter-desktop items-center">
+<div class="col-span-12 lg:col-span-7 pr-8">
+<span class="font-label-eyebrow text-label-eyebrow uppercase tracking-widest text-secondary mb-6 block">Ceylon Directory</span>
+<h1 class="font-display-hero text-display-hero text-deep-forest mb-6">Ceylon, curated.</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-lg">
+                    Discover the island's most exclusive boutique villas, heritage landmarks, and curated cultural experiences.
+                </p>
+<!-- Search Bar -->
+<div class="bg-pure-surface border border-warm-hairline p-2 rounded-xl flex items-center shadow-sm max-w-2xl mb-8">
+<div class="flex-grow flex items-center px-4 border-r border-warm-hairline">
+<span class="material-symbols-outlined text-muted-sand mr-2">search</span>
+<input class="bg-transparent border-none focus:ring-0 w-full font-body-md text-body-md" placeholder="Search experiences..." type="text"/>
+</div>
+<div class="px-4 border-r border-warm-hairline hidden md:block">
+<select class="bg-transparent border-none focus:ring-0 font-body-md text-body-md text-on-surface-variant">
+<option>All Regions</option>
+<option>Galle</option>
+<option>Kandy</option>
+<option>Ella</option>
+</select>
+</div>
+<button class="bg-primary text-parchment px-8 py-3 rounded-lg font-body-md font-bold hover:bg-primary-container transition-colors ml-2">
+                        Search
+                    </button>
+</div>
+<a class="inline-block font-body-md text-body-md text-primary border-b border-primary pb-0.5 hover:text-secondary hover:border-secondary transition-colors" href="#">
+                    Explore listings
+                </a>
+</div>
+<!-- Asymmetric Collage -->
+<div class="col-span-12 lg:col-span-5 grid grid-cols-2 gap-4 relative">
+<div class="space-y-4 pt-12">
+<div class="rounded-[1.5rem] overflow-hidden aspect-[3/4] shadow-md transform hover:scale-[1.03] transition-transform duration-300">
+<img class="w-full h-full object-cover" data-alt="A sun-drenched colonial villa in Sri Lanka with white-washed walls, a traditional terracotta roof, and lush tropical greenery surrounding a serene lap pool. The lighting is soft and golden, evocative of late afternoon in a coastal boutique retreat. The aesthetic is clean, luxurious, and peaceful, using a warm ivory and deep green color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9qwZEl_02KM3BFdIfjJckUdeMMg-A2sh_pVpJzXmq9eCG1gFVxjD-6BVf3IPW9t8DbzGL32JP6VuzFv7EHxVSNGcjRb7_Qtj3YqcAbPLu2rKKYt_uhi62H03jTfrp_2MtQ3UdyHFiaz1Imh4IOHF5NLbTKBYoV8ikeBeGZPV78FnvsiIGW4uSw-Vh-XapZTCp2sMp2t9CTDzx4DS2LXfEh0-llr6JrOT8av4ZZ3_fodC-XIwEGSI7afiOTE6raiyX5IIde2L7hBs"/>
+</div>
+<div class="rounded-[1.5rem] overflow-hidden aspect-square shadow-md transform hover:scale-[1.03] transition-transform duration-300">
+<img class="w-full h-full object-cover" data-alt="Close-up of a traditional handcrafted Ceylon tea service on a weathered wooden table. A delicate porcelain cup sits beside a silver teapot, with vibrant green tea plantations blurred in the background under a misty mountain sky. The mood is sophisticated and unhurried, reflecting boutique heritage luxury with high-key lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaceGYpL5QW1m8w6J6Z4U9tr-OrboXVzsqiZSy_Hh0E0x40qNYMq1l_gZGzF690Nf9ERgRx4dIPVUJrkIYR_HU-W5Ze5zPNz7WdoGt01fpM1_vWPzlDnAlSPCovPuUqtMnbLKpyh0CDAAMLY7BmxwPSkczxBxO4l-zlE1ZpRqiGQio08krr2iPxeWCYzR7zcKWJvdrMiUoNV0zobK5oqpcGk31mw4UCX4VPWCBsrgMW_wikEYE6go_Oydt5YwrLzPWuga9bQSWXeg"/>
+</div>
+</div>
+<div class="space-y-4">
+<div class="rounded-[1.5rem] overflow-hidden h-[420px] shadow-md transform hover:scale-[1.03] transition-transform duration-300">
+<img class="w-full h-full object-cover" data-alt="A majestic ancient heritage site in Sri Lanka, featuring weathered stone pillars and intricate carvings, surrounded by a dense, emerald-green jungle. The scene is captured in clear daylight with a bright, modern corporate minimalist feel. The composition is slightly asymmetric, emphasizing the unhurried luxury of historical exploration." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCR01ozbx57kJqQ4iv0gkNcUADWa9FpCper8gshYxnjJQHNu_Sf2XyJ8fwni7c7lhFhFxQqEXYEIwMgczrE8YiL6Yei-cLyuXlHEgUl1-Yf7F3uqMetGkB88b2Y4wUNL6i15JbhbLE2z42JUiJt6VO1wT7vw-sa5jY3tU-u8HrQ-KiRn0NIYRzuSyV98oxT6a5dCjWPeU8ZbSwEUUp-JZejElfityV41bEapaXfZYeEe1MrERi0Q6botHZdLJgoJEO8sqvxl8VpEc4"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Category Strip -->
+<section class="border-y border-warm-hairline py-8 bg-surface-container-lowest/50 overflow-x-auto">
+<div class="max-w-container-max mx-auto px-margin-desktop flex justify-between space-x-4 min-w-[1000px]">
+<!-- Item 1 -->
+<button class="flex flex-col items-center space-y-2 group">
+<div class="w-12 h-12 rounded-full border border-warm-hairline flex items-center justify-center group-hover:bg-primary group-hover:text-parchment transition-all duration-200">
+<span class="material-symbols-outlined text-primary group-hover:text-parchment">explore</span>
+</div>
+<span class="font-label-eyebrow text-[10px] uppercase text-on-surface-variant">Tours &amp; Guides</span>
+</button>
+<!-- Item 2 -->
+<button class="flex flex-col items-center space-y-2 group">
+<div class="w-12 h-12 rounded-full border border-warm-hairline flex items-center justify-center group-hover:bg-primary group-hover:text-parchment transition-all duration-200">
+<span class="material-symbols-outlined text-primary group-hover:text-parchment">surfing</span>
+</div>
+<span class="font-label-eyebrow text-[10px] uppercase text-on-surface-variant">Activities</span>
+</button>
+<!-- Item 3 -->
+<button class="flex flex-col items-center space-y-2 group">
+<div class="w-12 h-12 rounded-full border border-warm-hairline flex items-center justify-center group-hover:bg-primary group-hover:text-parchment transition-all duration-200">
+<span class="material-symbols-outlined text-primary group-hover:text-parchment">car_rental</span>
+</div>
+<span class="font-label-eyebrow text-[10px] uppercase text-on-surface-variant">Vehicle Rentals</span>
+</button>
+<!-- Item 4 -->
+<button class="flex flex-col items-center space-y-2 group">
+<div class="w-12 h-12 rounded-full border border-warm-hairline flex items-center justify-center group-hover:bg-primary group-hover:text-parchment transition-all duration-200">
+<span class="material-symbols-outlined text-primary group-hover:text-parchment">hiking</span>
+</div>
+<span class="font-label-eyebrow text-[10px] uppercase text-on-surface-variant">Equipment</span>
+</button>
+<!-- Item 5 -->
+<button class="flex flex-col items-center space-y-2 group">
+<div class="w-12 h-12 rounded-full border border-warm-hairline flex items-center justify-center group-hover:bg-primary group-hover:text-parchment transition-all duration-200">
+<span class="material-symbols-outlined text-primary group-hover:text-parchment">apartment</span>
+</div>
+<span class="font-label-eyebrow text-[10px] uppercase text-on-surface-variant">Accommodation</span>
+</button>
+<!-- Item 6 -->
+<button class="flex flex-col items-center space-y-2 group">
+<div class="w-12 h-12 rounded-full border border-warm-hairline flex items-center justify-center group-hover:bg-primary group-hover:text-parchment transition-all duration-200">
+<span class="material-symbols-outlined text-primary group-hover:text-parchment">commute</span>
+</div>
+<span class="font-label-eyebrow text-[10px] uppercase text-on-surface-variant">Transport</span>
+</button>
+<!-- Item 7 -->
+<button class="flex flex-col items-center space-y-2 group">
+<div class="w-12 h-12 rounded-full border border-warm-hairline flex items-center justify-center group-hover:bg-primary group-hover:text-parchment transition-all duration-200">
+<span class="material-symbols-outlined text-primary group-hover:text-parchment">spa</span>
+</div>
+<span class="font-label-eyebrow text-[10px] uppercase text-on-surface-variant">Wellness &amp; Spa</span>
+</button>
+<!-- Item 8 -->
+<button class="flex flex-col items-center space-y-2 group">
+<div class="w-12 h-12 rounded-full border border-warm-hairline flex items-center justify-center group-hover:bg-primary group-hover:text-parchment transition-all duration-200">
+<span class="material-symbols-outlined text-primary group-hover:text-parchment">restaurant</span>
+</div>
+<span class="font-label-eyebrow text-[10px] uppercase text-on-surface-variant">Food &amp; Dining</span>
+</button>
+</div>
+</section>
+<!-- Handpicked Section -->
+<section class="max-w-container-max mx-auto px-margin-desktop py-24">
+<div class="flex justify-between items-end mb-12">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-deep-forest mb-2">Handpicked</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Featured this month</p>
+</div>
+<a class="font-body-md text-body-md text-secondary hover:underline" href="#">View all collections</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter-desktop">
+<!-- Card 1 -->
+<div class="bg-pure-surface rounded-[1.5rem] border border-warm-hairline overflow-hidden group hover:shadow-xl transition-all duration-300 relative">
+<div class="featured-ribbon absolute top-0 right-6 w-8 h-12 bg-temple-gold z-10 flex items-center justify-center">
+<span class="material-symbols-outlined text-parchment text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<div class="aspect-[4/3] overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A wide-angle landscape shot of the Nine Arch Bridge in Ella, Sri Lanka, surrounded by dense emerald tea bushes and misty tropical forest. A traditional train is passing over the bridge. The lighting is diffused and ethereal, creating a calm, high-end travel aesthetic. The color palette emphasizes deep forest greens and warm earthen tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuANGQ6yI4Ue_Sz5fh4WX0C08QjyW81A9z83WW-p0gaSX93WiUvxPkFRNJf4IA9ug4uXAk9HEwqasxLL8iXId4E5MlkNyBAmj3h7UB2nRcZSbJ9XfyFYaHCfX9NlMi7C4WkAglTjfctABIH68sSnkFH283Vh3hqyM7-epSaRj_DRrOTfwKYMGq_pFCIWxf0Po6taZ84N6OsFcl3SbpEl6Hbs9CqdWZwkq9pHGcX6wuobtxQSiDknVdkL7RxhQ4Jt4LT6c9MABmrjyDo"/>
+</div>
+<div class="p-6">
+<span class="font-label-eyebrow text-label-eyebrow text-muted-bark uppercase tracking-widest mb-2 block">Ella Highlands</span>
+<h3 class="font-headline-md text-headline-md text-deep-forest mb-4">Nine Arch Heritage Walk</h3>
+<div class="flex justify-between items-center">
+<span class="font-numeric-data text-numeric-data font-medium text-primary">LKR 12,500</span>
+<span class="material-symbols-outlined text-muted-sand group-hover:text-primary transition-colors">arrow_forward_ios</span>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-pure-surface rounded-[1.5rem] border border-warm-hairline overflow-hidden group hover:shadow-xl transition-all duration-300 relative">
+<div class="featured-ribbon absolute top-0 right-6 w-8 h-12 bg-temple-gold z-10 flex items-center justify-center">
+<span class="material-symbols-outlined text-parchment text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<div class="aspect-[4/3] overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="The interior of a luxurious boutique villa in Galle Fort, featuring high ceilings, polished cement floors, and colonial-style teak furniture. Large arched windows open to a private courtyard with a Frangipani tree. The atmosphere is quiet, airy, and sophisticated, using a palette of canvas ivory and warm wood tones. Minimalist but rich in texture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDey0rKehv1YY0N6tUr1Sb5zYUgBNWQgS-XxcjxZ-Ebr5g0wGewmic2DuSHj4my0wynYIRHGYKgGIXxlldDinTFHSnmwNdR25m53-Rbui13UMsmMpCU_KTgu5nO0M7q8ty0N0jCwJ_UsZs0UqZWv0VGipQcj3PxGOAqmepG4RMedAE94lHz_6Ait5CLJ5kDS1ftPOpaoZPMRYiATa73sVFsepO9VZSxqxhe4UiMhy2yQgK3Cvdcrrvu9T5yIb6oTkmg-f8zoaL8cF0"/>
+</div>
+<div class="p-6">
+<span class="font-label-eyebrow text-label-eyebrow text-muted-bark uppercase tracking-widest mb-2 block">Galle Fort</span>
+<h3 class="font-headline-md text-headline-md text-deep-forest mb-4">Dutch Colonial Mansion</h3>
+<div class="flex justify-between items-center">
+<span class="font-numeric-data text-numeric-data font-medium text-primary">LKR 85,000</span>
+<span class="material-symbols-outlined text-muted-sand group-hover:text-primary transition-colors">arrow_forward_ios</span>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-pure-surface rounded-[1.5rem] border border-warm-hairline overflow-hidden group hover:shadow-xl transition-all duration-300 relative">
+<div class="featured-ribbon absolute top-0 right-6 w-8 h-12 bg-temple-gold z-10 flex items-center justify-center">
+<span class="material-symbols-outlined text-parchment text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<div class="aspect-[4/3] overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A curated sunset dining setup on a pristine, secluded beach in Mirissa, Sri Lanka. A low wooden table is surrounded by linen cushions and lit by soft lanterns, with the Indian Ocean waves gently crashing in the background. The lighting is warm and romantic, featuring deep terracotta oranges and primary navy blues in the sky. Sophisticated, high-end outdoor luxury." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJ26uaQ7H_d9jqc2OZbunq9vXmLlyiSpQvkxg9-Oj59iQD8WM86UIaRdnH17lfiiBWvB9DlUj0BtVNWOM574hrDq8QNLS8i91AoV6Td0QzFSfxldpT9DrnruY3ywTcOMU4mHyLLmIZxvFqtHSC7tSbbD24KpSbMzzob7EdQUfBqPqX6MEATWRXMae9kcfPyweMuI3iT815cJLWAiINglR-5vHxW7oDDNHIS8Njio6Ly04cIScwdHdbZWC6ubYXPcwQ98eDC_64tdA"/>
+</div>
+<div class="p-6">
+<span class="font-label-eyebrow text-label-eyebrow text-muted-bark uppercase tracking-widest mb-2 block">Mirissa Coast</span>
+<h3 class="font-headline-md text-headline-md text-deep-forest mb-4">Private Beach Sunset Dinner</h3>
+<div class="flex justify-between items-center">
+<span class="font-numeric-data text-numeric-data font-medium text-primary">LKR 45,000</span>
+<span class="material-symbols-outlined text-muted-sand group-hover:text-primary transition-colors">arrow_forward_ios</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Trust & Transparency Section -->
+<section class="bg-warm-linen py-24">
+<div class="max-w-container-max mx-auto px-margin-desktop text-center">
+<h2 class="font-headline-lg text-headline-lg text-deep-forest mb-16">How verification works</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
+<!-- Connector Line (Desktop) -->
+<div class="hidden md:block absolute top-12 left-[15%] right-[15%] h-[1px] bg-warm-hairline z-0"></div>
+<!-- Step 1 -->
+<div class="relative z-10 flex flex-col items-center">
+<div class="w-24 h-24 rounded-full bg-pure-surface border border-warm-hairline flex items-center justify-center mb-6 shadow-sm">
+<span class="material-symbols-outlined text-primary text-4xl">upload_file</span>
+</div>
+<h4 class="font-headline-md text-headline-md text-deep-forest mb-2">1. Submit</h4>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xs mx-auto">Upload your heritage site or villa details for curation review.</p>
+</div>
+<!-- Step 2 -->
+<div class="relative z-10 flex flex-col items-center">
+<div class="w-24 h-24 rounded-full bg-pure-surface border border-warm-hairline flex items-center justify-center mb-6 shadow-sm">
+<span class="material-symbols-outlined text-primary text-4xl">verified_user</span>
+</div>
+<h4 class="font-headline-md text-headline-md text-deep-forest mb-2">2. We verify</h4>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xs mx-auto">Our local curators visit each location to ensure heritage standards.</p>
+</div>
+<!-- Step 3 -->
+<div class="relative z-10 flex flex-col items-center">
+<div class="w-24 h-24 rounded-full bg-primary flex items-center justify-center mb-6 shadow-md border-4 border-parchment">
+<span class="material-symbols-outlined text-parchment text-4xl" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<h4 class="font-headline-md text-headline-md text-deep-forest mb-2">3. Goes live</h4>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xs mx-auto">Your listing earns the Verified check and joins our exclusive directory.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Newsletter / CTA Split -->
+<section class="max-w-container-max mx-auto px-margin-desktop py-24 grid grid-cols-12 gap-gutter-desktop items-center">
+<div class="col-span-12 lg:col-span-5">
+<h2 class="font-headline-lg text-headline-lg text-deep-forest mb-6">Stay informed.</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-8">Receive our seasonal curation of Sri Lanka’s most remarkable hidden gems, delivered once a month.</p>
+<form class="flex space-x-2">
+<input class="flex-grow bg-pure-surface border border-warm-hairline rounded-lg px-4 py-3 focus:ring-1 focus:ring-terracotta-glow focus:border-terracotta-glow outline-none" placeholder="Your email address" type="email"/>
+<button class="bg-deep-forest text-parchment px-8 py-3 rounded-lg font-bold hover:bg-primary transition-colors">Join</button>
+</form>
+</div>
+<div class="col-span-12 lg:col-span-6 lg:offset-1">
+<div class="bg-terracotta-glow/5 rounded-[2rem] p-12 border border-terracotta-glow/20 relative overflow-hidden">
+<div class="absolute top-[-20px] right-[-20px] w-48 h-48 bg-terracotta-glow/10 rounded-full blur-3xl"></div>
+<span class="font-label-eyebrow text-label-eyebrow text-on-secondary-fixed-variant uppercase tracking-widest mb-4 block">For Proprietors</span>
+<h3 class="font-display-hero text-3xl text-on-secondary-container mb-6">Ready to share your legacy?</h3>
+<p class="font-body-md text-on-secondary-fixed-variant mb-8">Join the island's most prestigious collection of heritage and luxury services.</p>
+<button class="bg-secondary text-on-secondary px-8 py-4 rounded-lg font-bold hover:scale-[0.98] transition-transform">Get Started Today</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-deep-forest dark:bg-char-green">
+<div class="flex flex-col md:flex-row justify-between items-start px-margin-desktop py-24 w-full max-w-container-max mx-auto space-y-12 md:space-y-0">
+<div class="max-w-sm">
+<div class="font-headline-md text-headline-md text-parchment mb-6">Ceylon Directory</div>
+<p class="text-parchment/60 font-body-md text-body-md mb-8">The definitive guide to luxury boutique travel and heritage experiences in the pearl of the Indian Ocean.</p>
+<div class="flex space-x-6">
+<span class="material-symbols-outlined text-parchment/50 hover:text-temple-gold cursor-pointer transition-colors">public</span>
+<span class="material-symbols-outlined text-parchment/50 hover:text-temple-gold cursor-pointer transition-colors">mail</span>
+<span class="material-symbols-outlined text-parchment/50 hover:text-temple-gold cursor-pointer transition-colors">share</span>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-12 text-parchment/80">
+<div class="flex flex-col space-y-4">
+<h5 class="text-temple-gold font-bold font-label-eyebrow tracking-widest uppercase text-[10px]">Directory</h5>
+<a class="hover:text-parchment transition-colors font-body-md" href="#">Accommodation</a>
+<a class="hover:text-parchment transition-colors font-body-md" href="#">Experiences</a>
+<a class="hover:text-parchment transition-colors font-body-md" href="#">Transport</a>
+</div>
+<div class="flex flex-col space-y-4">
+<h5 class="text-temple-gold font-bold font-label-eyebrow tracking-widest uppercase text-[10px]">Support</h5>
+<a class="hover:text-parchment transition-colors font-body-md" href="#">Contact Support</a>
+<a class="hover:text-parchment transition-colors font-body-md" href="#">Terms of Service</a>
+<a class="hover:text-parchment transition-colors font-body-md" href="#">Privacy Policy</a>
+</div>
+<div class="flex flex-col space-y-4">
+<h5 class="text-temple-gold font-bold font-label-eyebrow tracking-widest uppercase text-[10px]">Company</h5>
+<a class="hover:text-parchment transition-colors font-body-md" href="#">About Us</a>
+<a class="hover:text-parchment transition-colors font-body-md" href="#">Global Directory</a>
+<a class="hover:text-parchment transition-colors font-body-md" href="#">Partners</a>
+</div>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-desktop py-8 border-t border-parchment/10 flex flex-col md:flex-row justify-between items-center text-parchment/40 font-body-md text-sm">
+<span>© 2024 Ceylon Directory. All rights reserved.</span>
+<div class="flex space-x-4 mt-4 md:mt-0">
+<span class="font-numeric-data">9.1234° N, 79.8655° E</span>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interactions and effects
+        document.querySelectorAll('a, button').forEach(el => {
+            el.addEventListener('mousedown', () => {
+                el.style.transform = 'scale(0.98)';
+            });
+            el.addEventListener('mouseup', () => {
+                el.style.transform = '';
+            });
+            el.addEventListener('mouseleave', () => {
+                el.style.transform = '';
+            });
+        });
+
+        // Theme Switcher Simple Logic
+        const themeBtn = document.querySelector('nav button.material-symbols-outlined');
+        themeBtn.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            themeBtn.textContent = document.documentElement.classList.contains('dark') ? 'light_mode' : 'dark_mode';
+        });
+    </script>
+</body></html>

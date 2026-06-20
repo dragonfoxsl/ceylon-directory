@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ceylon Directory | Curated Heritage &amp; Luxury</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary": "#491f1f",
+                    "temple-gold": "#C19A4B",
+                    "on-primary-container": "#89b9a0",
+                    "on-surface-variant": "#414944",
+                    "warm-hairline-dark": "#39342B",
+                    "surface-container-low": "#f3f4f0",
+                    "on-background": "#1a1c1a",
+                    "secondary-fixed-dim": "#ffb5a0",
+                    "tertiary-fixed-dim": "#f9b5b4",
+                    "muted-bark": "#6E6456",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-fixed": "#350f10",
+                    "on-secondary-fixed-variant": "#7f2b11",
+                    "jade-green": "#5FA882",
+                    "tertiary-container": "#633434",
+                    "outline": "#717973",
+                    "on-surface": "#1a1c1a",
+                    "status-rejected": "#9C4A3C",
+                    "surface-tint": "#3a6752",
+                    "inverse-surface": "#2e312f",
+                    "surface-bright": "#f9faf6",
+                    "surface-dim": "#d9dad7",
+                    "on-secondary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "canvas-ivory": "#FAF6EF",
+                    "terracotta-glow": "#D98463",
+                    "primary": "#003322",
+                    "surface-container-highest": "#e2e3df",
+                    "on-tertiary": "#ffffff",
+                    "warm-hairline": "#E6DCCB",
+                    "surface-container": "#edeeeb",
+                    "secondary": "#9e4126",
+                    "on-primary-fixed": "#002114",
+                    "elevated-surface": "#26231C",
+                    "on-tertiary-container": "#de9d9c",
+                    "secondary-container": "#ff8b69",
+                    "primary-fixed-dim": "#a1d1b8",
+                    "primary-fixed": "#bceed3",
+                    "warm-ink": "#241F1A",
+                    "secondary-fixed": "#ffdbd1",
+                    "surface-container-high": "#e7e8e5",
+                    "surface-variant": "#e2e3df",
+                    "deep-forest": "#143A2B",
+                    "raised-surface": "#1E1C17",
+                    "status-approved": "#2F7D5B",
+                    "tertiary-fixed": "#ffdad8",
+                    "parchment": "#F0E9DB",
+                    "muted-sand": "#A79C8A",
+                    "on-error": "#ffffff",
+                    "inverse-primary": "#a1d1b8",
+                    "background": "#f9faf6",
+                    "primary-container": "#1c4a37",
+                    "on-secondary-container": "#75240a",
+                    "status-pending": "#B7791F",
+                    "on-primary": "#ffffff",
+                    "temple-gold-bright": "#D9B65E",
+                    "surface": "#f9faf6",
+                    "pure-surface": "#FFFFFF",
+                    "char-green": "#14130F",
+                    "on-tertiary-fixed-variant": "#693939",
+                    "error-container": "#ffdad6",
+                    "on-secondary-fixed": "#3b0a00",
+                    "warm-linen": "#F3ECE0",
+                    "on-primary-fixed-variant": "#214f3c",
+                    "outline-variant": "#c0c9c2",
+                    "error": "#ba1a1a",
+                    "inverse-on-surface": "#f0f1ee"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "4rem",
+                    "gutter-desktop": "2rem",
+                    "margin-mobile": "1.5rem",
+                    "gutter-mobile": "1rem",
+                    "container-max": "1320px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Plus Jakarta Sans", "sans-serif"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans", "sans-serif"],
+                    "headline-lg": ["Plus Jakarta Sans", "sans-serif"],
+                    "headline-md": ["Plus Jakarta Sans", "sans-serif"],
+                    "body-md": ["Plus Jakarta Sans", "sans-serif"],
+                    "numeric-data": ["JetBrains Mono", "monospace"],
+                    "label-eyebrow": ["Plus Jakarta Sans", "sans-serif"],
+                    "display-hero": ["Plus Jakarta Sans", "sans-serif"]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        @keyframes slowFloat {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        .float-animation {
+            animation: slowFloat 6s ease-in-out infinite;
+        }
+        .float-animation-delayed {
+            animation: slowFloat 8s ease-in-out infinite;
+            animation-delay: 1s;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-canvas-ivory text-on-background font-body-md overflow-x-hidden">
+<!-- TopAppBar Shell -->
+<header class="fixed top-0 w-full bg-canvas-ivory dark:bg-char-green border-b border-warm-hairline dark:border-warm-hairline-dark z-50">
+<div class="flex justify-between items-center h-16 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed cursor-pointer">menu</span>
+<h1 class="font-headline-md text-headline-md tracking-widest text-primary dark:text-primary-fixed">CEYLON DIRECTORY</h1>
+</div>
+<nav class="hidden md:flex gap-8 items-center">
+<a class="text-primary dark:text-primary-fixed font-bold border-b-2 border-primary font-body-md text-body-md" href="#">Browse</a>
+<a class="text-muted-bark dark:text-muted-sand hover:text-terracotta-glow transition-colors duration-300 font-body-md text-body-md" href="#">About</a>
+<a class="text-muted-bark dark:text-muted-sand hover:text-terracotta-glow transition-colors duration-300 font-body-md text-body-md" href="#">Dashboard</a>
+</nav>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed cursor-pointer">light_mode</span>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-20">
+<!-- Hero Section -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-2 gap-12 items-center py-12 md:py-24">
+<div class="space-y-10">
+<h2 class="font-display-hero text-display-hero leading-tight text-primary">
+                    Ceylon, <span class="inline-block w-16 h-10 md:w-24 md:h-14 align-middle rounded-full overflow-hidden border-2 border-white shadow-sm -mt-2 mx-1">
+<img class="w-full h-full object-cover" data-alt="A serene close-up of a misty tea plantation in the Sri Lankan central highlands, reflecting a warm, calm, boutique heritage morning light with vibrant greens and soft amber highlights." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhjRDn6oEwpv66_t3b_d2iGAXEWbN7mod_KW6DcPYTrKEpqm4giu2eqGHR0yalZGFcA7Pt2kT18_83QXROH5cG-86WZFXk5oEwPkBPQAbbF3rkFQ5ql55e31WNszdMlX0vHMOIXqE9Y05FekFd-cpL79eq4p_g-vIzUH2pSFjnblmSKhkCDBRutj-Scu0a7dyrza8WKZj0XhUkaPK_H1ngRrikwCpNCh0lWRPZtVXeLnmt0aIqfWshgqdb3SM7864FvpagVirIMy0"/>
+</span> Curated <br/>
+                    Beyond <span class="inline-block w-16 h-10 md:w-24 md:h-14 align-middle rounded-full overflow-hidden border-2 border-white shadow-sm -mt-2 mx-1">
+<img class="w-full h-full object-cover" data-alt="An interior shot of a restored colonial villa in Galle Fort, featuring antique teak furniture, whitewashed walls, and a sun-drenched courtyard with tropical foliage in a minimal, high-end aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvgRyOac8lTABY0YsztVJushibexHNecbNubtPt_5LbasIs0vvBrXmKqb3K0Hj4eEfFoxTNhDHmeC8buUs9N6DpkXCtCM-REg8vuaEfJHHtBay1tQsQyckC_ieb1BY2pDQRm23VmszSJFARy75WXD2uJcGMvLijG4rPfR9BC2QsyExRArNL8055UOmd911dHNZ5vrc54C72f6o5zEEdzDfHIRO4VrSG4728RAuxll1Em6q1_gqwFEzA1SV3z3hX4iTYbo10feWCjU"/>
+</span> Expectations.
+                </h2>
+<div class="flex flex-col sm:flex-row gap-6">
+<button class="bg-primary text-parchment px-10 py-4 font-bold text-lg hover:brightness-110 active:translate-y-px transition-all rounded-lg">
+                        Explore listings
+                    </button>
+<div class="flex items-center gap-3 text-muted-bark">
+<span class="material-symbols-outlined text-terracotta-glow">verified_user</span>
+<span class="font-body-md text-body-md">1,200+ Verified Destinations</span>
+</div>
+</div>
+<!-- Search Bar -->
+<div class="bg-pure-surface p-2 rounded-2xl border border-warm-hairline shadow-sm flex flex-col md:flex-row gap-2 max-w-xl">
+<div class="flex-1 flex items-center px-4 gap-3 border-b md:border-b-0 md:border-r border-warm-hairline">
+<span class="material-symbols-outlined text-muted-sand">search</span>
+<input class="w-full bg-transparent border-none focus:ring-0 text-on-surface font-body-md py-3" placeholder="Search heritage, boutique, nature..." type="text"/>
+</div>
+<div class="flex-none flex items-center px-4 gap-2">
+<span class="material-symbols-outlined text-muted-sand">location_on</span>
+<select class="bg-transparent border-none focus:ring-0 text-muted-bark font-body-md cursor-pointer pr-8">
+<option>All Regions</option>
+<option>Colombo</option>
+<option>Kandy</option>
+<option>Galle</option>
+<option>Ella</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Asymmetric Collage -->
+<div class="relative h-[600px] hidden md:block">
+<div class="absolute right-0 top-0 w-64 h-96 rounded-[3rem] overflow-hidden shadow-xl float-animation">
+<img class="w-full h-full object-cover" data-alt="A tall vertical shot of the Nine Arch Bridge in Ella, Sri Lanka, surrounded by lush tropical jungle at golden hour, capturing the unhurried luxury of the hill country landscape." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3WppquCsdMSA8s4RtrG6jUHACkxm5PEZH6pKf7WYdXe4EJmkd9sHWP8H3VphsAm-0CyC61RTvOtl5mA6MMNtJz1C2ixol0MvIqo-M4ATjgDt0SY3jgMAkjfSruek7VVa6dXvbxy7fJ1IExastXWebz6PaXPWboX2FXudtWYxo4m9q3NWP3n8c5mYJh5wqurKHSlw1qg8Cui7KIReQQoBWosSsKAH8ikd5YpkEqzBtO-TQl-F11UfDLyhvMGjzqR-DA6vre-FbTSk"/>
+</div>
+<div class="absolute left-10 bottom-0 w-72 h-[450px] rounded-[3rem] overflow-hidden shadow-2xl float-animation-delayed border-8 border-canvas-ivory">
+<img class="w-full h-full object-cover" data-alt="A luxurious infinity pool overlooking the Indian Ocean at a boutique beachfront hotel in Weligama, with swaying palm trees and a terracotta sunset sky in a minimalist corporate travel style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtlQoglXG_m_QDsbWuoUlQK1SNTFk87_kRSpXrKCubjiG_THGMhBk6nYs4hzYbPnMz6ipq6kc7Q8ZSaBi0ZuXYeZcV61HsONx0iVewD3Nn86icw-uh2j0WXKItHllkDesVp2SeARJNkmTtdIZ4CtONjBJ6psgZ6nbvdXzsnYQnCG-KUU7g3_8gcPVFHqjnqkp1s-kXXLLbgsVsG6lxklMSxUrEwFOf8GuvHyGiVMNS6KmPjEtjfcYPV-imXeOof1UXuf0hxkNC_XM"/>
+</div>
+<div class="absolute right-20 bottom-20 w-48 h-48 bg-temple-gold rounded-full flex items-center justify-center p-8 text-center text-on-primary-fixed shadow-lg animate-pulse">
+<span class="font-label-eyebrow text-label-eyebrow uppercase tracking-widest leading-tight">Hand-Picked Selection 2024</span>
+</div>
+</div>
+</section>
+<!-- Category Strip -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12">
+<div class="flex gap-4 overflow-x-auto hide-scrollbar pb-4 -mx-margin-mobile px-margin-mobile md:mx-0 md:px-0">
+<button class="flex-none flex items-center gap-2 bg-terracotta-glow text-white px-6 py-3 rounded-full shadow-md transition-all">
+<span class="material-symbols-outlined">villa</span>
+<span class="font-body-md">Villas</span>
+</button>
+<button class="flex-none flex items-center gap-2 bg-pure-surface border border-warm-hairline text-muted-bark px-6 py-3 rounded-full hover:bg-warm-linen transition-all">
+<span class="material-symbols-outlined">hotel</span>
+<span class="font-body-md">Hotels</span>
+</button>
+<button class="flex-none flex items-center gap-2 bg-pure-surface border border-warm-hairline text-muted-bark px-6 py-3 rounded-full hover:bg-warm-linen transition-all">
+<span class="material-symbols-outlined">restaurant</span>
+<span class="font-body-md">Dining</span>
+</button>
+<button class="flex-none flex items-center gap-2 bg-pure-surface border border-warm-hairline text-muted-bark px-6 py-3 rounded-full hover:bg-warm-linen transition-all">
+<span class="material-symbols-outlined">spa</span>
+<span class="font-body-md">Wellness</span>
+</button>
+<button class="flex-none flex items-center gap-2 bg-pure-surface border border-warm-hairline text-muted-bark px-6 py-3 rounded-full hover:bg-warm-linen transition-all">
+<span class="material-symbols-outlined">ad_center</span>
+<span class="font-body-md">Tours</span>
+</button>
+<button class="flex-none flex items-center gap-2 bg-pure-surface border border-warm-hairline text-muted-bark px-6 py-3 rounded-full hover:bg-warm-linen transition-all">
+<span class="material-symbols-outlined">museum</span>
+<span class="font-body-md">Heritage</span>
+</button>
+<button class="flex-none flex items-center gap-2 bg-pure-surface border border-warm-hairline text-muted-bark px-6 py-3 rounded-full hover:bg-warm-linen transition-all">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="font-body-md">Boutiques</span>
+</button>
+<button class="flex-none flex items-center gap-2 bg-pure-surface border border-warm-hairline text-muted-bark px-6 py-3 rounded-full hover:bg-warm-linen transition-all">
+<span class="material-symbols-outlined">event</span>
+<span class="font-body-md">Events</span>
+</button>
+</div>
+</section>
+<!-- Featured Row -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-16">
+<div class="flex justify-between items-end mb-10">
+<div>
+<h3 class="font-headline-lg text-headline-lg text-primary mb-2">Featured this month</h3>
+<p class="text-muted-bark font-body-md">Exclusive destinations hand-selected by our heritage experts.</p>
+</div>
+<button class="text-secondary font-bold flex items-center gap-2 hover:gap-3 transition-all">
+                    View all <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+<div class="flex gap-8 overflow-x-auto hide-scrollbar -mx-margin-mobile px-margin-mobile md:mx-0 md:px-0">
+<!-- Listing Card 1 -->
+<div class="flex-none w-[320px] md:w-[380px] bg-pure-surface rounded-3xl border border-warm-hairline overflow-hidden group hover:shadow-xl transition-all relative">
+<div class="absolute top-4 right-0 z-10 bg-temple-gold text-white font-label-eyebrow px-4 py-1 rounded-l-lg shadow-md">PLATINUM</div>
+<div class="h-64 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A sprawling white colonial manor house surrounded by manicured green lawns and tropical flower gardens, featuring large arched windows and a serene terrace, captured in soft morning light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCk9Ddu4QY2Iyz1mKNLK54N9CqOCiiY_cmmtRjJKY_oE1Ji1ucReMJUfS2dKGipfaP8pcySghXuHRqLABppq4FHAm4tTgxgKYyHuxv63YvyUvdxJUqr-9KGxJVe8QAgfm38oMeJeKUAn_fOSCgDdVOjIljwLiaMndgvyEUuUknoEeC50H8w_if6tGulQxE4ngPwMqqwsPhfPwVoeFUpA_-sgBpnHH_gxVuNpyWueY-I5t3pUbviYMzTI3-AReyzLJuuuziEXMPRO8Q"/>
+</div>
+<div class="p-6">
+<p class="font-label-eyebrow text-label-eyebrow uppercase text-muted-sand mb-2 tracking-[0.2em]">NUWARA ELIYA</p>
+<h4 class="font-headline-md text-headline-md text-primary mb-4">The Hill Country Manor</h4>
+<div class="flex justify-between items-center">
+<span class="font-numeric-data text-numeric-data text-secondary">LKR 45,000 / Night</span>
+<span class="material-symbols-outlined text-muted-sand group-hover:text-terracotta-glow transition-colors">favorite</span>
+</div>
+</div>
+</div>
+<!-- Listing Card 2 -->
+<div class="flex-none w-[320px] md:w-[380px] bg-pure-surface rounded-3xl border border-warm-hairline overflow-hidden group hover:shadow-xl transition-all relative">
+<div class="absolute top-4 right-0 z-10 bg-temple-gold text-white font-label-eyebrow px-4 py-1 rounded-l-lg shadow-md">HERITAGE</div>
+<div class="h-64 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A stylish boutique loft inside the ancient Galle Fort, with original exposed brickwork, contemporary art, and wooden beam ceilings, blending historic architecture with modern luxury." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCbEn4Xo2HgucvcXw-hm4jCDbvW4NWWrnNEFcVep00zkcBGhRoqNJkWcJH_ysyblxMgZ4FiAvewtEu1lK72-UaqoO8dmNXcbTXjf6pidqHGMbgtRlsQL3xIZ5dg5skKuyNItQppytdVkbUEn-YlxUt4prlPqI9ud-f-UBdXRH93C_QdUNjYnK9-LHJpP_42RvN-suXesh8YWF2Yw8sTHBURrGTraTLn7dDnblnHjgU5HpGIL-gjNxgAhK62i2mbhd8YwvIhm0a0Us"/>
+</div>
+<div class="p-6">
+<p class="font-label-eyebrow text-label-eyebrow uppercase text-muted-sand mb-2 tracking-[0.2em]">GALLE FORT</p>
+<h4 class="font-headline-md text-headline-md text-primary mb-4">Lighthouse Street Lofts</h4>
+<div class="flex justify-between items-center">
+<span class="font-numeric-data text-numeric-data text-secondary">LKR 32,500 / Night</span>
+<span class="material-symbols-outlined text-muted-sand group-hover:text-terracotta-glow transition-colors">favorite</span>
+</div>
+</div>
+</div>
+<!-- Listing Card 3 -->
+<div class="flex-none w-[320px] md:w-[380px] bg-pure-surface rounded-3xl border border-warm-hairline overflow-hidden group hover:shadow-xl transition-all relative">
+<div class="absolute top-4 right-0 z-10 bg-temple-gold text-white font-label-eyebrow px-4 py-1 rounded-l-lg shadow-md">BOUTIQUE</div>
+<div class="h-64 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="An open-air luxury treehouse suite nestled in the jungle canopy near Sigiriya, with panoramic views of the fortress rock and elegant neutral-toned interiors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD073tdX_0nEz7wauxaAHEzbY6purk5vA98MFLtSQhAjWdbGXE5pqhk6kZZij47C64URUBTfc1vNssFkeooqiqiPkg4HiqWBdgbEriW4LQj_shkgQpI4nTw2cfYUgHoQR3zeQ3fmwrY-ujQZpe1z90n8SYkiXVbHlM9xiMKY3F4FL6Sf_iLqonnd_ae5mKKzeBKpTA5DH7rttYG0CbIH_VgG2UefUWRBSlapcfrwgzgoaMUHkFajtal7JOqaUhifYM8Yjx_uI-6C-I"/>
+</div>
+<div class="p-6">
+<p class="font-label-eyebrow text-label-eyebrow uppercase text-muted-sand mb-2 tracking-[0.2em]">SIGIRIYA</p>
+<h4 class="font-headline-md text-headline-md text-primary mb-4">Canopy Rock Hideaway</h4>
+<div class="flex justify-between items-center">
+<span class="font-numeric-data text-numeric-data text-secondary">LKR 58,000 / Night</span>
+<span class="material-symbols-outlined text-muted-sand group-hover:text-terracotta-glow transition-colors">favorite</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Verification Process Band -->
+<section class="bg-warm-linen py-20 mt-12 overflow-hidden">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="text-center mb-16">
+<h3 class="font-headline-lg text-headline-lg text-primary mb-4">How verification works</h3>
+<p class="text-muted-bark max-w-2xl mx-auto">We maintain the island's most trusted directory through a rigorous, transparent selection process.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
+<!-- Step 1 -->
+<div class="flex flex-col items-center text-center group">
+<div class="w-20 h-20 rounded-full bg-pure-surface flex items-center justify-center border-2 border-warm-hairline group-hover:border-terracotta-glow transition-colors mb-6 shadow-sm">
+<span class="material-symbols-outlined text-primary text-3xl">upload_file</span>
+</div>
+<h5 class="font-headline-md text-headline-md text-primary mb-3">Submit</h5>
+<p class="text-muted-bark font-body-md">Partners upload heritage documentation and high-quality destination assets.</p>
+</div>
+<!-- Step 2 -->
+<div class="flex flex-col items-center text-center group">
+<div class="w-20 h-20 rounded-full bg-pure-surface flex items-center justify-center border-2 border-warm-hairline group-hover:border-terracotta-glow transition-colors mb-6 shadow-sm">
+<span class="material-symbols-outlined text-primary text-3xl">verified</span>
+</div>
+<h5 class="font-headline-md text-headline-md text-primary mb-3">We verify</h5>
+<p class="text-muted-bark font-body-md">Our curators conduct on-site inspections to ensure quality and authenticity standards.</p>
+</div>
+<!-- Step 3 -->
+<div class="flex flex-col items-center text-center group">
+<div class="w-20 h-20 rounded-full bg-pure-surface flex items-center justify-center border-2 border-warm-hairline group-hover:border-terracotta-glow transition-colors mb-6 shadow-sm">
+<span class="material-symbols-outlined text-primary text-3xl">rocket_launch</span>
+</div>
+<h5 class="font-headline-md text-headline-md text-primary mb-3">Goes live</h5>
+<p class="text-muted-bark font-body-md">Once approved, the destination is showcased to our global community of explorers.</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Shell -->
+<footer class="bg-deep-forest dark:bg-char-green w-full py-12">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="space-y-6">
+<h3 class="font-headline-md text-headline-md text-temple-gold">CEYLON DIRECTORY</h3>
+<p class="text-parchment opacity-80 font-body-md max-w-md">The definitive guide to the island's most exclusive boutique villas, heritage landmarks, and curated cultural experiences.</p>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-parchment cursor-pointer hover:text-temple-gold">face_nod</span>
+<span class="material-symbols-outlined text-parchment cursor-pointer hover:text-temple-gold">share</span>
+<span class="material-symbols-outlined text-parchment cursor-pointer hover:text-temple-gold">mail</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="space-y-4">
+<h4 class="font-bold text-temple-gold-bright uppercase tracking-widest text-xs">Navigation</h4>
+<ul class="space-y-2">
+<li><a class="text-parchment opacity-80 hover:text-temple-gold transition-opacity font-body-md" href="#">Browse</a></li>
+<li><a class="text-parchment opacity-80 hover:text-temple-gold transition-opacity font-body-md" href="#">About</a></li>
+<li><a class="text-temple-gold-bright underline font-body-md" href="#">Partner Support</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h4 class="font-bold text-temple-gold-bright uppercase tracking-widest text-xs">Legal</h4>
+<ul class="space-y-2">
+<li><a class="text-parchment opacity-80 hover:text-temple-gold transition-opacity font-body-md" href="#">Privacy Policy</a></li>
+<li><a class="text-parchment opacity-80 hover:text-temple-gold transition-opacity font-body-md" href="#">Terms of Service</a></li>
+<li><a class="text-parchment opacity-80 hover:text-temple-gold transition-opacity font-body-md" href="#">Contact Us</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="mt-12 pt-8 border-t border-white/10 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto text-center">
+<p class="text-parchment opacity-50 text-xs tracking-widest">© 2024 CEYLON DIRECTORY. ALL RIGHTS RESERVED.</p>
+</div>
+</footer>
+<script>
+        // Micro-interaction for smooth horizontal scrolling
+        const sliders = document.querySelectorAll('.hide-scrollbar');
+        sliders.forEach(slider => {
+            let isDown = false;
+            let startDate;
+            let scrollLeft;
+
+            slider.addEventListener('mousedown', (e) => {
+                isDown = true;
+                slider.classList.add('active');
+                startX = e.pageX - slider.offsetLeft;
+                scrollLeft = slider.scrollLeft;
+            });
+            slider.addEventListener('mouseleave', () => {
+                isDown = false;
+            });
+            slider.addEventListener('mouseup', () => {
+                isDown = false;
+            });
+            slider.addEventListener('mousemove', (e) => {
+                if(!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - slider.offsetLeft;
+                const walk = (x - startX) * 2;
+                slider.scrollLeft = scrollLeft - walk;
+            });
+        });
+    </script>
+</body></html>

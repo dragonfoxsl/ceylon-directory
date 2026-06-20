@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CEYLON DIRECTORY | Listing Details</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary": "#491f1f",
+                    "temple-gold": "#C19A4B",
+                    "on-primary-container": "#89b9a0",
+                    "on-surface-variant": "#414944",
+                    "warm-hairline-dark": "#39342B",
+                    "surface-container-low": "#f3f4f0",
+                    "on-background": "#1a1c1a",
+                    "secondary-fixed-dim": "#ffb5a0",
+                    "tertiary-fixed-dim": "#f9b5b4",
+                    "muted-bark": "#6E6456",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-fixed": "#350f10",
+                    "on-secondary-fixed-variant": "#7f2b11",
+                    "jade-green": "#5FA882",
+                    "tertiary-container": "#633434",
+                    "outline": "#717973",
+                    "on-surface": "#1a1c1a",
+                    "status-rejected": "#9C4A3C",
+                    "surface-tint": "#3a6752",
+                    "inverse-surface": "#2e312f",
+                    "surface-bright": "#f9faf6",
+                    "surface-dim": "#d9dad7",
+                    "on-secondary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "canvas-ivory": "#FAF6EF",
+                    "terracotta-glow": "#D98463",
+                    "primary": "#003322",
+                    "surface-container-highest": "#e2e3df",
+                    "on-tertiary": "#ffffff",
+                    "warm-hairline": "#E6DCCB",
+                    "surface-container": "#edeeeb",
+                    "secondary": "#9e4126",
+                    "on-primary-fixed": "#002114",
+                    "elevated-surface": "#26231C",
+                    "on-tertiary-container": "#de9d9c",
+                    "secondary-container": "#ff8b69",
+                    "primary-fixed-dim": "#a1d1b8",
+                    "primary-fixed": "#bceed3",
+                    "warm-ink": "#241F1A",
+                    "secondary-fixed": "#ffdbd1",
+                    "surface-container-high": "#e7e8e5",
+                    "surface-variant": "#e2e3df",
+                    "deep-forest": "#143A2B",
+                    "raised-surface": "#1E1C17",
+                    "status-approved": "#2F7D5B",
+                    "tertiary-fixed": "#ffdad8",
+                    "parchment": "#F0E9DB",
+                    "muted-sand": "#A79C8A",
+                    "on-error": "#ffffff",
+                    "inverse-primary": "#a1d1b8",
+                    "background": "#f9faf6",
+                    "primary-container": "#1c4a37",
+                    "on-secondary-container": "#75240a",
+                    "status-pending": "#B7791F",
+                    "on-primary": "#ffffff",
+                    "temple-gold-bright": "#D9B65E",
+                    "surface": "#f9faf6",
+                    "pure-surface": "#FFFFFF",
+                    "char-green": "#14130F",
+                    "on-tertiary-fixed-variant": "#693939",
+                    "error-container": "#ffdad6",
+                    "on-secondary-fixed": "#3b0a00",
+                    "warm-linen": "#F3ECE0",
+                    "on-primary-fixed-variant": "#214f3c",
+                    "outline-variant": "#c0c9c2",
+                    "error": "#ba1a1a",
+                    "inverse-on-surface": "#f0f1ee"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "4rem",
+                    "gutter-desktop": "2rem",
+                    "margin-mobile": "1.5rem",
+                    "gutter-mobile": "1rem",
+                    "container-max": "1320px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Plus Jakarta Sans", "sans-serif"],
+                    "headline-lg": ["Plus Jakarta Sans", "sans-serif"],
+                    "headline-md": ["Plus Jakarta Sans", "sans-serif"],
+                    "body-md": ["Plus Jakarta Sans", "sans-serif"],
+                    "numeric-data": ["JetBrains Mono", "monospace"],
+                    "label-eyebrow": ["Plus Jakarta Sans", "sans-serif"],
+                    "display-hero": ["Plus Jakarta Sans", "sans-serif"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "numeric-data": ["14px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                    "label-eyebrow": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.12em", "fontWeight": "500"}],
+                    "display-hero": ["clamp(40px, 5vw, 64px)", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .asymmetric-gallery-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 1.5rem;
+        }
+        @media (max-width: 768px) {
+            .asymmetric-gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .staggered-reveal {
+            animation: reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+        @keyframes reveal {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .sticky-card {
+            top: 6rem;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-canvas-ivory text-on-background font-body-md antialiased selection:bg-temple-gold selection:text-white">
+<!-- TopAppBar Component Mapping -->
+<header class="fixed top-0 w-full bg-canvas-ivory border-b border-warm-hairline z-50">
+<div class="flex justify-between items-center h-16 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary scale-95 duration-200 ease-in-out hover:text-terracotta-glow">menu</button>
+<span class="font-headline-md text-headline-md tracking-widest text-primary">CEYLON DIRECTORY</span>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-muted-bark font-body-md text-body-md hover:text-terracotta-glow transition-colors duration-300" href="#">Browse</a>
+<a class="text-muted-bark font-body-md text-body-md hover:text-terracotta-glow transition-colors duration-300" href="#">Categories</a>
+<a class="text-primary font-bold border-b-2 border-primary font-body-md text-body-md" href="#">Listing Details</a>
+<a class="text-muted-bark font-body-md text-body-md hover:text-terracotta-glow transition-colors duration-300" href="#">Map</a>
+</nav>
+<button class="material-symbols-outlined text-primary hover:text-terracotta-glow">light_mode</button>
+</div>
+</header>
+<main class="pt-24 pb-20 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<!-- Asymmetric Gallery -->
+<section class="asymmetric-gallery-grid mb-12 relative staggered-reveal">
+<!-- Main Large Cover -->
+<div class="relative group overflow-hidden rounded-[2rem] border border-warm-hairline shadow-sm">
+<div class="absolute top-6 left-6 z-10 bg-temple-gold text-white px-4 py-1 rounded-full font-label-eyebrow text-label-eyebrow flex items-center gap-2 shadow-lg">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+                    FEATURED
+                </div>
+<img class="w-full h-[500px] object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A grand, high-angle cinematic photograph of a luxurious boutique colonial villa in Sri Lanka. The architecture features whitewashed walls, dark timber beams, and a terracotta tiled roof, surrounded by lush emerald tropical foliage. The lighting is warm golden hour sun casting soft long shadows, creating a serene and unhurried heritage atmosphere consistent with a boutique luxury aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKfIG1R95b7E4lMMHIZOhRI78uJSD4dqOj3Xb2PdOadC9uMtq71_nYHqxGkzXL-vQ1tPAyKrcujTGYNGcu4VPGX7adgxpdnEplEd10_GEElMkC6122AEtvtiMRBEReUabR2KRiqODuNBm8icM6ahYViTyvagbdrGUYBIqQWjIMnQ0bmug6WRd3y44wjMA18NdKYZ6Txzeam0ut_MQGcWfdWKY1w2Y6d6u_oitG3cdMekyM2r7htaO6L2fWA1RMtfAvNEy94eYnd78"/>
+</div>
+<!-- Side Thumbnails -->
+<div class="flex flex-col gap-6">
+<div class="h-1/2 overflow-hidden rounded-[2rem] border border-warm-hairline shadow-sm group">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A close-up interior shot of a boutique hotel suite in Ceylon, featuring hand-carved teak furniture and premium linen bedding. The room is flooded with soft natural daylight filtered through tropical palms outside the window. The color palette is composed of warm ivories, deep greens, and rich wood tones, evoking a sense of calm and heritage luxury." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKakTizJ8zNPoRWu0x1GPN_qAtVx4kDvt3AHoLqqKxd7jtnDkN4kz2dE0tD-CcGdwXJYdPcIoxeLgD-gdwKBr04zRRs2s-G7EcZp94HLkw3xCPErHIApTqGNfgp_fGeJB8KSb-U7oo-zT8QTFLWpRgs7drEX0XxuzPG-7P9gRZ9m6iAW6Dl-SHH-S6RvKt0yMfijogGZXFltSVJj3hRv3YAFMqP9sKz9Hhmn4D3QMZavC_iy7fJBUB6op2kIOGPpKvNb_j1WcgbAM"/>
+</div>
+<div class="h-1/2 overflow-hidden rounded-[2rem] border border-warm-hairline shadow-sm group">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="An atmospheric shot of a central courtyard in a heritage Sri Lankan villa. A stone reflecting pool sits in the center, surrounded by arched walkways and potted tropical ferns. The mood is tranquil and sophisticated, with a warm neutral color palette and high-quality artistic composition." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9UZnNoq2SdcVuaUFbB6uNVqEzkrBv7a72i0izduFaykDCgtsBYqhIVnBIxIYjlRQJG7HOwVMwXGJC1iVIAOWkpwomsj1ttxl2djS5rOVGOzjJA9kX--Kitxw9i8NQJoqqU5Utr6ok-Zde6dHPAQZ2fCu0r7iRoRr24ETa3-1KN-Psm2hYLN7n9RtRV6bdIdl8_kdn5MsG7vPJEJ8r0EaiQC7GLSo3IwYBbxOlT87eR5tNWic1jmK7wStx4V4CJHKkjv4axDznYUk"/>
+</div>
+</div>
+</section>
+<!-- Main Content Area -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+<!-- Left: Details -->
+<div class="lg:col-span-2 staggered-reveal" style="animation-delay: 0.1s;">
+<div class="flex flex-wrap items-center gap-3 mb-4">
+<a class="text-terracotta-glow font-label-eyebrow text-label-eyebrow uppercase hover:underline transition-all" href="#">GALLE</a>
+<span class="text-muted-sand">•</span>
+<a class="text-terracotta-glow font-label-eyebrow text-label-eyebrow uppercase hover:underline transition-all" href="#">HERITAGE STAYS</a>
+<div class="flex items-center gap-1.5 ml-auto md:ml-4 bg-jade-green/10 text-status-approved px-3 py-1 rounded-full border border-jade-green/20">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label-eyebrow text-[10px]">VERIFIED LISTING</span>
+</div>
+</div>
+<h1 class="font-display-hero text-display-hero text-primary mb-6">The Galle Fort Manor</h1>
+<div class="mb-8 flex items-center gap-4">
+<div class="bg-pure-surface border border-warm-hairline px-6 py-4 rounded-xl flex flex-col">
+<span class="font-label-eyebrow text-muted-bark text-[10px] mb-1">STARTING AT</span>
+<div class="flex items-baseline gap-1 text-primary">
+<span class="font-numeric-data text-body-md opacity-60">LKR</span>
+<span class="font-numeric-data text-headline-md font-bold">45,000</span>
+<span class="font-label-eyebrow text-muted-sand ml-1">/ NIGHT</span>
+</div>
+</div>
+</div>
+<div class="prose prose-lg max-w-none text-muted-bark leading-relaxed font-body-lg mb-12">
+<p class="mb-6">
+                        Nestled within the historic walls of the UNESCO World Heritage site, The Galle Fort Manor is a meticulously restored 18th-century merchant’s villa that bridges the gap between colonial grandeur and modern tropical minimalism. Every corner of this estate speaks to a time when life moved with the rhythm of the tides and the monsoon winds.
+                    </p>
+<p class="mb-6">
+                        Featuring high ceilings, original Dutch-period masonry, and a sprawling inner courtyard that serves as a sanctuary from the bustling fort streets, the manor offers six bespoke suites. Each space is curated with local antiques and custom-designed furniture that respects the architectural heritage of the island while providing the comfort expected by the global modern traveler.
+                    </p>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12 pt-8 border-t border-warm-hairline">
+<div class="flex flex-col items-center p-4 bg-warm-linen/30 rounded-xl">
+<span class="material-symbols-outlined text-primary mb-2">pool</span>
+<span class="font-label-eyebrow text-xs uppercase text-muted-bark">Infinity Pool</span>
+</div>
+<div class="flex flex-col items-center p-4 bg-warm-linen/30 rounded-xl">
+<span class="material-symbols-outlined text-primary mb-2">wifi</span>
+<span class="font-label-eyebrow text-xs uppercase text-muted-bark">High Speed</span>
+</div>
+<div class="flex flex-col items-center p-4 bg-warm-linen/30 rounded-xl">
+<span class="material-symbols-outlined text-primary mb-2">restaurant</span>
+<span class="font-label-eyebrow text-xs uppercase text-muted-bark">Bespoke Dining</span>
+</div>
+<div class="flex flex-col items-center p-4 bg-warm-linen/30 rounded-xl">
+<span class="material-symbols-outlined text-primary mb-2">spa</span>
+<span class="font-label-eyebrow text-xs uppercase text-muted-bark">Ayurveda</span>
+</div>
+</div>
+</div>
+<!-- Static Map Preview -->
+<div class="mb-12">
+<h3 class="font-headline-md text-headline-md text-primary mb-4">Location</h3>
+<div class="relative w-full h-[300px] rounded-[1.5rem] overflow-hidden border border-warm-hairline group">
+<img class="w-full h-full object-cover" data-alt="A stylized, minimalist map view of Galle Fort, Sri Lanka, rendered in a warm parchment and muted green color palette. The map shows the coastal outline, the lighthouse, and the grid-like streets of the fort with clean lines and sophisticated typography, fitting the boutique heritage aesthetic." data-location="Galle Fort, Sri Lanka" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBD9G1Mu2tDe90RQpcSnpPj8MruCHcpm9lB2gF-zzrmp1dgrSoQAl5vo1bhYy-t8bXanNvzNiCCov1v4rBwCXAZb9T1oQOkqx8BD47bX9I4Mu5MItx2n5pkWFgTecUDyTWoJh-7DiELBUf-FuGE5-OIaQE_3gGcSHqG_g1RxJ_VjhU9v1EVj6l6-zKpFlRX87PSBr7Gm1_x40F9VnGSGrF-K-9YAL1KFjVR9dpOhTOIjNZRQaI7rp2sXZpXe7Z0WTSsMSxa-JCpsXw"/>
+<div class="absolute inset-0 bg-primary/5 group-hover:bg-transparent transition-colors"></div>
+<div class="absolute bottom-4 left-4 bg-pure-surface px-4 py-2 rounded-lg shadow-md border border-warm-hairline flex items-center gap-2">
+<span class="material-symbols-outlined text-terracotta-glow" style="font-variation-settings: 'FILL' 1;">location_on</span>
+<span class="font-body-md text-sm text-on-surface">32 Church St, Galle Fort</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right: Sticky Contact Card -->
+<aside class="relative">
+<div class="sticky sticky-card bg-pure-surface border border-warm-hairline rounded-[1.5rem] shadow-xl p-8 staggered-reveal" style="animation-delay: 0.3s;">
+<div class="flex items-center gap-4 mb-8">
+<div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white font-bold">G</div>
+<div>
+<h4 class="font-headline-md text-body-lg font-bold text-primary">Managed by Galle Estates</h4>
+<p class="font-label-eyebrow text-[10px] text-muted-sand uppercase tracking-wider">PREMIUM PARTNER</p>
+</div>
+</div>
+<div class="flex flex-col divide-y divide-warm-hairline">
+<button class="group flex items-center justify-between py-4 text-primary hover:text-terracotta-glow transition-all">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-muted-sand group-hover:text-terracotta-glow transition-colors">call</span>
+<span class="font-body-md">Call Now</span>
+</div>
+<span class="font-numeric-data text-xs text-muted-sand">+94 91 224 8832</span>
+</button>
+<button class="group flex items-center justify-between py-4 text-primary hover:text-terracotta-glow transition-all">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-muted-sand group-hover:text-terracotta-glow transition-colors">chat</span>
+<span class="font-body-md">WhatsApp</span>
+</div>
+<span class="material-symbols-outlined text-xs">arrow_forward_ios</span>
+</button>
+<button class="group flex items-center justify-between py-4 text-primary hover:text-terracotta-glow transition-all">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-muted-sand group-hover:text-terracotta-glow transition-colors">mail</span>
+<span class="font-body-md">Email Inquiry</span>
+</div>
+<span class="material-symbols-outlined text-xs">arrow_forward_ios</span>
+</button>
+<button class="group flex items-center justify-between py-4 text-primary hover:text-terracotta-glow transition-all">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-muted-sand group-hover:text-terracotta-glow transition-colors">public</span>
+<span class="font-body-md">Visit Website</span>
+</div>
+<span class="material-symbols-outlined text-xs">open_in_new</span>
+</button>
+</div>
+<div class="mt-8">
+<button class="w-full bg-primary text-parchment py-4 rounded-xl font-bold text-body-md hover:bg-deep-forest transition-all transform active:translate-y-px">
+                            Schedule a Private Tour
+                        </button>
+<p class="text-center mt-4 font-label-eyebrow text-[10px] text-muted-sand">USUALLY RESPONDS WITHIN 1 HOUR</p>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- Footer Component Mapping -->
+<footer class="bg-deep-forest py-12">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div>
+<h2 class="font-headline-md text-headline-md text-temple-gold mb-4">CEYLON DIRECTORY</h2>
+<p class="text-parchment opacity-80 font-body-md text-body-md mb-6 max-w-md">
+                    Curating the finest heritage properties, boutique stays, and authentic experiences across the jewel of the Indian Ocean.
+                </p>
+<div class="flex gap-4">
+<a class="text-parchment opacity-80 hover:text-temple-gold transition-opacity" href="#">
+<span class="material-symbols-outlined">face_nod</span>
+</a>
+<a class="text-parchment opacity-80 hover:text-temple-gold transition-opacity" href="#">
+<span class="material-symbols-outlined">photo_camera</span>
+</a>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-8">
+<div>
+<h4 class="font-label-eyebrow text-temple-gold mb-4 uppercase">Information</h4>
+<ul class="flex flex-col gap-3">
+<li><a class="text-parchment opacity-80 hover:text-temple-gold transition-opacity text-body-md" href="#">Privacy Policy</a></li>
+<li><a class="text-parchment opacity-80 hover:text-temple-gold transition-opacity text-body-md" href="#">Terms of Service</a></li>
+<li><a class="text-parchment opacity-80 hover:text-temple-gold transition-opacity text-body-md" href="#">Partner Support</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-eyebrow text-temple-gold mb-4 uppercase">Direct Access</h4>
+<ul class="flex flex-col gap-3">
+<li><a class="text-parchment opacity-80 hover:text-temple-gold transition-opacity text-body-md" href="#">Contact Us</a></li>
+<li><a class="text-parchment opacity-80 hover:text-temple-gold transition-opacity text-body-md" href="#">List a Property</a></li>
+<li><a class="text-parchment opacity-80 hover:text-temple-gold transition-opacity text-body-md" href="#">Galle Guide</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="mt-12 pt-8 border-t border-white/10 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+<span class="font-label-eyebrow text-parchment opacity-60">© 2024 CEYLON DIRECTORY. ALL RIGHTS RESERVED.</span>
+<span class="text-temple-gold font-numeric-data text-xs">Curated in Colombo</span>
+</div>
+</footer>
+<script>
+        // Micro-interactions for smooth hover effects
+        document.querySelectorAll('button, a').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                // Potential subtle haptic-like scaling if desired
+            });
+        });
+
+        // Intersection Observer for staggered reveals on scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal-active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.staggered-reveal').forEach(el => observer.observe(el));
+    </script>
+</body></html>

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Create Listing | CEYLON DIRECTORY</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&amp;family=JetBrains+Mono:wght@400&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary": "#491f1f",
+                    "temple-gold": "#C19A4B",
+                    "on-primary-container": "#89b9a0",
+                    "on-surface-variant": "#A79C8A",
+                    "warm-hairline-dark": "#39342B",
+                    "surface-container-low": "#1E1C17",
+                    "on-background": "#F0E9DB",
+                    "secondary-fixed-dim": "#ffb5a0",
+                    "tertiary-fixed-dim": "#f9b5b4",
+                    "muted-bark": "#A79C8A",
+                    "surface-container-lowest": "#14130F",
+                    "on-tertiary-fixed": "#350f10",
+                    "on-secondary-fixed-variant": "#7f2b11",
+                    "jade-green": "#5FA882",
+                    "tertiary-container": "#633434",
+                    "outline": "#39342B",
+                    "on-surface": "#F0E9DB",
+                    "status-rejected": "#9C4A3C",
+                    "surface-tint": "#5FA882",
+                    "inverse-surface": "#F0E9DB",
+                    "surface-bright": "#26231C",
+                    "surface-dim": "#14130F",
+                    "on-secondary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "canvas-ivory": "#14130F",
+                    "terracotta-glow": "#D98463",
+                    "primary": "#5FA882",
+                    "surface-container-highest": "#39342B",
+                    "on-tertiary": "#ffffff",
+                    "warm-hairline": "#39342B",
+                    "surface-container": "#1E1C17",
+                    "secondary": "#D98463",
+                    "on-primary-fixed": "#002114",
+                    "elevated-surface": "#26231C",
+                    "on-tertiary-container": "#de9d9c",
+                    "secondary-container": "#ff8b69",
+                    "primary-fixed-dim": "#a1d1b8",
+                    "primary-fixed": "#bceed3",
+                    "warm-ink": "#F0E9DB",
+                    "secondary-fixed": "#ffdbd1",
+                    "surface-container-high": "#26231C",
+                    "surface-variant": "#1E1C17",
+                    "deep-forest": "#143A2B",
+                    "raised-surface": "#1E1C17",
+                    "status-approved": "#2F7D5B",
+                    "tertiary-fixed": "#ffdad8",
+                    "parchment": "#F0E9DB",
+                    "muted-sand": "#A79C8A",
+                    "on-error": "#ffffff",
+                    "inverse-primary": "#5FA882",
+                    "background": "#14130F",
+                    "primary-container": "#1c4a37",
+                    "on-secondary-container": "#75240a",
+                    "status-pending": "#B7791F",
+                    "on-primary": "#14130F",
+                    "temple-gold-bright": "#D9B65E",
+                    "surface": "#14130F",
+                    "pure-surface": "#1E1C17",
+                    "char-green": "#14130F",
+                    "on-tertiary-fixed-variant": "#693939",
+                    "error-container": "#ffdad6",
+                    "on-secondary-fixed": "#3b0a00",
+                    "warm-linen": "#26231C",
+                    "on-primary-fixed-variant": "#214f3c",
+                    "outline-variant": "#39342B",
+                    "error": "#ba1a1a",
+                    "inverse-on-surface": "#14130F"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "4rem",
+                    "gutter-desktop": "2rem",
+                    "margin-mobile": "1.5rem",
+                    "gutter-mobile": "1rem",
+                    "container-max": "1320px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Plus Jakarta Sans", "sans-serif"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans", "sans-serif"],
+                    "headline-lg": ["Plus Jakarta Sans", "sans-serif"],
+                    "headline-md": ["Plus Jakarta Sans", "sans-serif"],
+                    "body-md": ["Plus Jakarta Sans", "sans-serif"],
+                    "numeric-data": ["JetBrains Mono", "monospace"],
+                    "label-eyebrow": ["Plus Jakarta Sans", "sans-serif"],
+                    "display-hero": ["Plus Jakarta Sans", "sans-serif"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "numeric-data": ["14px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                    "label-eyebrow": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.12em", "fontWeight": "500"}],
+                    "display-hero": ["clamp(40px, 5vw, 64px)", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .terracotta-focus:focus {
+            outline: none;
+            border-color: #D98463;
+            box-shadow: 0 0 0 2px rgba(217, 132, 99, 0.2);
+        }
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #F0E9DB;
+            font-weight: 500;
+        }
+        .form-input {
+            width: 100%;
+            background-color: #26231C;
+            border: 1px solid #39342B;
+            border-radius: 0.75rem;
+            padding: 0.875rem 1rem;
+            transition: all 0.2s ease;
+            color: #F0E9DB;
+        }
+        .form-input::placeholder {
+            color: #A79C8A;
+        }
+        .form-helper {
+            font-size: 12px;
+            color: #A79C8A;
+            margin-top: 0.25rem;
+        }
+        .staggered-item {
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeInUp 0.5s forwards;
+        }
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-char-green text-parchment min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="bg-char-green fixed top-0 w-full z-50 border-b border-warm-hairline-dark">
+<div class="flex justify-between items-center h-16 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="flex items-center gap-4">
+<button class="p-2 transition-transform active:scale-95 text-jade-green">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="font-headline-md text-headline-md tracking-widest text-jade-green">CEYLON DIRECTORY</h1>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-jade-green">dark_mode</span>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow pt-24 pb-32 px-margin-mobile md:px-margin-desktop max-w-3xl mx-auto w-full">
+<!-- Header Section -->
+<div class="mb-10 staggered-item" style="animation-delay: 0.1s;">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-jade-green mb-2">Create New Listing</h2>
+<p class="font-body-md text-body-md text-muted-sand">Showcase your venture in our curated directory. Please fill in the details with the care of a master craftsman.</p>
+</div>
+<form class="space-y-12" id="listing-form">
+<!-- Section: Basics -->
+<section class="staggered-item space-y-6" style="animation-delay: 0.2s;">
+<div class="flex items-center gap-2 mb-4">
+<span class="w-1.5 h-6 bg-terracotta-glow rounded-full"></span>
+<h3 class="font-headline-md text-headline-md text-jade-green">Basics</h3>
+</div>
+<div class="space-y-4">
+<div>
+<label class="form-label font-body-md text-body-md" for="title">Listing Title</label>
+<input class="form-input font-body-md text-body-md terracotta-focus" id="title" placeholder="e.g. Heritage Spice Gardens" required="" type="text"/>
+<p class="form-helper">Make it memorable and descriptive.</p>
+</div>
+<div>
+<div class="flex justify-between items-end mb-2">
+<label class="form-label font-body-md text-body-md mb-0" for="description">Description</label>
+<span class="text-label-eyebrow font-numeric-data text-muted-sand" id="char-count">0 / 500</span>
+</div>
+<textarea class="form-input font-body-md text-body-md terracotta-focus resize-none" id="description" maxlength="500" placeholder="Describe the experience, services, and history..." rows="5"></textarea>
+<p class="form-helper">Detailed descriptions attract 40% more engagement.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div>
+<label class="form-label font-body-md text-body-md" for="category">Category</label>
+<select class="form-input font-body-md text-body-md terracotta-focus appearance-none bg-no-repeat bg-[right_1rem_center]" id="category">
+<option value="">Select Category</option>
+<option value="stay">Boutique Stay</option>
+<option value="dining">Fine Dining</option>
+<option value="culture">Cultural Experience</option>
+<option value="wellness">Wellness &amp; Ayurveda</option>
+</select>
+</div>
+<div>
+<label class="form-label font-body-md text-body-md" for="region">Region</label>
+<select class="form-input font-body-md text-body-md terracotta-focus" id="region">
+<option value="">Select Region</option>
+<option value="colombo">Colombo</option>
+<option value="kandy">Hill Country</option>
+<option value="galle">Southern Coast</option>
+<option value="jaffna">Northern Province</option>
+</select>
+</div>
+</div>
+</div>
+</section>
+<!-- Section: Pricing & Contact -->
+<section class="staggered-item space-y-6" style="animation-delay: 0.3s;">
+<div class="flex items-center gap-2 mb-4">
+<span class="w-1.5 h-6 bg-terracotta-glow rounded-full"></span>
+<h3 class="font-headline-md text-headline-md text-jade-green">Pricing &amp; Contact</h3>
+</div>
+<div class="space-y-4">
+<div>
+<label class="form-label font-body-md text-body-md" for="price">Pricing Information</label>
+<div class="relative">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 font-numeric-data text-muted-sand">LKR</span>
+<input class="form-input pl-14 font-body-md text-body-md terracotta-focus" id="price" placeholder="Starting from 15,000 per night" type="text"/>
+</div>
+<p class="form-helper">Free text for flexible pricing structures.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div>
+<label class="form-label font-body-md text-body-md" for="phone">Phone Number</label>
+<input class="form-input font-numeric-data text-body-md terracotta-focus" id="phone" placeholder="+94 77 123 4567" type="tel"/>
+</div>
+<div>
+<label class="form-label font-body-md text-body-md" for="whatsapp">WhatsApp</label>
+<input class="form-input font-numeric-data text-body-md terracotta-focus" id="whatsapp" placeholder="+94 77 123 4567" type="tel"/>
+</div>
+</div>
+<div>
+<label class="form-label font-body-md text-body-md" for="email">Email Address</label>
+<input class="form-input font-body-md text-body-md terracotta-focus" id="email" placeholder="contact@estate.com" type="email"/>
+</div>
+<div>
+<label class="form-label font-body-md text-body-md" for="website">Website URL</label>
+<input class="form-input font-body-md text-body-md terracotta-focus" id="website" placeholder="https://www.estate.com" type="url"/>
+</div>
+</div>
+</section>
+<!-- Section: Photos -->
+<section class="staggered-item space-y-6 pb-12" style="animation-delay: 0.4s;">
+<div class="flex items-center gap-2 mb-4">
+<span class="w-1.5 h-6 bg-terracotta-glow rounded-full"></span>
+<h3 class="font-headline-md text-headline-md text-jade-green">Photos</h3>
+</div>
+<div class="space-y-4">
+<!-- Uploader Dropzone -->
+<div class="border-2 border-dashed border-warm-hairline-dark rounded-xl p-8 flex flex-col items-center justify-center bg-raised-surface hover:bg-elevated-surface transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-4xl text-muted-sand group-hover:text-terracotta-glow transition-colors mb-2">add_a_photo</span>
+<p class="font-body-md text-body-md text-parchment font-medium">Add high-resolution photos</p>
+<p class="text-label-eyebrow text-muted-sand mt-1">PNG or JPG up to 10MB</p>
+</div>
+<!-- Thumbnails Grid -->
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+<div class="aspect-square rounded-lg overflow-hidden border border-warm-hairline-dark relative group">
+<img class="w-full h-full object-cover" data-alt="A professional architectural photograph of a luxury colonial-style boutique villa in Sri Lanka, featuring white pillars, dark teak wood frames, and a lush tropical garden. The lighting is soft morning sun, reflecting the serene and premium brand identity of Ceylon Directory." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0nmnr1H6EeyA77VXopxES9KgANepIOD75hwl8T_PPEXFOgFcCDWGAne-gwcADiHXcJ1JuOVY1Sbh7K9JJgjPRGXpkEpiymNXuLnDMPEcPVHGwj1mVJMvTGEUffVhoJU1iuugn5EIZs5X8SAVCskbBw2Tg5HLajFL25huWQMvN5A_f-Oaww_QG5lTMtdlgH8PLjDxzX29mC9vRzpL2xmAnzpoAeve3pnmj11ylsfT5GVwUFrbVm80eckZhIviHsFre-ZNVKXltflU"/>
+<button class="absolute top-2 right-2 bg-char-green/60 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" type="button">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+</div>
+<div class="aspect-square rounded-lg overflow-hidden border border-warm-hairline-dark relative group">
+<img class="w-full h-full object-cover" data-alt="Close up shot of a beautifully set dining table at a high-end Sri Lankan restaurant. Warm ceramic plates, polished brass cutlery, and a small vase of tropical flowers under ambient warm lighting, conveying a sense of unhurried luxury." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCq7QV3rbqmRr7Wwedg7gez-2rGwbuuDpA6HsGYa8NtjRUJkAjsSjtyyUIJ-wh5P2LWxzkdC_SBh8sz_jdwu8jVv2ZnMbB0f49rwBAYpTBFrtvOOf7qtaJ9VyPcEv3JTCpWme01E9bD3CCIVHiLwddnnOj6MjoN8lTXmDqfRFw3kyPLVSo8fytzVjEGHsm1lMlFbLi5NtCYm4uz4slHTranAPij8V5Fb1ewKpX49SP0yt46E-pe9x20Sf6j-rZ5rrrU63iKRYCs_Ig"/>
+<button class="absolute top-2 right-2 bg-char-green/60 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" type="button">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+</div>
+<div class="aspect-square rounded-lg overflow-hidden border border-warm-hairline-dark relative group">
+<img class="w-full h-full object-cover" data-alt="A wide-angle landscape shot of a misty tea plantation in the central highlands of Sri Lanka, with rolling green hills and a hint of a luxury resort balcony in the foreground. The aesthetic is calm, earthy, and sophisticated." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDeJRI4ZSxCkwEHr3EbDOoSbAB63I0SXtf_QqR1rI-DwATo1klKKrYxXuSm4tec8W_jN5c3C5ne2Q7-WF53YZ3n6UJXj4huOoxJCaZypQSIask7JZGBNQagw5A8pGRoK7Db1c2xAxIEn-b4mE29tO7oRht27Tbt0X6HM8ttG2E_rjYjB4v89GgItCmnw3__G7BnNyLMkV5WKYv8Vv0ZwULNbA8O5HSZNqXpr_GtQ67m4l7M5OdLyun1KtO4EoShD_ODSRnBxvMZYsU"/>
+<button class="absolute top-2 right-2 bg-char-green/60 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" type="button">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+</div>
+</div>
+<p class="form-helper">Drag to reorder. The first photo will be your cover image.</p>
+</div>
+</section>
+</form>
+</main>
+<!-- Sticky Footer Action Bar -->
+<footer class="fixed bottom-0 left-0 w-full bg-char-green/90 backdrop-blur-md border-t border-warm-hairline-dark z-40">
+<div class="px-margin-mobile md:px-margin-desktop max-w-3xl mx-auto h-20 flex items-center justify-between">
+<button class="font-body-md text-body-md text-muted-sand hover:text-terracotta-glow transition-colors" type="button">Discard Draft</button>
+<div class="flex gap-4">
+<button class="hidden sm:block font-body-md text-body-md text-parchment px-6 py-2.5 rounded-lg border border-jade-green hover:bg-jade-green/10 transition-all" type="button">Preview</button>
+<button class="bg-jade-green text-char-green font-body-md text-body-md font-bold px-8 py-2.5 rounded-lg active:translate-y-[1px] transition-all hover:brightness-110 shadow-lg shadow-jade-green/10" form="listing-form" type="submit">Save listing</button>
+</div>
+</div>
+</footer>
+<script>
+        // Character Counter Logic
+        const textarea = document.getElementById('description');
+        const charCount = document.getElementById('char-count');
+        
+        textarea.addEventListener('input', () => {
+            const current = textarea.value.length;
+            charCount.textContent = `${current} / 500`;
+            
+            if (current >= 500) {
+                charCount.classList.add('text-status-rejected');
+            } else {
+                charCount.classList.remove('text-status-rejected');
+            }
+        });
+
+        // Micro-interaction for form completion
+        const inputs = document.querySelectorAll('.form-input');
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.querySelector('.form-label')?.classList.add('text-terracotta-glow');
+            });
+            input.addEventListener('blur', () => {
+                input.parentElement.querySelector('.form-label')?.classList.remove('text-terracotta-glow');
+            });
+        });
+
+        // Form Submission visual feedback
+        document.getElementById('listing-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = e.target.closest('body').querySelector('button[type="submit"]');
+            btn.innerHTML = '<span class="flex items-center gap-2"><span class="animate-spin text-xl material-symbols-outlined">sync</span> Saving...</span>';
+            setTimeout(() => {
+                btn.innerHTML = 'Listing Saved';
+                btn.classList.replace('bg-jade-green', 'bg-status-approved');
+                btn.classList.replace('text-char-green', 'text-parchment');
+            }, 1500);
+        });
+    </script>
+</body></html>

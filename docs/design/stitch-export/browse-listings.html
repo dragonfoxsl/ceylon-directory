@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Browse Listings | Ceylon Directory</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        
+        .staggered-reveal > * {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: reveal 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        @keyframes reveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .staggered-reveal > *:nth-child(1) { animation-delay: 0.1s; }
+        .staggered-reveal > *:nth-child(2) { animation-delay: 0.15s; }
+        .staggered-reveal > *:nth-child(3) { animation-delay: 0.2s; }
+        .staggered-reveal > *:nth-child(4) { animation-delay: 0.25s; }
+        .staggered-reveal > *:nth-child(5) { animation-delay: 0.3s; }
+        .staggered-reveal > *:nth-child(6) { animation-delay: 0.35s; }
+
+        .gold-ribbon {
+            background: linear-gradient(135deg, #C19A4B 0%, #D9B65E 100%);
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 85%, 0 100%);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary": "#491f1f",
+                      "temple-gold": "#C19A4B",
+                      "on-primary-container": "#89b9a0",
+                      "on-surface-variant": "#414944",
+                      "warm-hairline-dark": "#39342B",
+                      "surface-container-low": "#f3f4f0",
+                      "on-background": "#1a1c1a",
+                      "secondary-fixed-dim": "#ffb5a0",
+                      "tertiary-fixed-dim": "#f9b5b4",
+                      "muted-bark": "#6E6456",
+                      "surface-container-lowest": "#ffffff",
+                      "on-tertiary-fixed": "#350f10",
+                      "on-secondary-fixed-variant": "#7f2b11",
+                      "jade-green": "#5FA882",
+                      "tertiary-container": "#633434",
+                      "outline": "#717973",
+                      "on-surface": "#1a1c1a",
+                      "status-rejected": "#9C4A3C",
+                      "surface-tint": "#3a6752",
+                      "inverse-surface": "#2e312f",
+                      "surface-bright": "#f9faf6",
+                      "surface-dim": "#d9dad7",
+                      "on-secondary": "#ffffff",
+                      "on-error-container": "#93000a",
+                      "canvas-ivory": "#FAF6EF",
+                      "terracotta-glow": "#D98463",
+                      "primary": "#003322",
+                      "surface-container-highest": "#e2e3df",
+                      "on-tertiary": "#ffffff",
+                      "warm-hairline": "#E6DCCB",
+                      "surface-container": "#edeeeb",
+                      "secondary": "#9e4126",
+                      "on-primary-fixed": "#002114",
+                      "elevated-surface": "#26231C",
+                      "on-tertiary-container": "#de9d9c",
+                      "secondary-container": "#ff8b69",
+                      "primary-fixed-dim": "#a1d1b8",
+                      "primary-fixed": "#bceed3",
+                      "warm-ink": "#241F1A",
+                      "secondary-fixed": "#ffdbd1",
+                      "surface-container-high": "#e7e8e5",
+                      "surface-variant": "#e2e3df",
+                      "deep-forest": "#143A2B",
+                      "raised-surface": "#1E1C17",
+                      "status-approved": "#2F7D5B",
+                      "tertiary-fixed": "#ffdad8",
+                      "parchment": "#F0E9DB",
+                      "muted-sand": "#A79C8A",
+                      "on-error": "#ffffff",
+                      "inverse-primary": "#a1d1b8",
+                      "background": "#f9faf6",
+                      "primary-container": "#1c4a37",
+                      "on-secondary-container": "#75240a",
+                      "status-pending": "#B7791F",
+                      "on-primary": "#ffffff",
+                      "temple-gold-bright": "#D9B65E",
+                      "surface": "#f9faf6",
+                      "pure-surface": "#FFFFFF",
+                      "char-green": "#14130F",
+                      "on-tertiary-fixed-variant": "#693939",
+                      "error-container": "#ffdad6",
+                      "on-secondary-fixed": "#3b0a00",
+                      "warm-linen": "#F3ECE0",
+                      "on-primary-fixed-variant": "#214f3c",
+                      "outline-variant": "#c0c9c2",
+                      "error": "#ba1a1a",
+                      "inverse-on-surface": "#f0f1ee"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-desktop": "4rem",
+                      "gutter-desktop": "2rem",
+                      "margin-mobile": "1.5rem",
+                      "gutter-mobile": "1rem",
+                      "container-max": "1320px"
+              },
+              "fontFamily": {
+                      "body-lg": ["Plus Jakarta Sans", "sans-serif"],
+                      "headline-lg": ["Plus Jakarta Sans", "sans-serif"],
+                      "headline-md": ["Plus Jakarta Sans", "sans-serif"],
+                      "body-md": ["Plus Jakarta Sans", "sans-serif"],
+                      "numeric-data": ["JetBrains Mono", "monospace"],
+                      "label-eyebrow": ["Plus Jakarta Sans", "sans-serif"],
+                      "display-hero": ["Plus Jakarta Sans", "sans-serif"]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-canvas-ivory text-primary font-body-md overflow-x-hidden">
+<!-- Top AppBar (JSON Integration) -->
+<header class="fixed top-0 w-full bg-canvas-ivory border-b border-warm-hairline z-50">
+<nav class="flex justify-between items-center h-16 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary scale-95 transition-transform">menu</button>
+<h1 class="font-headline-md text-headline-md tracking-widest text-primary uppercase">CEYLON DIRECTORY</h1>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-primary font-bold border-b-2 border-primary py-1 font-body-md text-body-md" href="#">Browse</a>
+<a class="text-muted-bark hover:text-terracotta-glow transition-colors duration-300 font-body-md text-body-md" href="#">Categories</a>
+<a class="text-muted-bark hover:text-terracotta-glow transition-colors duration-300 font-body-md text-body-md" href="#">Map</a>
+<a class="text-muted-bark hover:text-terracotta-glow transition-colors duration-300 font-body-md text-body-md" href="#">About</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary">light_mode</button>
+<button class="material-symbols-outlined text-primary md:hidden">search</button>
+</div>
+</nav>
+</header>
+<!-- Content Wrapper -->
+<main class="pt-16 min-h-screen">
+<!-- Filter Bar (Sticky) -->
+<section class="sticky top-16 z-40 bg-white/90 backdrop-blur-md border-b border-warm-hairline py-4">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="flex flex-col md:flex-row gap-4 items-center justify-between">
+<!-- Search & Inputs -->
+<div class="flex flex-1 w-full gap-3 overflow-x-auto pb-2 md:pb-0 scrollbar-hide">
+<div class="relative min-w-[200px] flex-1">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-muted-bark text-sm">search</span>
+<input class="w-full bg-warm-linen/50 border-none rounded-lg pl-10 pr-4 py-2 text-body-md focus:ring-2 focus:ring-terracotta-glow placeholder-muted-bark/50" placeholder="Search experiences..." type="text"/>
+</div>
+<select class="bg-warm-linen/50 border-none rounded-lg px-4 py-2 text-body-md focus:ring-2 focus:ring-terracotta-glow text-muted-bark appearance-none">
+<option>Category</option>
+<option>Tea Estates</option>
+<option>Coastal Villas</option>
+<option>Wellness Retreats</option>
+</select>
+<select class="bg-warm-linen/50 border-none rounded-lg px-4 py-2 text-body-md focus:ring-2 focus:ring-terracotta-glow text-muted-bark appearance-none">
+<option>Region</option>
+<option>Hill Country</option>
+<option>Southern Coast</option>
+<option>Cultural Triangle</option>
+</select>
+<select class="bg-warm-linen/50 border-none rounded-lg px-4 py-2 text-body-md focus:ring-2 focus:ring-terracotta-glow text-muted-bark appearance-none">
+<option>Sort: Featured</option>
+<option>Price: Low to High</option>
+<option>Newest first</option>
+</select>
+</div>
+<!-- View Switch -->
+<button class="flex items-center gap-2 bg-primary text-parchment px-4 py-2 rounded-lg hover:bg-deep-forest transition-colors font-body-md shrink-0">
+<span class="material-symbols-outlined text-[20px]">map</span>
+<span>Map View</span>
+</button>
+</div>
+<!-- Active Filters -->
+<div class="flex flex-wrap gap-2 mt-4" id="active-filters">
+<span class="bg-secondary text-parchment px-3 py-1 rounded-full text-xs font-medium flex items-center gap-2 shadow-sm">
+                        Hill Country
+                        <button class="material-symbols-outlined text-[14px]">close</button>
+</span>
+<span class="bg-secondary text-parchment px-3 py-1 rounded-full text-xs font-medium flex items-center gap-2 shadow-sm">
+                        Tea Estates
+                        <button class="material-symbols-outlined text-[14px]">close</button>
+</span>
+<button class="text-xs font-medium text-terracotta-glow hover:underline underline-offset-4 ml-2">Clear all</button>
+</div>
+</div>
+</section>
+<!-- Page Content -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12">
+<!-- Page Header -->
+<div class="flex justify-between items-baseline mb-8 border-b border-warm-hairline pb-6">
+<h2 class="font-headline-lg text-headline-lg text-primary">Browse listings</h2>
+<div class="font-numeric-data text-muted-bark text-body-md">
+                    [ <span class="text-secondary font-medium">124</span> results found ]
+                </div>
+</div>
+<!-- Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter-desktop staggered-reveal" id="results-grid">
+<!-- Card 1: Featured -->
+<div class="relative group cursor-pointer bg-pure-surface rounded-xl border border-warm-hairline overflow-hidden hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2">
+<div class="absolute top-0 right-6 z-10 w-8 h-12 gold-ribbon flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<div class="aspect-[4/3] overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A lush, cinematic photograph of a historic colonial-style tea bungalow perched on a verdant hill in Sri Lanka. The scene is bathed in golden hour light, highlighting the intricate woodwork and wide verandas. The surrounding tea plantations form a sea of vibrant Kandyan Green, with soft mountain mist rolling through the background under a warm, ivory-tinted sky. The mood is one of unhurried, boutique luxury." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtYjKNN1qsP28aDnT0PFDBhYWHPX9qiKuscOB9qPI7-AU2s7zpNhiPkAdAdifeEDMASivzzhOTonU-1vW4ByBQVAc74K1G9eYzbwwsr8u43KpcVhsjpBQFj6RgtsB0933_sXvWUlzT2l7kwj1X-3tKE1Yr0HQdmYkNWlrD0LsG88GbAXAGpGRU-3GcwhXj9hYgyv_b5yN-y468_VgxAcCflIAiHnovZoFpPBhVQTotal2aV5L8DnVrbWDTBLOdr_Lf2JM16DZJ_F8"/>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<span class="font-label-eyebrow text-terracotta-glow uppercase">Nuwara Eliya • Hill Country</span>
+<span class="font-numeric-data text-secondary font-bold">LKR 84,000 / night</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-3">Heritance Tea Factory</h3>
+<p class="text-muted-bark text-body-md line-clamp-2 mb-6">Experience the charm of a bygone era in a meticulously restored 19th-century tea factory turned luxury hotel.</p>
+<div class="flex gap-4 border-t border-warm-hairline pt-4">
+<span class="flex items-center gap-1 text-muted-sand text-xs"><span class="material-symbols-outlined text-sm">wifi</span> Free WiFi</span>
+<span class="flex items-center gap-1 text-muted-sand text-xs"><span class="material-symbols-outlined text-sm">pool</span> Private Pool</span>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="relative group cursor-pointer bg-pure-surface rounded-xl border border-warm-hairline overflow-hidden hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2">
+<div class="aspect-[4/3] overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A minimalist, high-end coastal villa in Mirissa, Sri Lanka, overlooking the turquoise Indian Ocean. The architecture features clean lines, warm wooden accents, and large glass walls that blur the line between indoor and outdoor spaces. The lighting is bright and airy, reflecting a sophisticated light-mode aesthetic. Palm trees sway gently in the foreground, framing a serene, sun-drenched infinity pool." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLBy_OXX9KWKvt_r6kQZA4ZVSM3YyDpKU9Zbx_uTdGRfa_WqIpJT1mJqrcfuX22PcMns0AUfchZIDTpTS44ErvoXnZ8AO_BE2zmg91DLC9-L3z-h0ntOKkU2VdQuxGtr_Lxid-9JuUcq9Xm5NQNXEGun2Z0Rtvsr4G6XJYVsoubqG1ag11sNCR23QnZOoCx_Xhs-g1pWAIh-SQKg_24rzd7tn11m2usi7WzlFtX0oRHHm2k6_5zdo9XUzUvLQcj6u1fL4VrWIXVJk"/>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<span class="font-label-eyebrow text-muted-sand uppercase">Mirissa • Southern Coast</span>
+<span class="font-numeric-data text-secondary font-bold">LKR 62,500 / night</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-3">Cape Weligama Retreat</h3>
+<p class="text-muted-bark text-body-md line-clamp-2 mb-6">Perched on a cliff edge, this resort offers breathtaking panoramic views of the Indian Ocean and world-class service.</p>
+<div class="flex gap-4 border-t border-warm-hairline pt-4">
+<span class="flex items-center gap-1 text-muted-sand text-xs"><span class="material-symbols-outlined text-sm">beach_access</span> Beachfront</span>
+<span class="flex items-center gap-1 text-muted-sand text-xs"><span class="material-symbols-outlined text-sm">restaurant</span> Fine Dining</span>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="relative group cursor-pointer bg-pure-surface rounded-xl border border-warm-hairline overflow-hidden hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2">
+<div class="aspect-[4/3] overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A boutique wellness sanctuary nestled within a dense tropical forest in Kandy, Sri Lanka. The structure is made of sustainable bamboo and warm, earth-toned stone, blending seamlessly into the jungle. Soft, dappled sunlight filters through the canopy, creating a peaceful and restorative atmosphere. The color palette is dominated by deep forest greens and warm parchment tones, emphasizing tranquility and natural beauty." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnFFUba3uXr2GyVfk3U001TD33FAgk42VzpJBdSy-xB9EgrFvUjU48EjCwasgtQ-oS3j_06Nj-o4A0TMzbgPXZ430_M1RFbWGP3cSmBUeIlXX97O8LhE48lQDhUhRfJj_2V1nz7LWihOWurqKMVH4_HjONvXjl6iFB-A70AAvJRmPmjlNqMa_HQAuS__PMu9HjUiSVSAlg7z0CXvg7paTIcnzxo8K2Hdm6OOmHrXZT9tDAe_CugKHgJSbhgYOHFBdookWr9l1-0yk"/>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<span class="font-label-eyebrow text-muted-sand uppercase">Kandy • Cultural Triangle</span>
+<span class="font-numeric-data text-secondary font-bold">LKR 45,000 / night</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-3">Santani Wellness Resort</h3>
+<p class="text-muted-bark text-body-md line-clamp-2 mb-6">A minimalist architectural marvel dedicated to holistic health and ayurvedic healing in the heart of the jungle.</p>
+<div class="flex gap-4 border-t border-warm-hairline pt-4">
+<span class="flex items-center gap-1 text-muted-sand text-xs"><span class="material-symbols-outlined text-sm">spa</span> Ayurveda</span>
+<span class="flex items-center gap-1 text-muted-sand text-xs"><span class="material-symbols-outlined text-sm">self_improvement</span> Yoga</span>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="relative group cursor-pointer bg-pure-surface rounded-xl border border-warm-hairline overflow-hidden hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2">
+<div class="aspect-[4/3] overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A historic merchant's house in Galle Fort, Sri Lanka, converted into a luxury boutique hotel. The courtyard features black and white checkered tiles, potted tropical palms, and antique furniture. The lighting is soft and warm, highlighting the heritage charm of the white-washed walls and heavy arched doorways. A sophisticated and unhurried aesthetic that celebrates Ceylonese history." src="https://lh3.googleusercontent.com/aida-public/AB6AXuASmkdvTmHhigp7VuoGKXd-WlImSNsOfrZT8lN5q5oCJf67Mj5gRtFDE5D9SE4n2YQtPlLSzmZD1irO0IpuhaOj06VRUcEa4TcheN0Gt4Srwgd3hRVhCa13z4hlViAXsOnhzJyuLXx_to4bglq9NBYNNmFroI5fSOv6VHa5lzNDoX0N03ojOL0mQmbDjlTyNuNn39RsSW7q5wvKLtAC84za76VmjhvWfWxUmHgNd7Bd8zOH4WZ09iE9sgi7bZ43EP_JbiKzp8boXmk"/>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<span class="font-label-eyebrow text-muted-sand uppercase">Galle Fort • Southern Coast</span>
+<span class="font-numeric-data text-secondary font-bold">LKR 55,000 / night</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-3">Amangalla</h3>
+<p class="text-muted-bark text-body-md line-clamp-2 mb-6">Located within the UNESCO World Heritage Galle Fort, this property offers a window into the colonial past with modern comforts.</p>
+<div class="flex gap-4 border-t border-warm-hairline pt-4">
+<span class="flex items-center gap-1 text-muted-sand text-xs"><span class="material-symbols-outlined text-sm">history</span> Heritage Site</span>
+<span class="flex items-center gap-1 text-muted-sand text-xs"><span class="material-symbols-outlined text-sm">local_bar</span> Library Bar</span>
+</div>
+</div>
+</div>
+<!-- Empty State (Hidden by default, used for demonstration) -->
+<div class="hidden col-span-full py-24 flex flex-col items-center text-center" id="empty-state">
+<div class="w-24 h-24 bg-warm-linen rounded-full flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-muted-sand text-[48px]">search_off</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-2">No listings match these filters yet</h3>
+<p class="text-muted-bark text-body-md mb-8 max-w-md">Try adjusting your search terms or clearing filters to discover more hidden gems across the island.</p>
+<button class="px-8 py-3 bg-secondary text-parchment rounded-lg font-bold hover:bg-tertiary transition-colors" onclick="resetFilters()">Reset all filters</button>
+</div>
+</div>
+<!-- Pagination -->
+<div class="mt-16 flex justify-center items-center gap-4">
+<button class="w-10 h-10 border border-warm-hairline rounded-lg flex items-center justify-center text-muted-bark hover:bg-warm-linen transition-colors disabled:opacity-30">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<div class="flex gap-2">
+<button class="w-10 h-10 bg-primary text-parchment rounded-lg font-numeric-data">01</button>
+<button class="w-10 h-10 border border-warm-hairline rounded-lg font-numeric-data text-muted-bark hover:bg-warm-linen transition-colors">02</button>
+<button class="w-10 h-10 border border-warm-hairline rounded-lg font-numeric-data text-muted-bark hover:bg-warm-linen transition-colors">03</button>
+<span class="flex items-center px-2 text-muted-sand">...</span>
+<button class="w-10 h-10 border border-warm-hairline rounded-lg font-numeric-data text-muted-bark hover:bg-warm-linen transition-colors">12</button>
+</div>
+<button class="w-10 h-10 border border-warm-hairline rounded-lg flex items-center justify-center text-muted-bark hover:bg-warm-linen transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</section>
+</main>
+<!-- Footer (JSON Integration) -->
+<footer class="bg-deep-forest py-12">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="space-y-6">
+<h2 class="font-headline-md text-headline-md text-temple-gold uppercase tracking-widest">CEYLON DIRECTORY</h2>
+<p class="text-parchment opacity-80 max-w-sm">Curating the finest boutique experiences and heritage properties across the emerald isle of Sri Lanka.</p>
+<div class="flex gap-4">
+<a class="text-parchment hover:text-temple-gold transition-colors" href="#"><span class="material-symbols-outlined">face_nod</span></a>
+<a class="text-parchment hover:text-temple-gold transition-colors" href="#"><span class="material-symbols-outlined">camera</span></a>
+<a class="text-parchment hover:text-temple-gold transition-colors" href="#"><span class="material-symbols-outlined">language</span></a>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="flex flex-col gap-3">
+<a class="text-parchment opacity-80 hover:text-temple-gold transition-colors font-body-md" href="#">Privacy Policy</a>
+<a class="text-parchment opacity-80 hover:text-temple-gold transition-colors font-body-md" href="#">Terms of Service</a>
+</div>
+<div class="flex flex-col gap-3">
+<a class="text-parchment opacity-80 hover:text-temple-gold transition-colors font-body-md" href="#">Partner Support</a>
+<a class="text-parchment opacity-80 hover:text-temple-gold transition-colors font-body-md" href="#">Contact Us</a>
+</div>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop border-t border-white/10 mt-12 pt-8">
+<p class="text-center md:text-left text-parchment opacity-50 font-body-md uppercase tracking-wider text-[10px]">© 2024 CEYLON DIRECTORY. ALL RIGHTS RESERVED.</p>
+</div>
+</footer>
+<!-- Scripts for micro-interactions -->
+<script>
+        function resetFilters() {
+            const filters = document.getElementById('active-filters');
+            const grid = document.getElementById('results-grid');
+            const emptyState = document.getElementById('empty-state');
+            
+            // This is just a UI demo effect
+            filters.innerHTML = '';
+            grid.classList.remove('hidden');
+            emptyState.classList.add('hidden');
+        }
+
+        // Search trigger mock
+        document.querySelector('input').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                const grid = document.getElementById('results-grid');
+                const emptyState = document.getElementById('empty-state');
+                
+                // Demo: toggle empty state if searching for "nothing"
+                if (e.target.value.toLowerCase() === 'nothing') {
+                    Array.from(grid.children).forEach(child => {
+                        if (child.id !== 'empty-state') child.classList.add('hidden');
+                    });
+                    emptyState.classList.remove('hidden');
+                } else {
+                    resetFilters();
+                }
+            }
+        });
+    </script>
+</body></html>

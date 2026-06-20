@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Wellness &amp; Spa | Ceylon Directory</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        @font-face {
+            font-family: 'plusJakartaSans';
+            src: local('Plus Jakarta Sans');
+        }
+        @font-face {
+            font-family: 'jetbrainsMono';
+            src: local('JetBrains Mono');
+        }
+        
+        body {
+            font-family: 'plusJakartaSans', sans-serif;
+            background-color: #FAF6EF; /* canvas-ivory */
+            color: #1a1c1a; /* on-background */
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .staggered-reveal > * {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: reveal 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        @keyframes reveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .staggered-reveal *:nth-child(1) { animation-delay: 0.1s; }
+        .staggered-reveal *:nth-child(2) { animation-delay: 0.2s; }
+        .staggered-reveal *:nth-child(3) { animation-delay: 0.3s; }
+        .staggered-reveal *:nth-child(4) { animation-delay: 0.4s; }
+        .staggered-reveal *:nth-child(5) { animation-delay: 0.5s; }
+        .staggered-reveal *:nth-child(6) { animation-delay: 0.6s; }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -10px rgba(110, 100, 86, 0.15);
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #E6DCCB;
+            border-radius: 10px;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary": "#491f1f",
+                    "temple-gold": "#C19A4B",
+                    "on-primary-container": "#89b9a0",
+                    "on-surface-variant": "#414944",
+                    "warm-hairline-dark": "#39342B",
+                    "surface-container-low": "#f3f4f0",
+                    "on-background": "#1a1c1a",
+                    "secondary-fixed-dim": "#ffb5a0",
+                    "tertiary-fixed-dim": "#f9b5b4",
+                    "muted-bark": "#6E6456",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-fixed": "#350f10",
+                    "on-secondary-fixed-variant": "#7f2b11",
+                    "jade-green": "#5FA882",
+                    "tertiary-container": "#633434",
+                    "outline": "#717973",
+                    "on-surface": "#1a1c1a",
+                    "status-rejected": "#9C4A3C",
+                    "surface-tint": "#3a6752",
+                    "inverse-surface": "#2e312f",
+                    "surface-bright": "#f9faf6",
+                    "surface-dim": "#d9dad7",
+                    "on-secondary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "canvas-ivory": "#FAF6EF",
+                    "terracotta-glow": "#D98463",
+                    "primary": "#003322",
+                    "surface-container-highest": "#e2e3df",
+                    "on-tertiary": "#ffffff",
+                    "warm-hairline": "#E6DCCB",
+                    "surface-container": "#edeeeb",
+                    "secondary": "#9e4126",
+                    "on-primary-fixed": "#002114",
+                    "elevated-surface": "#26231C",
+                    "on-tertiary-container": "#de9d9c",
+                    "secondary-container": "#ff8b69",
+                    "primary-fixed-dim": "#a1d1b8",
+                    "primary-fixed": "#bceed3",
+                    "warm-ink": "#241F1A",
+                    "secondary-fixed": "#ffdbd1",
+                    "surface-container-high": "#e7e8e5",
+                    "surface-variant": "#e2e3df",
+                    "deep-forest": "#143A2B",
+                    "raised-surface": "#1E1C17",
+                    "status-approved": "#2F7D5B",
+                    "tertiary-fixed": "#ffdad8",
+                    "parchment": "#F0E9DB",
+                    "muted-sand": "#A79C8A",
+                    "on-error": "#ffffff",
+                    "inverse-primary": "#a1d1b8",
+                    "background": "#f9faf6",
+                    "primary-container": "#1c4a37",
+                    "on-secondary-container": "#75240a",
+                    "status-pending": "#B7791F",
+                    "on-primary": "#ffffff",
+                    "temple-gold-bright": "#D9B65E",
+                    "surface": "#f9faf6",
+                    "pure-surface": "#FFFFFF",
+                    "char-green": "#14130F",
+                    "on-tertiary-fixed-variant": "#693939",
+                    "error-container": "#ffdad6",
+                    "on-secondary-fixed": "#3b0a00",
+                    "warm-linen": "#F3ECE0",
+                    "on-primary-fixed-variant": "#214f3c",
+                    "outline-variant": "#c0c9c2",
+                    "error": "#ba1a1a",
+                    "inverse-on-surface": "#f0f1ee"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "4rem",
+                    "gutter-desktop": "2rem",
+                    "margin-mobile": "1.5rem",
+                    "gutter-mobile": "1rem",
+                    "container-max": "1320px"
+            },
+            "fontFamily": {
+                    "body-lg": ["plusJakartaSans"],
+                    "headline-lg": ["plusJakartaSans"],
+                    "headline-md": ["plusJakartaSans"],
+                    "body-md": ["plusJakartaSans"],
+                    "numeric-data": ["jetbrainsMono"],
+                    "label-eyebrow": ["plusJakartaSans"],
+                    "display-hero": ["plusJakartaSans"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-canvas-ivory selection:bg-terracotta-glow/30">
+<!-- Top Navigation Shell -->
+<nav class="fixed top-0 w-full bg-canvas-ivory dark:bg-char-green border-b border-warm-hairline dark:border-warm-hairline-dark z-50">
+<div class="flex justify-between items-center h-16 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary dark:text-primary-fixed scale-95 duration-200 ease-in-out">menu</button>
+<span class="font-headline-md text-headline-md tracking-widest text-primary dark:text-primary-fixed">CEYLON DIRECTORY</span>
+</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="font-body-md text-body-md text-primary dark:text-primary-fixed font-bold border-b-2 border-primary hover:text-terracotta-glow transition-colors duration-300" href="#">Browse</a>
+<a class="font-body-md text-body-md text-muted-bark dark:text-muted-sand hover:text-terracotta-glow transition-colors duration-300" href="#">Categories</a>
+<a class="font-body-md text-body-md text-muted-bark dark:text-muted-sand hover:text-terracotta-glow transition-colors duration-300" href="#">Map</a>
+<button class="material-symbols-outlined text-primary dark:text-primary-fixed">light_mode</button>
+</div>
+</div>
+</nav>
+<main class="pt-24 pb-20">
+<!-- Header Band -->
+<header class="bg-warm-linen w-full py-16 md:py-24 border-b border-warm-hairline">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div class="max-w-2xl">
+<span class="font-label-eyebrow text-label-eyebrow text-muted-bark uppercase tracking-[0.2em] mb-4 block">CATEGORY</span>
+<h1 class="font-display-hero text-display-hero text-primary mb-4 leading-none">Wellness &amp; Spa</h1>
+<p class="font-body-lg text-body-lg text-muted-bark max-w-xl">Curated sanctuaries of tranquility, from ancient Ayurvedic retreats to contemporary coastal wellness centers.</p>
+</div>
+<div class="flex flex-col items-start md:items-end">
+<span class="font-numeric-data text-numeric-data text-terracotta-glow mb-1">COUNT: 42</span>
+<span class="font-label-eyebrow text-label-eyebrow text-muted-sand uppercase tracking-wider">VERIFIED LISTINGS</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Filters & Sort (Editorial Sub-bar) -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-8 border-b border-warm-hairline mb-12">
+<div class="flex flex-wrap items-center justify-between gap-4">
+<div class="flex gap-3 overflow-x-auto pb-2 md:pb-0 no-scrollbar">
+<button class="px-5 py-2 rounded-full border border-terracotta-glow bg-terracotta-glow text-white font-body-md text-sm transition-all">All Retreats</button>
+<button class="px-5 py-2 rounded-full border border-warm-hairline text-muted-bark font-body-md text-sm hover:border-terracotta-glow transition-all">Ayurvedic</button>
+<button class="px-5 py-2 rounded-full border border-warm-hairline text-muted-bark font-body-md text-sm hover:border-terracotta-glow transition-all">Meditation</button>
+<button class="px-5 py-2 rounded-full border border-warm-hairline text-muted-bark font-body-md text-sm hover:border-terracotta-glow transition-all">Yoga Shala</button>
+</div>
+<div class="flex items-center gap-4">
+<span class="font-label-eyebrow text-label-eyebrow text-muted-sand uppercase">SORT BY</span>
+<button class="flex items-center gap-2 font-body-md text-sm text-primary">
+                        Premium First
+                        <span class="material-symbols-outlined text-[18px]">expand_more</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Listings Grid -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter-desktop staggered-reveal">
+<!-- Listing Card 1 -->
+<article class="group cursor-pointer bg-pure-surface rounded-xl border border-warm-hairline overflow-hidden transition-all duration-500 card-hover">
+<div class="relative h-72 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A serene Ayurvedic luxury resort in Sri Lanka, featuring a dark wood pavilion overlooking a lush tropical garden with mist. Soft, early morning sunlight filters through palm fronds, creating a tranquil boutique-heritage atmosphere with warm greens and golden highlights." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAA4J-dlY2RtHpIIrklwAFx5LgTO0KK6_QVNFUyYfWWR99oLDdObc_UIKrb6rhr7pVit8l4xpGLKYipU6zqPcOxbHgMpkZv__EfOfa-q6ja9LTqmTuIb8uxF-LeEh8kS3xIFXgTO2bk4S4dJOOPmFFAOKdk8s1EZKUebi741imK8y3ZccghcQUOVGVg_7moU7LDYahoejq0M8pIHeo3HiBot_dLZPIF68-tAb8yfL9aSSSE9rbyyPe9H0HjmAzpG5_xerx6fQNnYIM"/>
+<div class="absolute top-4 left-4 bg-primary/90 text-parchment px-3 py-1 rounded-full font-label-eyebrow text-[10px] tracking-widest uppercase">Premium</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-md text-headline-md text-primary">Santani Wellness Kandy</h3>
+<span class="font-numeric-data text-numeric-data text-temple-gold">LKR 85,000+</span>
+</div>
+<p class="font-body-md text-body-md text-muted-bark line-clamp-2 mb-6">Sustainable architecture meets ancient healing rituals in the heart of the Dumbara mountains.</p>
+<div class="flex items-center justify-between pt-4 border-t border-warm-hairline">
+<div class="flex items-center gap-2 text-muted-sand">
+<span class="material-symbols-outlined text-sm">location_on</span>
+<span class="font-body-md text-sm">Kandy, Central Highlands</span>
+</div>
+<span class="material-symbols-outlined text-terracotta-glow transition-transform group-hover:translate-x-1">arrow_forward</span>
+</div>
+</div>
+</article>
+<!-- Listing Card 2 -->
+<article class="group cursor-pointer bg-pure-surface rounded-xl border border-warm-hairline overflow-hidden transition-all duration-500 card-hover">
+<div class="relative h-72 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Minimalist coastal meditation center in Sri Lanka with white-washed walls and open-air corridors. The scene features a view of the Indian Ocean at sunset, with warm terracotta glowing lights and a sophisticated, calm color palette of sandy neutrals and deep forest greens." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDICr885NOGxk2n-M3Q6r9snivDiWijAd8hoojfsszld4QX2xXdnrjtT3ybaBhwYJLf2WSFvgjGohqa53xJKqfvDEfOy0ZMGGZ4ddcyRWxqyqbXl218lWwKRKDoIcqmpY3Yx59fdXO0ZKwL3p-qFlS8wMJMlKVi6Xydqfb1LlJr38e5lcXd184h-oGkTSW4sKKsqb75ikmdVDDgLBjrhadjSfW2Gu1vNSZ_yhSoNoVSTPWsQMqlBmyLxy-wBn-gls6MGO89olLtbGM"/>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-md text-headline-md text-primary">The Fortress Spa</h3>
+<span class="font-numeric-data text-numeric-data text-temple-gold">LKR 62,000+</span>
+</div>
+<p class="font-body-md text-body-md text-muted-bark line-clamp-2 mb-6">Experience the 'Secret of Ayurveda' within a Dutch-inspired fortress sanctuary by the southern coast.</p>
+<div class="flex items-center justify-between pt-4 border-t border-warm-hairline">
+<div class="flex items-center gap-2 text-muted-sand">
+<span class="material-symbols-outlined text-sm">location_on</span>
+<span class="font-body-md text-sm">Galle, Southern Province</span>
+</div>
+<span class="material-symbols-outlined text-terracotta-glow transition-transform group-hover:translate-x-1">arrow_forward</span>
+</div>
+</div>
+</article>
+<!-- Listing Card 3 -->
+<article class="group cursor-pointer bg-pure-surface rounded-xl border border-warm-hairline overflow-hidden transition-all duration-500 card-hover">
+<div class="relative h-72 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A close-up of traditional Ayurvedic oil treatment materials: a handmade terracotta bowl with aromatic herbs and a temple gold spoon on a textured linen cloth. The lighting is soft and moody, emphasizing a premium boutique luxury feel with a heritage aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvI66fEgxTkm61pqdczoUaAKYIfvJSbVBJAYASeqiQErkH9NSZzaoNmkrlxHPSVNwcRLUpfPfZrdR3IvH8ZynYX9QHqjscmZMZCBWjmT3tAvzQ6Ua6IZIlNRWvy5Wmx32nQpGyfodkFkLTrIAe-RMYJAOGXz0JyUUZh3CBUFSH5NSU-ufUVGK_hvDTS_3DO7xM_xZ8qsg_BYySp7rrbdK88CrMLz48DdfHxHSOU54Zo4LD4Hg6i8S0BIgHcfkmk_jmeXkp2XypeyU"/>
+<div class="absolute top-4 left-4 bg-jade-green/90 text-parchment px-3 py-1 rounded-full font-label-eyebrow text-[10px] tracking-widest uppercase">Verified</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-md text-headline-md text-primary">Anantara Peace Haven</h3>
+<span class="font-numeric-data text-numeric-data text-temple-gold">LKR 94,500+</span>
+</div>
+<p class="font-body-md text-body-md text-muted-bark line-clamp-2 mb-6">Tucked away on a rocky outcrop along a secluded stretch of Sri Lanka’s southernmost coastline.</p>
+<div class="flex items-center justify-between pt-4 border-t border-warm-hairline">
+<div class="flex items-center gap-2 text-muted-sand">
+<span class="material-symbols-outlined text-sm">location_on</span>
+<span class="font-body-md text-sm">Tangalle, Deep South</span>
+</div>
+<span class="material-symbols-outlined text-terracotta-glow transition-transform group-hover:translate-x-1">arrow_forward</span>
+</div>
+</div>
+</article>
+<!-- Listing Card 4 -->
+<article class="group cursor-pointer bg-pure-surface rounded-xl border border-warm-hairline overflow-hidden transition-all duration-500 card-hover">
+<div class="relative h-72 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Aerial view of a jungle-shrouded yoga platform in the Sri Lankan interior. Geometric wooden structure integrated into lush emerald canopy, soft evening light, high-key warm highlights, and deep shadows, emphasizing the boutique-heritage connection to nature." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAttxYFVxY-y8JQPOk1G0vT8_LjOheq6BX6EXKnNLLEK-C5vF_PO_h3n7S-3M2KjXlTsPv6ekEgvn2YnCK4M5EAAVjiOIS7slWNeniATtPrP83fd1nts3LdaF8MCHnvPLzjHCFeHpHO5KI0bcMDNGRLYJOpL7eGtPeIVjU1Jpy8Z7FdSsV_SPAWHZkwQA8MdCbigVcqBFXrh7ys2QsGq9WpwncgWRfZpew9zG2YkEBPrp-2uKqXl595eKXfgHRSUqXV5x4RM-jIQP8"/>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-md text-headline-md text-primary">Ulpotha Yoga Retreat</h3>
+<span class="font-numeric-data text-numeric-data text-temple-gold">LKR 35,000+</span>
+</div>
+<p class="font-body-md text-body-md text-muted-bark line-clamp-2 mb-6">A hidden eco-village focused on yoga, Ayurveda, and sustainable living in a magical forest setting.</p>
+<div class="flex items-center justify-between pt-4 border-t border-warm-hairline">
+<div class="flex items-center gap-2 text-muted-sand">
+<span class="material-symbols-outlined text-sm">location_on</span>
+<span class="font-body-md text-sm">Kurunegala, North Western</span>
+</div>
+<span class="material-symbols-outlined text-terracotta-glow transition-transform group-hover:translate-x-1">arrow_forward</span>
+</div>
+</div>
+</article>
+<!-- Listing Card 5 -->
+<article class="group cursor-pointer bg-pure-surface rounded-xl border border-warm-hairline overflow-hidden transition-all duration-500 card-hover">
+<div class="relative h-72 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Luxury boutique tea bungalow bathroom with a copper soaking tub overlooking mist-covered tea plantations. Warm wood interiors, temple gold accents, and large windows that frame the vibrant green landscape of Nuwara Eliya, Sri Lanka." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUUhIec0jMmr5FDDwL4BlZd4dNkh0o2WhF7j8txDfwAgcEbnXrzkFj7zP_7rwH84Ya52EuuwgAGMXHY2z_T7pZJu5DCrpBEEinb1V3xuE7JMKdfT4Rub_P3iGU69_kPd1yv_zMCp1uTjIzYfwWFRIR9rWTMeecxINjvqEO9eSJ6S_NXSUNsHUGyG_EAsL50cEZ2lryqaoxzMveYkiXE3RgopC0kECikEB4dxZd84jmsiKHWHUzkXH64n5g7yv6gqk8_Jp7HxtEUrY"/>
+<div class="absolute top-4 left-4 bg-primary/90 text-parchment px-3 py-1 rounded-full font-label-eyebrow text-[10px] tracking-widest uppercase">Premium</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-md text-headline-md text-primary">Ceylon Tea Trails Spa</h3>
+<span class="font-numeric-data text-numeric-data text-temple-gold">LKR 110,000+</span>
+</div>
+<p class="font-body-md text-body-md text-muted-bark line-clamp-2 mb-6">Signature tea-infused treatments in colonial-era bungalows overlooking Castlereagh Reservoir.</p>
+<div class="flex items-center justify-between pt-4 border-t border-warm-hairline">
+<div class="flex items-center gap-2 text-muted-sand">
+<span class="material-symbols-outlined text-sm">location_on</span>
+<span class="font-body-md text-sm">Hatton, Tea Country</span>
+</div>
+<span class="material-symbols-outlined text-terracotta-glow transition-transform group-hover:translate-x-1">arrow_forward</span>
+</div>
+</div>
+</article>
+<!-- Listing Card 6 -->
+<article class="group cursor-pointer bg-pure-surface rounded-xl border border-warm-hairline overflow-hidden transition-all duration-500 card-hover">
+<div class="relative h-72 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Traditional Sri Lankan temple courtyard at night, illuminated by hundreds of clay oil lamps. Warm amber glow against ancient stone, creating a spiritual and meditative atmosphere in a high-end, artistic photographic style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfhR6TDS3bMz3YWmVGHNM3dDKNzECMSCS5dWZuBAjNJktCZzfd00Yr1kC65_Y3DxruL1OVaF0W5CqVTZRprMn2kJ5ODkQNudWjJSqmWlFMh6Rxqx_NqqBNPYUJEm6R6b5KKqvFLQb6PRqQmBc3TwZ216ouBFAjzdjCV_1AWkM_BN77368P4V59Kupvw3uygIjX-yQrg0YD62g1yhGr5R9UMDt7zvrx6av1bfekA_nAWcu06dESjmN-flFfZE6iAq3ODxWxaviRNOg"/>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-md text-headline-md text-primary">Jetwing Ayurveda Pavilions</h3>
+<span class="font-numeric-data text-numeric-data text-temple-gold">LKR 48,000+</span>
+</div>
+<p class="font-body-md text-body-md text-muted-bark line-clamp-2 mb-6">A dedicated therapeutic retreat where ancient healing wisdom is practiced in modern comfort.</p>
+<div class="flex items-center justify-between pt-4 border-t border-warm-hairline">
+<div class="flex items-center gap-2 text-muted-sand">
+<span class="material-symbols-outlined text-sm">location_on</span>
+<span class="font-body-md text-sm">Negombo, Western Coast</span>
+</div>
+<span class="material-symbols-outlined text-terracotta-glow transition-transform group-hover:translate-x-1">arrow_forward</span>
+</div>
+</div>
+</article>
+</div>
+</section>
+<!-- Pagination / Load More -->
+<section class="mt-20 flex flex-col items-center">
+<button class="bg-primary text-parchment px-10 py-4 font-body-md tracking-wider uppercase hover:bg-deep-forest transition-colors duration-300">
+                Show More Results
+            </button>
+<div class="mt-8 flex gap-2 font-numeric-data text-muted-sand">
+<span class="text-primary font-bold">1</span>
+<span>/</span>
+<span>07</span>
+</div>
+</section>
+</main>
+<!-- Footer Shell -->
+<footer class="bg-deep-forest dark:bg-char-green w-full py-12">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="flex flex-col gap-6">
+<span class="font-headline-md text-headline-md text-temple-gold">CEYLON DIRECTORY</span>
+<p class="font-body-md text-body-md text-parchment opacity-80 max-w-md">
+                    The island's definitive collection of luxury hospitality, heritage retreats, and curated travel experiences.
+                </p>
+<span class="font-body-md text-body-md text-parchment opacity-60">© 2024 CEYLON DIRECTORY. ALL RIGHTS RESERVED.</span>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="flex flex-col gap-3">
+<span class="font-label-eyebrow text-temple-gold-bright mb-2">DIRECTORY</span>
+<a class="font-body-md text-parchment opacity-80 hover:text-temple-gold transition-opacity" href="#">Privacy Policy</a>
+<a class="font-body-md text-parchment opacity-80 hover:text-temple-gold transition-opacity" href="#">Terms of Service</a>
+</div>
+<div class="flex flex-col gap-3">
+<span class="font-label-eyebrow text-temple-gold-bright mb-2">PARTNERS</span>
+<a class="font-body-md text-parchment opacity-80 hover:text-temple-gold transition-opacity" href="#">Partner Support</a>
+<a class="font-body-md text-parchment opacity-80 hover:text-temple-gold transition-opacity" href="#">Contact Us</a>
+</div>
+</div>
+</div>
+</footer>
+<!-- Interactive Layer: Hover Effects and Micro-interactions -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('article');
+            
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    const arrow = card.querySelector('.material-symbols-outlined:last-child');
+                    arrow.style.transform = 'translateX(6px)';
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    const arrow = card.querySelector('.material-symbols-outlined:last-child');
+                    arrow.style.transform = 'translateX(0)';
+                });
+            });
+        });
+    </script>
+</body></html>

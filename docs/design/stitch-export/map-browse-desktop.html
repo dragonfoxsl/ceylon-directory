@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #E6DCCB;
+            border-radius: 10px;
+        }
+        .map-canvas {
+            background-color: #FAF6EF; /* Canvas Ivory */
+            background-image: 
+                radial-gradient(#E6DCCB 0.5px, transparent 0.5px);
+            background-size: 24px 24px;
+        }
+        .teardrop {
+            width: 32px;
+            height: 32px;
+            border-radius: 50% 50% 50% 0;
+            transform: rotate(-45deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .teardrop > span {
+            transform: rotate(45deg);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                "on-primary-fixed": "#002114",
+                "muted-bark": "#6E6456",
+                "temple-gold-bright": "#D9B65E",
+                "inverse-primary": "#a1d1b8",
+                "surface-container-low": "#f3f4f0",
+                "surface-container-highest": "#e2e3df",
+                "tertiary-fixed-dim": "#f9b5b4",
+                "on-primary-container": "#89b9a0",
+                "on-secondary-fixed": "#3b0a00",
+                "warm-ink": "#241F1A",
+                "on-secondary": "#ffffff",
+                "on-primary-fixed-variant": "#214f3c",
+                "on-error": "#ffffff",
+                "surface-container-lowest": "#ffffff",
+                "outline": "#717973",
+                "secondary": "#9e4126",
+                "on-error-container": "#93000a",
+                "on-background": "#1a1c1a",
+                "primary-fixed-dim": "#a1d1b8",
+                "error": "#ba1a1a",
+                "terracotta-glow": "#D98463",
+                "tertiary-container": "#633434",
+                "secondary-fixed": "#ffdbd1",
+                "tertiary-fixed": "#ffdad8",
+                "on-primary": "#ffffff",
+                "primary-container": "#1c4a37",
+                "surface-container": "#edeeeb",
+                "inverse-on-surface": "#f0f1ee",
+                "pure-surface": "#FFFFFF",
+                "warm-linen": "#F3ECE0",
+                "raised-surface": "#1E1C17",
+                "status-approved": "#2F7D5B",
+                "muted-sand": "#A79C8A",
+                "elevated-surface": "#26231C",
+                "secondary-container": "#ff8b69",
+                "error-container": "#ffdad6",
+                "parchment": "#F0E9DB",
+                "on-tertiary-container": "#de9d9c",
+                "warm-hairline-dark": "#39342B",
+                "surface": "#f9faf6",
+                "surface-bright": "#f9faf6",
+                "on-secondary-container": "#75240a",
+                "tertiary": "#491f1f",
+                "temple-gold": "#C19A4B",
+                "on-tertiary-fixed": "#350f10",
+                "char-green": "#14130F",
+                "on-tertiary": "#ffffff",
+                "primary": "#003322",
+                "status-rejected": "#9C4A3C",
+                "inverse-surface": "#2e312f",
+                "surface-variant": "#e2e3df",
+                "background": "#f9faf6",
+                "on-surface": "#1a1c1a",
+                "deep-forest": "#143A2B",
+                "secondary-fixed-dim": "#ffb5a0",
+                "jade-green": "#5FA882",
+                "canvas-ivory": "#FAF6EF",
+                "surface-container-high": "#e7e8e5",
+                "status-pending": "#B7791F",
+                "surface-dim": "#d9dad7",
+                "primary-fixed": "#bceed3",
+                "on-secondary-fixed-variant": "#7f2b11",
+                "on-tertiary-fixed-variant": "#693939",
+                "outline-variant": "#c0c9c2",
+                "warm-hairline": "#E6DCCB",
+                "on-surface-variant": "#414944",
+                "surface-tint": "#3a6752"
+              },
+              "spacing": {
+                "gutter-desktop": "2rem",
+                "gutter-mobile": "1rem",
+                "margin-mobile": "1.5rem",
+                "margin-desktop": "4rem",
+                "container-max": "1320px"
+              },
+              "fontFamily": {
+                "headline-lg": ["Plus Jakarta Sans"],
+                "headline-md": ["Plus Jakarta Sans"],
+                "body-md": ["Plus Jakarta Sans"],
+                "body-lg": ["Plus Jakarta Sans"],
+                "numeric-data": ["JetBrains Mono"]
+              }
+            }
+          }
+        }
+    </script>
+</head>
+<body class="bg-pure-surface text-warm-ink font-body-md overflow-hidden flex flex-col h-screen">
+<!-- Top Navigation Bar -->
+<header class="bg-pure-surface border-b border-warm-hairline z-50">
+<nav class="flex justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto h-20">
+<div class="flex items-center gap-12">
+<span class="font-headline-md text-headline-md font-bold text-primary tracking-tight">Ceylon Directory</span>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-primary font-bold border-b-2 border-primary pb-1" href="#">Browse</a>
+<a class="text-muted-bark hover:text-primary transition-colors" href="#">Categories</a>
+<a class="text-muted-bark hover:text-primary transition-colors" href="#">Map</a>
+<a class="text-muted-bark hover:text-primary transition-colors" href="#">About</a>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="material-symbols-outlined text-muted-bark hover:text-primary p-2 rounded-full transition-all hover:bg-surface-container-low">dark_mode</button>
+<div class="h-8 w-[1px] bg-warm-hairline"></div>
+<button class="text-muted-bark hover:text-primary transition-colors font-medium">Log in</button>
+<button class="bg-primary text-parchment px-6 py-2.5 rounded-lg font-medium transition-transform active:scale-95">List your service</button>
+</div>
+</nav>
+</header>
+<!-- Filter Bar (Sticky) -->
+<section class="bg-pure-surface border-b border-warm-hairline py-3 px-8 z-40 shadow-sm">
+<div class="max-w-container-max mx-auto flex items-center justify-between gap-4">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative flex-1 max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-muted-bark">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-canvas-ivory border border-warm-hairline rounded-lg focus:ring-1 focus:ring-secondary focus:border-secondary outline-none transition-all placeholder:text-muted-sand" placeholder="Search experiences, villas, craftsmen..." type="text"/>
+</div>
+<div class="relative">
+<select class="appearance-none pl-4 pr-10 py-2 bg-canvas-ivory border border-warm-hairline rounded-lg focus:ring-1 focus:ring-secondary outline-none cursor-pointer text-muted-bark">
+<option>Category: All</option>
+<option>Heritage Villas</option>
+<option>Artisan Studios</option>
+<option>Botanical Gardens</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-muted-bark">expand_more</span>
+</div>
+<div class="relative">
+<select class="appearance-none pl-4 pr-10 py-2 bg-canvas-ivory border border-warm-hairline rounded-lg focus:ring-1 focus:ring-secondary outline-none cursor-pointer text-muted-bark">
+<option>Region: All</option>
+<option>Galle Fort</option>
+<option>Kandy Highlands</option>
+<option>Jaffna Peninsula</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-muted-bark">expand_more</span>
+</div>
+</div>
+<button class="flex items-center gap-2 px-4 py-2 border border-warm-hairline rounded-lg hover:bg-surface-container-low transition-colors text-muted-bark font-medium">
+<span class="material-symbols-outlined">grid_view</span>
+                View Grid
+            </button>
+</div>
+</section>
+<!-- Main Split Layout -->
+<main class="flex-1 flex overflow-hidden">
+<!-- Sidebar: Listing Cards (40%) -->
+<aside class="w-[40%] bg-canvas-ivory border-r border-warm-hairline overflow-y-auto custom-scrollbar flex flex-col">
+<div class="p-6 flex flex-col gap-4">
+<div class="flex justify-between items-baseline mb-2">
+<h2 class="font-headline-md text-headline-md text-primary">Discover Sri Lanka</h2>
+<span class="font-numeric-data text-muted-bark">124 Results</span>
+</div>
+<!-- Listing Cards -->
+<div class="flex flex-col gap-4">
+<!-- Selected Card Example -->
+<div class="bg-pure-surface p-3 rounded-2xl border border-temple-gold shadow-md flex gap-4 cursor-pointer group transition-all hover:scale-[1.02]">
+<div class="w-32 h-32 rounded-xl overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A wide angle photograph of a restored colonial boutique villa in Galle Fort, featuring white-washed walls, a clay tile roof, and lush tropical greenery. The afternoon sun creates soft, warm shadows on the cobblestone entrance. The aesthetic is unhurried luxury with a rich heritage feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuChDnwr4NJufzUlduhgN0usVmKT5pzMbjdtzhbK16jNnkTL8DrjEN8Ba44-AxSGOL0lPrheFsYZj-jfXU2OUmM9Ll5FP6EGT2EVjtF2-JThl9vsfZxeZRvFy0vi-pBiyq9iG2tYo0Cs31huQBjrouA4NOHZGpHuiKqSerKwjcMajirHFNuNaqRPNo2AbKyW7vvLcCEnlaP-T9WjV2M7palwsD8c8yvo8JECBArj6D3GrNlNcMh1i2DPic0bRqp_1rlDM8QNkp0-oJc"/>
+</div>
+<div class="flex flex-col justify-between py-1 flex-1">
+<div>
+<span class="text-[10px] tracking-[0.2em] font-bold text-secondary uppercase block mb-1">Galle Fort</span>
+<h3 class="font-headline-md text-body-lg text-primary leading-snug">The Merchant's Manor</h3>
+<p class="text-sm text-muted-bark line-clamp-1 mt-1">A curated 17th-century restoration experience.</p>
+</div>
+<div class="flex justify-between items-end">
+<span class="font-numeric-data text-secondary font-bold">LKR 45,000 / night</span>
+<span class="material-symbols-outlined text-temple-gold" data-weight="fill">star</span>
+</div>
+</div>
+</div>
+<!-- Regular Card -->
+<div class="bg-pure-surface p-3 rounded-2xl border border-warm-hairline flex gap-4 cursor-pointer group transition-all hover:border-secondary">
+<div class="w-32 h-32 rounded-xl overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A vibrant photograph of a traditional Ceylon tea factory nestled among rolling emerald green hills in Kandy. The mist is rising between the tea bushes under a soft morning glow. The image captures the boutique-heritage vibe of the central highlands of Sri Lanka." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDURUZbsAfq02nvcXAuVA30mBwyxheNQi_8Ak2yuSlus3kIyHa7fYMuFPVMu9LOIrvY0PDV7pYEmw-qd_-JQPZAMSemFH9v29ZXoNfCsUe0JCJu7aJtAoLac-BZUYHlBn8GyrH8wxn6Vi5D8ikQPmnwa3ci-JCF00CEwjOq8k6Rxog2klcEXdJUyzGFQBwPlnLSOXOSaNe1HfGpfoNtHC8okpR3YvkVTSlEZpgqyu8AIq-UzUn-u5dAwERNRsajQpH5e6v-2kURBGA"/>
+</div>
+<div class="flex flex-col justify-between py-1 flex-1">
+<div>
+<span class="text-[10px] tracking-[0.2em] font-bold text-secondary uppercase block mb-1">Kandy</span>
+<h3 class="font-headline-md text-body-lg text-primary leading-snug">Amba Estate Artisans</h3>
+<p class="text-sm text-muted-bark line-clamp-1 mt-1">Exclusive tea tasting and weaving workshop.</p>
+</div>
+<div class="flex justify-between items-end">
+<span class="font-numeric-data text-secondary font-bold">LKR 12,500 / workshop</span>
+<span class="material-symbols-outlined text-muted-sand">favorite</span>
+</div>
+</div>
+</div>
+<!-- Regular Card 2 -->
+<div class="bg-pure-surface p-3 rounded-2xl border border-warm-hairline flex gap-4 cursor-pointer group transition-all hover:border-secondary">
+<div class="w-32 h-32 rounded-xl overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A serene landscape of a luxury boutique resort infinity pool overlooking the Indian Ocean in Weligama, Sri Lanka. The sky is a pale terracotta pink at sunset. The poolside is decorated with warm wooden loungers and artisanal linen umbrellas." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAidVMpa9rdYHhbPUYL3w77MihCFgfpkzNKbnrpvsLD299J1jqv8agBDMBDDHXgJtufbCjwoWgTOT52E1it3n4nJqAIScdRbet-M7S6R-onr7k0tQM8IgY5TS7V11E_OHBn2jGId3_UyjkTE55RRheGzr5QxXg8EolRY-VqFN7aME7zxsSnWkhxmV1gVBHomoJkRsYkAtmSPzBnl0P0L7F45STMceVUbKiMUp7Z7XSDybwXpU9SbHA_MmGBpBPPJtTL49UZonk-F4c"/>
+</div>
+<div class="flex flex-col justify-between py-1 flex-1">
+<div>
+<span class="text-[10px] tracking-[0.2em] font-bold text-secondary uppercase block mb-1">Weligama</span>
+<h3 class="font-headline-md text-body-lg text-primary leading-snug">Saffron Sands Retreat</h3>
+<p class="text-sm text-muted-bark line-clamp-1 mt-1">Ocean-front serenity and Ayurvedic healing.</p>
+</div>
+<div class="flex justify-between items-end">
+<span class="font-numeric-data text-secondary font-bold">LKR 38,000 / night</span>
+<span class="material-symbols-outlined text-muted-sand">favorite</span>
+</div>
+</div>
+</div>
+<!-- Regular Card 3 -->
+<div class="bg-pure-surface p-3 rounded-2xl border border-warm-hairline flex gap-4 cursor-pointer group transition-all hover:border-secondary">
+<div class="w-32 h-32 rounded-xl overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A close-up shot of a master ceramicist's hands shaping a terracotta clay pot in a rustic, sunlit studio in Matale, Sri Lanka. The light catches the texture of the clay and the dust in the air. The scene feels timeless and grounded in heritage." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDm5x8FUg6Lk4nDg_Go37DRxHWB7beUM4EKAfyhvJrdNHTPwd3hGs7gx1FxL5gzngiftVHfikDKuXaT-AdO1tPBSo9ACokQykW2pbJaIq7M3mR5EPUa7fBV9l1mjtgr_AHo5qcxyCb8ZmRcTUGvP_XsiV7H-rSSCYaRWwLdEebugwSUeUfCEKZwl7a6BODIPeColot-LepwPhmP92JJ0msGpU3_jQZjD2pX4yxaLEYLtY4a6fSQZOy3cJARRckJov4CtOyLg3rum7c"/>
+</div>
+<div class="flex flex-col justify-between py-1 flex-1">
+<div>
+<span class="text-[10px] tracking-[0.2em] font-bold text-secondary uppercase block mb-1">Matale</span>
+<h3 class="font-headline-md text-body-lg text-primary leading-snug">The Clay Workshop</h3>
+<p class="text-sm text-muted-bark line-clamp-1 mt-1">Masterclass in traditional Kandyan pottery.</p>
+</div>
+<div class="flex justify-between items-end">
+<span class="font-numeric-data text-secondary font-bold">LKR 8,500 / session</span>
+<span class="material-symbols-outlined text-muted-sand">favorite</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Map View: Interactive Map (60%) -->
+<section class="w-[60%] relative map-canvas overflow-hidden">
+<!-- Simulated Map Elements -->
+<div class="absolute inset-0 opacity-40 mix-blend-multiply pointer-events-none" data-location="Sri Lanka" style=""></div>
+<!-- Map Decorative Elements -->
+<div class="absolute inset-0 pointer-events-none">
+<!-- Soft Green Parks/Reserves -->
+<div class="absolute top-[30%] left-[40%] w-48 h-64 bg-jade-green/10 rounded-full blur-3xl"></div>
+<div class="absolute top-[60%] left-[20%] w-32 h-32 bg-jade-green/15 rounded-full blur-2xl"></div>
+<!-- Water Muted -->
+<div class="absolute right-0 top-0 bottom-0 w-24 bg-surface-container-low/30 blur-xl"></div>
+</div>
+<!-- Interactive Pins -->
+<!-- Cluster Badge -->
+<div class="absolute top-[15%] left-[55%] flex items-center justify-center w-10 h-10 bg-primary text-parchment rounded-full border-2 border-white shadow-lg font-numeric-data text-xs cursor-pointer hover:scale-110 transition-transform">
+                12
+            </div>
+<!-- Standard Pins -->
+<div class="absolute top-[45%] left-[30%] group">
+<div class="teardrop bg-secondary shadow-md cursor-pointer hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-white text-[16px]" style="font-variation-settings: 'FILL' 1;">bed</span>
+</div>
+</div>
+<div class="absolute top-[65%] left-[45%] group">
+<div class="teardrop bg-secondary shadow-md cursor-pointer hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-white text-[16px]" style="font-variation-settings: 'FILL' 1;">restaurant</span>
+</div>
+</div>
+<div class="absolute top-[35%] left-[70%] group">
+<div class="teardrop bg-secondary shadow-md cursor-pointer hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-white text-[16px]" style="font-variation-settings: 'FILL' 1;">spa</span>
+</div>
+</div>
+<!-- Selected Pin -->
+<div class="absolute top-[75%] left-[25%] z-20">
+<div class="teardrop bg-temple-gold shadow-xl scale-125 border-2 border-white transition-all">
+<span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">villa</span>
+</div>
+<!-- Floating Preview Card -->
+<div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 w-64 bg-pure-surface rounded-2xl shadow-2xl border border-warm-hairline overflow-hidden animate-in fade-in slide-in-from-bottom-2 duration-300">
+<div class="h-32 w-full relative">
+<img class="w-full h-full object-cover" data-alt="A luxury interior of a boutique manor in Sri Lanka, showing high ceilings, heavy teak wooden beams, and arched windows. Minimalist but warm decor with earthy tones and local art. The lighting is soft and golden from high-quality lamps." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6QVy6Po_vtdiGFAurADWLY7g4068IiTvyKnxYLXSDfCdv7uTNJpCM6XX27kZJJEVvZfVicgo7phkSWNhjGgkolAwZj05EaoH35b-mzfW0YK4N1J0ufoa_ClQZwCDz6FLp8R46l7wV8skyUR7A3ZzrojxE2TGwseJU94WaZFWWWneoxSAQsZfMkxvjcMQ7H78lRTpHZQLyy0aMXLqOMi5eXlKg-sjsSiSKDdUhLpy9yXV9wYixL4VwUzGbM0qaAJObQZKdjqP5e9w"/>
+<button class="absolute top-2 right-2 p-1.5 bg-white/80 backdrop-blur rounded-full text-warm-ink hover:bg-white">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+</div>
+<div class="p-4">
+<h4 class="font-headline-md text-base text-primary font-bold">The Merchant's Manor</h4>
+<div class="flex justify-between items-center mt-2">
+<span class="font-numeric-data text-secondary text-sm font-bold">LKR 45,000</span>
+<div class="flex items-center gap-1 text-xs text-muted-bark">
+<span class="material-symbols-outlined text-sm text-temple-gold" style="font-variation-settings: 'FILL' 1;">star</span>
+                                4.9
+                            </div>
+</div>
+</div>
+<div class="bg-surface-container-low px-4 py-2 border-t border-warm-hairline flex justify-center">
+<button class="text-xs font-bold text-secondary hover:underline">VIEW DETAILS</button>
+</div>
+</div>
+</div>
+<!-- Map Controls -->
+<div class="absolute bottom-8 right-8 flex flex-col gap-2">
+<button class="w-12 h-12 bg-pure-surface shadow-lg border border-warm-hairline rounded-xl flex items-center justify-center text-muted-bark hover:text-primary hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined">add</span>
+</button>
+<button class="w-12 h-12 bg-pure-surface shadow-lg border border-warm-hairline rounded-xl flex items-center justify-center text-muted-bark hover:text-primary hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined">remove</span>
+</button>
+<button class="w-12 h-12 bg-pure-surface shadow-lg border border-warm-hairline rounded-xl flex items-center justify-center text-muted-bark hover:text-primary hover:bg-surface-container-low transition-all mt-4">
+<span class="material-symbols-outlined">my_location</span>
+</button>
+</div>
+<!-- Map Legend -->
+<div class="absolute bottom-8 left-8 bg-pure-surface/90 backdrop-blur border border-warm-hairline rounded-2xl px-4 py-3 shadow-lg flex gap-6 items-center">
+<div class="flex items-center gap-2">
+<div class="w-2.5 h-2.5 rounded-full bg-secondary"></div>
+<span class="text-xs font-medium text-muted-bark">Stays</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-2.5 h-2.5 rounded-full bg-jade-green"></div>
+<span class="text-xs font-medium text-muted-bark">Parks</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-2.5 h-2.5 rounded-full bg-temple-gold"></div>
+<span class="text-xs font-medium text-muted-bark">Featured</span>
+</div>
+</div>
+</section>
+</main>
+<script>
+        // Micro-interaction for listing cards
+        document.querySelectorAll('aside .bg-pure-surface').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-2px)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0px)';
+            });
+        });
+
+        // Simple map interaction simulation
+        const pins = document.querySelectorAll('.teardrop');
+        pins.forEach(pin => {
+            pin.addEventListener('click', () => {
+                // Remove active classes from all pins (simple visual toggle)
+                pins.forEach(p => {
+                    if(!p.parentElement.classList.contains('z-20')) {
+                        p.classList.remove('bg-temple-gold');
+                        p.classList.add('bg-secondary');
+                    }
+                });
+                
+                if(!pin.parentElement.classList.contains('z-20')) {
+                    pin.classList.remove('bg-secondary');
+                    pin.classList.add('bg-temple-gold');
+                }
+            });
+        });
+    </script>
+</body></html>
