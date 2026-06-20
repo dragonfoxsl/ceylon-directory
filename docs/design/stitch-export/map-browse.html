@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ceylon Directory | Browse Ceylon</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#491f1f",
+                        "temple-gold": "#C19A4B",
+                        "on-primary-container": "#89b9a0",
+                        "on-surface-variant": "#414944",
+                        "warm-hairline-dark": "#39342B",
+                        "surface-container-low": "#f3f4f0",
+                        "on-background": "#1a1c1a",
+                        "secondary-fixed-dim": "#ffb5a0",
+                        "tertiary-fixed-dim": "#f9b5b4",
+                        "muted-bark": "#6E6456",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed": "#350f10",
+                        "on-secondary-fixed-variant": "#7f2b11",
+                        "jade-green": "#5FA882",
+                        "tertiary-container": "#633434",
+                        "outline": "#717973",
+                        "on-surface": "#1a1c1a",
+                        "status-rejected": "#9C4A3C",
+                        "surface-tint": "#3a6752",
+                        "inverse-surface": "#2e312f",
+                        "surface-bright": "#f9faf6",
+                        "surface-dim": "#d9dad7",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "canvas-ivory": "#FAF6EF",
+                        "terracotta-glow": "#D98463",
+                        "primary": "#003322",
+                        "surface-container-highest": "#e2e3df",
+                        "on-tertiary": "#ffffff",
+                        "warm-hairline": "#E6DCCB",
+                        "surface-container": "#edeeeb",
+                        "secondary": "#9e4126",
+                        "on-primary-fixed": "#002114",
+                        "elevated-surface": "#26231C",
+                        "on-tertiary-container": "#de9d9c",
+                        "secondary-container": "#ff8b69",
+                        "primary-fixed-dim": "#a1d1b8",
+                        "primary-fixed": "#bceed3",
+                        "warm-ink": "#241F1A",
+                        "secondary-fixed": "#ffdbd1",
+                        "surface-container-high": "#e7e8e5",
+                        "surface-variant": "#e2e3df",
+                        "deep-forest": "#143A2B",
+                        "raised-surface": "#1E1C17",
+                        "status-approved": "#2F7D5B",
+                        "tertiary-fixed": "#ffdad8",
+                        "parchment": "#F0E9DB",
+                        "muted-sand": "#A79C8A",
+                        "on-error": "#ffffff",
+                        "inverse-primary": "#a1d1b8",
+                        "background": "#f9faf6",
+                        "primary-container": "#1c4a37",
+                        "on-secondary-container": "#75240a",
+                        "status-pending": "#B7791F",
+                        "on-primary": "#ffffff",
+                        "temple-gold-bright": "#D9B65E",
+                        "surface": "#f9faf6",
+                        "pure-surface": "#FFFFFF",
+                        "char-green": "#14130F",
+                        "on-tertiary-fixed-variant": "#693939",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed": "#3b0a00",
+                        "warm-linen": "#F3ECE0",
+                        "on-primary-fixed-variant": "#214f3c",
+                        "outline-variant": "#c0c9c2",
+                        "error": "#ba1a1a",
+                        "inverse-on-surface": "#f0f1ee"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "4rem",
+                        "gutter-desktop": "2rem",
+                        "margin-mobile": "1.5rem",
+                        "gutter-mobile": "1rem",
+                        "container-max": "1320px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Plus Jakarta Sans", "sans-serif"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans", "sans-serif"],
+                        "headline-lg": ["Plus Jakarta Sans", "sans-serif"],
+                        "headline-md": ["Plus Jakarta Sans", "sans-serif"],
+                        "body-md": ["Plus Jakarta Sans", "sans-serif"],
+                        "numeric-data": ["JetBrains Mono", "monospace"],
+                        "label-eyebrow": ["Plus Jakarta Sans", "sans-serif"],
+                        "display-hero": ["Plus Jakarta Sans", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .pin-transition {
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.3s ease;
+        }
+        .segmented-control-active {
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .stagger-reveal > * {
+            opacity: 0;
+            transform: translateY(10px);
+            animation: reveal 0.5s ease forwards;
+        }
+        @keyframes reveal {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Map Styling Overlays */
+        .map-overlay {
+            background-color: #FAF6EF; /* Canvas Ivory */
+        }
+        .map-water {
+            background-color: #E2E3DF; /* Surface Variant / Muted Water */
+        }
+        .map-greenery {
+            background-color: #F3F4F0; /* Surface Container Low / Soft Green Parks */
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-canvas-ivory font-body-md text-on-background min-h-screen overflow-hidden">
+<!-- Top AppBar (From Shared Components) -->
+<header class="fixed top-0 w-full bg-canvas-ivory z-50 border-b border-warm-hairline">
+<div class="flex justify-between items-center h-16 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="flex items-center gap-4">
+<button class="p-2 transition-transform active:scale-95 duration-200">
+<span class="material-symbols-outlined text-primary">menu</span>
+</button>
+<h1 class="font-headline-md text-headline-md tracking-widest text-primary">CEYLON DIRECTORY</h1>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 transition-transform active:scale-95 duration-200">
+<span class="material-symbols-outlined text-primary">light_mode</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Navigation Drawer Overlay (Hidden by Default) -->
+<div class="fixed inset-0 z-[60] bg-black/20 backdrop-blur-sm hidden" id="nav-drawer" onclick="toggleDrawer()">
+<div class="h-full w-80 bg-parchment p-6 flex flex-col shadow-2xl transition-transform -translate-x-full" id="drawer-content" onclick="event.stopPropagation()">
+<div class="flex justify-between items-center mb-10">
+<h2 class="font-headline-lg text-headline-lg text-primary">CURATED CEYLON</h2>
+<button onclick="toggleDrawer()"><span class="material-symbols-outlined">close</span></button>
+</div>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-4 p-4 bg-primary-container text-on-primary-container rounded-lg font-body-lg text-body-lg" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">explore</span>
+<span>Browse</span>
+</a>
+<a class="flex items-center gap-4 p-4 text-muted-bark hover:bg-warm-linen rounded-lg transition-colors font-body-lg text-body-lg" href="#">
+<span class="material-symbols-outlined">category</span>
+<span>Categories</span>
+</a>
+<a class="flex items-center gap-4 p-4 text-muted-bark hover:bg-warm-linen rounded-lg transition-colors font-body-lg text-body-lg" href="#">
+<span class="material-symbols-outlined">map</span>
+<span>Map</span>
+</a>
+<a class="flex items-center gap-4 p-4 text-muted-bark hover:bg-warm-linen rounded-lg transition-colors font-body-lg text-body-lg" href="#">
+<span class="material-symbols-outlined">info</span>
+<span>About</span>
+</a>
+<a class="flex items-center gap-4 p-4 text-muted-bark hover:bg-warm-linen rounded-lg transition-colors font-body-lg text-body-lg" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-4 p-4 text-muted-bark hover:bg-warm-linen rounded-lg transition-colors font-body-lg text-body-lg" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Management</span>
+</a>
+</nav>
+</div>
+</div>
+<!-- Main Content Area -->
+<main class="pt-16 h-screen flex flex-col relative">
+<!-- Slim Filter Bar & Segmented Toggle -->
+<div class="bg-canvas-ivory z-40 px-4 py-3 flex flex-col gap-3">
+<div class="flex items-center justify-between gap-4">
+<!-- Segmented Control -->
+<div class="flex bg-warm-linen p-1 rounded-full w-full max-w-[200px]">
+<button class="flex-1 py-1 text-center rounded-full text-label-eyebrow font-label-eyebrow transition-all duration-300 text-muted-bark" id="list-toggle" onclick="setView('list')">LIST</button>
+<button class="flex-1 py-1 text-center rounded-full text-label-eyebrow font-label-eyebrow transition-all duration-300 bg-pure-surface text-primary font-bold segmented-control-active" id="map-toggle" onclick="setView('map')">MAP</button>
+</div>
+<div class="flex gap-2">
+<button class="w-10 h-10 rounded-full border border-warm-hairline flex items-center justify-center bg-pure-surface text-primary">
+<span class="material-symbols-outlined text-[20px]">tune</span>
+</button>
+<button class="w-10 h-10 rounded-full border border-warm-hairline flex items-center justify-center bg-pure-surface text-primary">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</button>
+</div>
+</div>
+<!-- Scrollable Filter Pills -->
+<div class="flex gap-2 overflow-x-auto hide-scrollbar pb-1">
+<button class="px-4 py-1.5 rounded-full bg-secondary text-parchment text-label-eyebrow whitespace-nowrap">ALL DESTINATIONS</button>
+<button class="px-4 py-1.5 rounded-full border border-warm-hairline bg-pure-surface text-muted-bark text-label-eyebrow whitespace-nowrap">BOUTIQUE VILLAS</button>
+<button class="px-4 py-1.5 rounded-full border border-warm-hairline bg-pure-surface text-muted-bark text-label-eyebrow whitespace-nowrap">TEA ESTATES</button>
+<button class="px-4 py-1.5 rounded-full border border-warm-hairline bg-pure-surface text-muted-bark text-label-eyebrow whitespace-nowrap">COASTAL</button>
+<button class="px-4 py-1.5 rounded-full border border-warm-hairline bg-pure-surface text-muted-bark text-label-eyebrow whitespace-nowrap">HISTORIC</button>
+</div>
+</div>
+<!-- View Containers -->
+<div class="flex-1 relative overflow-hidden">
+<!-- Map View -->
+<div class="absolute inset-0 transition-opacity duration-500" id="map-view">
+<!-- Mock Map Canvas -->
+<div class="absolute inset-0 map-overlay overflow-hidden">
+<!-- Abstract Sri Lanka Shape (SVG Placeholder) -->
+<svg class="w-full h-full opacity-60" viewbox="0 0 400 600">
+<path d="M200 50C150 100 120 180 130 250C140 320 120 400 160 480C200 560 250 540 280 480C310 420 330 300 300 150C270 50 200 50 200 50Z" fill="#F3ECE0" stroke="#E6DCCB" stroke-width="2"></path>
+<circle cx="160" cy="280" fill="#F3F4F0" r="15"></circle> <!-- Mock Park Area -->
+<circle cx="240" cy="180" fill="#F3F4F0" r="25"></circle> <!-- Mock Park Area -->
+</svg>
+<!-- Interaction Pins -->
+<div class="absolute top-[35%] left-[45%] group cursor-pointer" onclick="showPreview('Kandy Tea Villa', 'Central Province', 'LKR 45,000', 'IMG_1')">
+<div class="pin-transition transform group-active:scale-90 flex flex-col items-center">
+<div class="bg-secondary text-parchment p-2 rounded-full shadow-lg relative after:content-[''] after:absolute after:top-full after:left-1/2 after:-translate-x-1/2 after:border-8 after:border-transparent after:border-t-secondary">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">hotel</span>
+</div>
+</div>
+</div>
+<div class="absolute top-[65%] left-[35%] group cursor-pointer" onclick="showPreview('Galle Fort House', 'Southern Coast', 'LKR 62,000', 'IMG_2')">
+<div class="pin-transition transform group-active:scale-90 flex flex-col items-center">
+<div class="bg-secondary text-parchment p-2 rounded-full shadow-lg relative after:content-[''] after:absolute after:top-full after:left-1/2 after:-translate-x-1/2 after:border-8 after:border-transparent after:border-t-secondary">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">restaurant</span>
+</div>
+</div>
+</div>
+<!-- Cluster Pin -->
+<div class="absolute top-[20%] left-[55%] flex items-center justify-center">
+<div class="w-10 h-10 bg-primary/10 border-2 border-primary rounded-full flex items-center justify-center animate-pulse">
+<span class="font-numeric-data text-primary text-sm font-bold">12</span>
+</div>
+</div>
+</div>
+<!-- Floating Map Controls -->
+<div class="absolute bottom-6 right-6 flex flex-col gap-3">
+<button class="w-12 h-12 bg-pure-surface rounded-full shadow-lg flex items-center justify-center text-primary active:scale-95 transition-transform">
+<span class="material-symbols-outlined">my_location</span>
+</button>
+<div class="flex flex-col bg-pure-surface rounded-2xl shadow-lg divide-y divide-warm-hairline">
+<button class="w-12 h-12 flex items-center justify-center text-primary active:scale-95 transition-transform"><span class="material-symbols-outlined">add</span></button>
+<button class="w-12 h-12 flex items-center justify-center text-primary active:scale-95 transition-transform"><span class="material-symbols-outlined">remove</span></button>
+</div>
+</div>
+<!-- Selected Pin Preview Card (Floating) -->
+<div class="absolute bottom-6 left-6 right-6 translate-y-[150%] transition-transform duration-500 ease-out z-50" id="preview-card">
+<div class="bg-pure-surface rounded-xl overflow-hidden shadow-2xl flex border border-warm-hairline">
+<div class="w-32 h-32 flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A luxury boutique villa in Sri Lanka with colonial architecture, whitewashed walls, and lush tropical foliage. Warm sunset lighting casts long, soft shadows over the terracotta roof tiles and stone pathways, embodying a high-end heritage aesthetic." id="prev-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcBgAZQq-xyQKf_V3FpH6MLQColEAIPFg3f1c9HrgAvetpjCgFBLHd-r0LCDDRoSc3OZYbvMEmb-MMBfkLXWP5xSvTafpf6JSFobH48TBLBUnMHw4nwSCNcvkQ7xYLzmwKa5mI-09hAIaqGeSxWJsBH0bY6tdLrE7O-iRBYO_XoGeu8mB9nJb0wzK44rab-RSP5d5cR4OMl7WErzKYqpB3kYjNy7kBnSTOlsKTmGqJMgPVMqJzclG7DLUX9pPIAeRj6bSKxokshnc"/>
+</div>
+<div class="p-4 flex flex-col justify-between flex-1">
+<div>
+<div class="flex justify-between items-start">
+<h3 class="font-headline-md text-primary leading-tight" id="prev-title">Galle Fort House</h3>
+<button class="text-muted-sand" onclick="hidePreview()"><span class="material-symbols-outlined">close</span></button>
+</div>
+<p class="text-label-eyebrow text-muted-bark mt-1" id="prev-loc">SOUTHERN COAST</p>
+</div>
+<div class="flex justify-between items-center mt-2">
+<span class="font-numeric-data text-terracotta-glow font-bold" id="prev-price">LKR 62,000</span>
+<button class="bg-primary text-parchment px-4 py-1.5 rounded-lg text-label-eyebrow font-bold transition-transform active:scale-95">VIEW</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- List View (Hidden by Default) -->
+<div class="absolute inset-0 bg-canvas-ivory overflow-y-auto hidden" id="list-view">
+<div class="p-4 flex flex-col gap-6 stagger-reveal">
+<!-- List Item 1 -->
+<div class="bg-pure-surface rounded-xl border border-warm-hairline overflow-hidden">
+<div class="h-48 w-full relative">
+<img class="w-full h-full object-cover" data-alt="An overhead shot of a historic tea estate in the Nuwara Eliya highlands of Sri Lanka. Rolling emerald green hills are dotted with tea pickers in vibrant sarees. The morning mist clings to the valleys, creating a serene, unhurried boutique-heritage mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFLG68oHuZagDHJVVxliS6SvkrbIYDh-AkhkbOltf5D2iT-bAVYdWtwpU67mTpOITJx3T4SfFIPePtTXx2ZevbV2p7ii0NRt1JLRlXVViQwoqru1m0i8Kw-swYuAs8ev4Zw8Yv8TaN2ypStPyUavSHU6ZK0WZf4Rpp52lJssDJOkbbsPAZLtFMdb3DVOyMwoykHXJUhXJWR2WwlBvjYaw5l0TzH2I_GNjcYbAfpIWkdceb0cqXDaeYpJVVFTS3BzItWCkpdx5M7r0"/>
+<span class="absolute top-4 right-4 bg-primary text-parchment px-3 py-1 rounded-full text-label-eyebrow">9.8 RATING</span>
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-md text-primary">Kandy Tea Villa</h3>
+<span class="material-symbols-outlined text-muted-sand">bookmark</span>
+</div>
+<p class="text-body-md text-muted-bark mt-1">Central Province • Tea Estate</p>
+<div class="mt-4 pt-4 border-t border-warm-hairline flex justify-between items-center">
+<span class="font-numeric-data text-terracotta-glow text-lg font-bold">LKR 45,000 <small class="text-muted-sand font-normal">/night</small></span>
+<button class="text-primary font-bold text-label-eyebrow flex items-center gap-1">EXPLORE <span class="material-symbols-outlined text-[18px]">arrow_forward</span></button>
+</div>
+</div>
+</div>
+<!-- List Item 2 -->
+<div class="bg-pure-surface rounded-xl border border-warm-hairline overflow-hidden">
+<div class="h-48 w-full relative">
+<img class="w-full h-full object-cover" data-alt="A minimalist coastal retreat with wide open arches facing the Indian Ocean at dusk. The architecture uses natural timber and polished concrete floors. Soft lanterns illuminate the space with a warm, golden glow against the deep blue twilight sky." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCb-vz0k6ZVcbyj-b_2jS7lGVkQ1y3ZXcL4HUYianBmGJak2yiJ9E-z5NHbZ4hNom0upAVuLT2_hMdblMsNM4uDms8cLCK520cV7-aFzObSh-GRfoKJb7bbM0i64j6Ophs3gvS0qBIP-wOSVqGmeaJo2Q05PSweyz9RvBDKMw1KEZIb6xuLBqU70tA7SYPF9ArlCoSvKUN9vxtDioIyYIYDGluJGM8GVoDotnZi54B2W9t6PP-J3EMp6gmAVyLbIUfaWSlfN8ZC5XM"/>
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-md text-primary">Ahangama Surf Club</h3>
+<span class="material-symbols-outlined text-muted-sand">bookmark</span>
+</div>
+<p class="text-body-md text-muted-bark mt-1">Southern Province • Coastal Luxe</p>
+<div class="mt-4 pt-4 border-t border-warm-hairline flex justify-between items-center">
+<span class="font-numeric-data text-terracotta-glow text-lg font-bold">LKR 38,000 <small class="text-muted-sand font-normal">/night</small></span>
+<button class="text-primary font-bold text-label-eyebrow flex items-center gap-1">EXPLORE <span class="material-symbols-outlined text-[18px]">arrow_forward</span></button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Navigation Bar (Shared Components) - Contextual FAB Suppression Applied -->
+<nav class="md:hidden fixed bottom-0 w-full bg-canvas-ivory border-t border-warm-hairline z-50">
+<div class="flex justify-around items-center h-16">
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">explore</span>
+<span class="text-[10px] font-bold">Browse</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-muted-bark">
+<span class="material-symbols-outlined">category</span>
+<span class="text-[10px]">Categories</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-muted-bark">
+<span class="material-symbols-outlined">map</span>
+<span class="text-[10px]">Map</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-muted-bark">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-[10px]">Dashboard</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-muted-bark">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px]">Settings</span>
+</button>
+</div>
+</nav>
+<script>
+        function setView(view) {
+            const listView = document.getElementById('list-view');
+            const mapView = document.getElementById('map-view');
+            const listToggle = document.getElementById('list-toggle');
+            const mapToggle = document.getElementById('map-toggle');
+
+            if (view === 'list') {
+                listView.classList.remove('hidden');
+                mapView.classList.add('opacity-0');
+                setTimeout(() => {
+                    mapView.classList.add('hidden');
+                }, 500);
+
+                listToggle.classList.add('bg-pure-surface', 'text-primary', 'font-bold', 'segmented-control-active');
+                listToggle.classList.remove('text-muted-bark');
+                mapToggle.classList.remove('bg-pure-surface', 'text-primary', 'font-bold', 'segmented-control-active');
+                mapToggle.classList.add('text-muted-bark');
+            } else {
+                mapView.classList.remove('hidden');
+                setTimeout(() => {
+                    mapView.classList.remove('opacity-0');
+                }, 10);
+                listView.classList.add('hidden');
+
+                mapToggle.classList.add('bg-pure-surface', 'text-primary', 'font-bold', 'segmented-control-active');
+                mapToggle.classList.remove('text-muted-bark');
+                listToggle.classList.remove('bg-pure-surface', 'text-primary', 'font-bold', 'segmented-control-active');
+                listToggle.classList.add('text-muted-bark');
+            }
+        }
+
+        function showPreview(title, loc, price, img) {
+            const card = document.getElementById('preview-card');
+            document.getElementById('prev-title').innerText = title;
+            document.getElementById('prev-loc').innerText = loc.toUpperCase();
+            document.getElementById('prev-price').innerText = price;
+            
+            card.style.transform = 'translateY(0)';
+        }
+
+        function hidePreview() {
+            const card = document.getElementById('preview-card');
+            card.style.transform = 'translateY(150%)';
+        }
+
+        function toggleDrawer() {
+            const drawer = document.getElementById('nav-drawer');
+            const content = document.getElementById('drawer-content');
+            if (drawer.classList.contains('hidden')) {
+                drawer.classList.remove('hidden');
+                setTimeout(() => {
+                    content.style.transform = 'translateX(0)';
+                }, 10);
+            } else {
+                content.style.transform = 'translateX(-100%)';
+                setTimeout(() => {
+                    drawer.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        // Global micro-interaction for pins
+        document.addEventListener('mousedown', (e) => {
+            if (!e.target.closest('#preview-card') && !e.target.closest('.group')) {
+                hidePreview();
+            }
+        });
+    </script>
+</body></html>

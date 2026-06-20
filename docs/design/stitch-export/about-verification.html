@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>About | CEYLON DIRECTORY</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Satoshi font fallback (using Jakarta for weight/style as per config) -->
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .staggered-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: reveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        @keyframes reveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .reveal-delay-1 { animation-delay: 0.1s; }
+        .reveal-delay-2 { animation-delay: 0.2s; }
+        .reveal-delay-3 { animation-delay: 0.3s; }
+    </style>
+<!-- Tailwind Config Verbatim -->
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary": "#491f1f",
+                      "temple-gold": "#C19A4B",
+                      "on-primary-container": "#89b9a0",
+                      "on-surface-variant": "#414944",
+                      "warm-hairline-dark": "#39342B",
+                      "surface-container-low": "#f3f4f0",
+                      "on-background": "#1a1c1a",
+                      "secondary-fixed-dim": "#ffb5a0",
+                      "tertiary-fixed-dim": "#f9b5b4",
+                      "muted-bark": "#6E6456",
+                      "surface-container-lowest": "#ffffff",
+                      "on-tertiary-fixed": "#350f10",
+                      "on-secondary-fixed-variant": "#7f2b11",
+                      "jade-green": "#5FA882",
+                      "tertiary-container": "#633434",
+                      "outline": "#717973",
+                      "on-surface": "#1a1c1a",
+                      "status-rejected": "#9C4A3C",
+                      "surface-tint": "#3a6752",
+                      "inverse-surface": "#2e312f",
+                      "surface-bright": "#f9faf6",
+                      "surface-dim": "#d9dad7",
+                      "on-secondary": "#ffffff",
+                      "on-error-container": "#93000a",
+                      "canvas-ivory": "#FAF6EF",
+                      "terracotta-glow": "#D98463",
+                      "primary": "#003322",
+                      "surface-container-highest": "#e2e3df",
+                      "on-tertiary": "#ffffff",
+                      "warm-hairline": "#E6DCCB",
+                      "surface-container": "#edeeeb",
+                      "secondary": "#9e4126",
+                      "on-primary-fixed": "#002114",
+                      "elevated-surface": "#26231C",
+                      "on-tertiary-container": "#de9d9c",
+                      "secondary-container": "#ff8b69",
+                      "primary-fixed-dim": "#a1d1b8",
+                      "primary-fixed": "#bceed3",
+                      "warm-ink": "#241F1A",
+                      "secondary-fixed": "#ffdbd1",
+                      "surface-container-high": "#e7e8e5",
+                      "surface-variant": "#e2e3df",
+                      "deep-forest": "#143A2B",
+                      "raised-surface": "#1E1C17",
+                      "status-approved": "#2F7D5B",
+                      "tertiary-fixed": "#ffdad8",
+                      "parchment": "#F0E9DB",
+                      "muted-sand": "#A79C8A",
+                      "on-error": "#ffffff",
+                      "inverse-primary": "#a1d1b8",
+                      "background": "#f9faf6",
+                      "primary-container": "#1c4a37",
+                      "on-secondary-container": "#75240a",
+                      "status-pending": "#B7791F",
+                      "on-primary": "#ffffff",
+                      "temple-gold-bright": "#D9B65E",
+                      "surface": "#f9faf6",
+                      "pure-surface": "#FFFFFF",
+                      "char-green": "#14130F",
+                      "on-tertiary-fixed-variant": "#693939",
+                      "error-container": "#ffdad6",
+                      "on-secondary-fixed": "#3b0a00",
+                      "warm-linen": "#F3ECE0",
+                      "on-primary-fixed-variant": "#214f3c",
+                      "outline-variant": "#c0c9c2",
+                      "error": "#ba1a1a",
+                      "inverse-on-surface": "#f0f1ee"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-desktop": "4rem",
+                      "gutter-desktop": "2rem",
+                      "margin-mobile": "1.5rem",
+                      "gutter-mobile": "1rem",
+                      "container-max": "1320px"
+              },
+              "fontFamily": {
+                      "body-lg": ["Plus Jakarta Sans"],
+                      "headline-lg-mobile": ["Plus Jakarta Sans"],
+                      "headline-lg": ["Plus Jakarta Sans"],
+                      "headline-md": ["Plus Jakarta Sans"],
+                      "body-md": ["Plus Jakarta Sans"],
+                      "numeric-data": ["JetBrains Mono"],
+                      "label-eyebrow": ["Plus Jakarta Sans"],
+                      "display-hero": ["Plus Jakarta Sans"]
+              },
+              "fontSize": {
+                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "headline-lg-mobile": ["28px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                      "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                      "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "500"}],
+                      "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "numeric-data": ["14px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                      "label-eyebrow": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.12em", "fontWeight": "500"}],
+                      "display-hero": ["clamp(40px, 5vw, 64px)", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+      </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-canvas-ivory text-on-background font-body-md overflow-x-hidden">
+<!-- TopAppBar Shared Component -->
+<header class="fixed top-0 w-full bg-canvas-ivory border-b border-warm-hairline z-50">
+<nav class="flex justify-between items-center h-16 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary cursor-pointer" data-icon="menu">menu</span>
+<span class="font-headline-md text-headline-md tracking-widest text-primary">CEYLON DIRECTORY</span>
+</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="font-body-md text-muted-bark hover:text-terracotta-glow transition-colors duration-300" href="#">Browse</a>
+<a class="font-body-md text-primary font-bold border-b-2 border-primary" href="#">About</a>
+<a class="font-body-md text-muted-bark hover:text-terracotta-glow transition-colors duration-300" href="#">Management</a>
+<span class="material-symbols-outlined text-primary cursor-pointer" data-icon="light_mode">light_mode</span>
+</div>
+<div class="md:hidden">
+<span class="material-symbols-outlined text-primary" data-icon="light_mode">light_mode</span>
+</div>
+</nav>
+</header>
+<main class="pt-24 pb-20">
+<!-- Hero Section: Left-aligned Asymmetric -->
+<section class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto py-16 md:py-32">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter-desktop">
+<div class="md:col-span-8 staggered-reveal">
+<span class="font-label-eyebrow text-label-eyebrow text-temple-gold uppercase mb-4 block">Our Commitment</span>
+<h1 class="font-display-hero text-display-hero text-primary mb-8 max-w-3xl">
+                        A hand-checked directory for the discerning traveler.
+                    </h1>
+<p class="font-body-lg text-body-lg text-muted-bark max-w-2xl">
+                        In an era of automated scrapers and unverified listings, we return to the artisanal approach. Every boutique hotel, heritage villa, and curated experience in Ceylon Directory has been personally visited and verified by our team of curators.
+                    </p>
+</div>
+</div>
+</section>
+<!-- 3-Step Verification Section -->
+<section class="bg-white py-20 border-y border-warm-hairline">
+<div class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="mb-16">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-4">The Verification Standard</h2>
+<div class="h-1 w-20 bg-terracotta-glow"></div>
+</div>
+<div class="flex flex-col gap-24">
+<!-- Step 1 -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center staggered-reveal">
+<div class="order-2 md:order-1">
+<span class="font-numeric-data text-numeric-data text-temple-gold bg-canvas-ivory px-3 py-1 rounded mb-4 inline-block">STEP 01</span>
+<h3 class="font-headline-md text-headline-md text-primary mb-4">Submit</h3>
+<p class="font-body-md text-body-md text-muted-bark">
+                                Partners submit their service details through our rigorous application portal. We require full transparency regarding heritage status, environmental impact, and community engagement.
+                            </p>
+</div>
+<div class="order-1 md:order-2">
+<div class="aspect-video w-full rounded-xl overflow-hidden shadow-soft">
+<img class="w-full h-full object-cover" data-alt="A top-down workspace shot of a handcrafted leather-bound notebook and a fountain pen on a warm oak desk. The lighting is soft and natural, coming from a side window, highlighting the textures of the paper and wood. This aesthetic represents a meticulous submission process in a boutique-heritage style with warm ivory and earth tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDi-yBRCGZu7W0uv7QQoh5c1w51MJ6MCJENdLvu2RiNS_8eY_DeQh26qMr36H29G9OfhRPiamDxAt4IV5ne9QfS2ehZAE_Jg2fYEzu0muikQcNs-n6R8Mm4kpQcUBQpZJdqUy53VtW4w0bBSXQfuHZcNsgPosphCJRCRqMCW4og2hkYHqSu6jh_ln382lpsPlFB6KSsgHrciq4Zd_tXEASYl-HXl7LxMWOotCq-B4lIX5w7rvub_Ok9NMW4XZ3Xy6KGNB4UkY4egX0"/>
+</div>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center staggered-reveal reveal-delay-1">
+<div class="aspect-video w-full rounded-xl overflow-hidden shadow-soft">
+<img class="w-full h-full object-cover" data-alt="A detailed close-up of a curator inspecting architectural details of a colonial-style villa in Sri Lanka. The sun casts long, warm shadows across the white-washed walls and intricate wood carvings. The atmosphere is quiet and focused, reflecting a manual review process that values craftsmanship and history. The color palette is dominated by Kandyan greens and warm neutrals." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbEh9jnX9cSZb9xAUmY4z3X3dU3pb46Ji_9DAylkjDUmY0jQxqVgtun0e91ricERKDElNWtV_WDqEsk7Ee9woOkYr73YAK-rSldX1-6gyarD3r7hvIvl3WVqAC7SLu_b_ndPiQySK2BkuAT4DLSs8xGx3bZoBWRusNeNR60yCmw-j5kqXkMeJP96Nv751MqbYJLSyd_yOj64fHWmRcqNk9mevzX_gH8DXSKPQvqu6oo1RynFYfTyYk9dY7faZWVjV3NuNXNPbbwXo"/>
+</div>
+<div>
+<span class="font-numeric-data text-numeric-data text-temple-gold bg-canvas-ivory px-3 py-1 rounded mb-4 inline-block">STEP 02</span>
+<h3 class="font-headline-md text-headline-md text-primary mb-4">Manual Review</h3>
+<p class="font-body-md text-body-md text-muted-bark">
+                                Our curators conduct an unannounced site visit. We don't just look at the amenities; we measure the soul of the experience—from the quality of the linen to the authenticity of the local interaction.
+                            </p>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center staggered-reveal reveal-delay-2">
+<div class="order-2 md:order-1">
+<span class="font-numeric-data text-numeric-data text-temple-gold bg-canvas-ivory px-3 py-1 rounded mb-4 inline-block">STEP 03</span>
+<h3 class="font-headline-md text-headline-md text-primary mb-4">Live</h3>
+<p class="font-body-md text-body-md text-muted-bark">
+                                Only 15% of applicants make it to the final directory. Once live, the listing becomes a part of our heritage ecosystem, promoted to a global audience that values quality over quantity.
+                            </p>
+</div>
+<div class="order-1 md:order-2">
+<div class="aspect-video w-full rounded-xl overflow-hidden shadow-soft">
+<img class="w-full h-full object-cover" data-alt="A high-end digital interface displayed on a sleek tablet resting on a marble tabletop. The screen shows a beautiful, minimalist listing of a tropical retreat with high-quality photography and elegant typography. The surrounding environment includes a small ceramic cup of Ceylon tea and a sprig of jasmine, creating a mood of unhurried luxury and curated success." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcrqwL0cJQVNTw-Fq-ON-5nS3dbqz-bK1kVH57B0dTjU0PaDcJWN3XFkti78uKX7Msu0xiTJWgcFgmw9YUQBRPngw_ytZQlubKlfUtzjZbbpUPsM4h9IeDugNh94XCDGJc6wIO45hVEx6NasVef4aUjMwHFwsJXl3SBCuFUfNEt_ZOZkWdZuKMsXIVpXqHjUyyXxjiRN0xLQc7vBd2jms9peiywkLy_3NT6WrOcownz2tWFz93CNlKzhMOBy_iVLHsm0ievEp14b4"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Who it's for -->
+<section class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto py-24">
+<div class="text-center mb-16">
+<h2 class="font-headline-lg text-headline-lg text-primary">Who it's for</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter-desktop">
+<div class="p-8 bg-pure-surface border border-warm-hairline rounded-xl hover:shadow-lg transition-shadow duration-300">
+<span class="material-symbols-outlined text-terracotta-glow text-4xl mb-4" data-icon="travel_explore">travel_explore</span>
+<h4 class="font-headline-md text-headline-md text-primary mb-3">The Explorer</h4>
+<p class="font-body-md text-body-md text-muted-bark">For those who seek the authentic heartbeat of Sri Lanka, beyond the tourist traps and generic chains.</p>
+</div>
+<div class="p-8 bg-pure-surface border border-warm-hairline rounded-xl hover:shadow-lg transition-shadow duration-300">
+<span class="material-symbols-outlined text-terracotta-glow text-4xl mb-4" data-icon="architecture">architecture</span>
+<h4 class="font-headline-md text-headline-md text-primary mb-3">The Proprietor</h4>
+<p class="font-body-md text-body-md text-muted-bark">For owners of heritage properties who have invested in soul and substance, and want to reach a like-minded guest.</p>
+</div>
+<div class="p-8 bg-pure-surface border border-warm-hairline rounded-xl hover:shadow-lg transition-shadow duration-300">
+<span class="material-symbols-outlined text-terracotta-glow text-4xl mb-4" data-icon="verified">verified</span>
+<h4 class="font-headline-md text-headline-md text-primary mb-3">The Curator</h4>
+<p class="font-body-md text-body-md text-muted-bark">For the agencies and planners who need a reliable, pre-vetted database of high-standard Sri Lankan services.</p>
+</div>
+</div>
+</section>
+<!-- Closing CTA Band -->
+<section class="bg-warm-linen py-20 border-t border-warm-hairline overflow-hidden relative">
+<div class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto relative z-10">
+<div class="flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="max-w-xl text-center md:text-left">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-4">Do you represent a legacy?</h2>
+<p class="font-body-md text-body-md text-muted-bark">Join our curated network of premium Sri Lankan experiences and properties.</p>
+</div>
+<button class="bg-primary text-parchment px-10 py-4 rounded-lg font-body-md font-bold transition-all hover:opacity-90 active:scale-95 duration-200">
+                        List your service
+                    </button>
+</div>
+</div>
+<!-- Subtle decoration -->
+<div class="absolute -right-20 -bottom-20 opacity-10">
+<span class="material-symbols-outlined text-[300px] text-primary" data-icon="spa">spa</span>
+</div>
+</section>
+</main>
+<!-- Footer Shared Component -->
+<footer class="bg-deep-forest py-12">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="flex flex-col gap-4">
+<span class="font-headline-md text-headline-md text-temple-gold">CEYLON DIRECTORY</span>
+<p class="font-body-md text-parchment opacity-80 max-w-sm">The definitive guide to premium Sri Lankan hospitality and craft.</p>
+</div>
+<div class="flex flex-col md:items-end gap-6">
+<div class="flex flex-wrap gap-6 md:justify-end">
+<a class="font-body-md text-parchment opacity-80 hover:text-temple-gold transition-opacity" href="#">Privacy Policy</a>
+<a class="font-body-md text-parchment opacity-80 hover:text-temple-gold transition-opacity" href="#">Terms of Service</a>
+<a class="font-body-md text-parchment opacity-80 hover:text-temple-gold transition-opacity" href="#">Partner Support</a>
+<a class="font-body-md text-parchment opacity-80 hover:text-temple-gold transition-opacity" href="#">Contact Us</a>
+</div>
+<p class="font-body-md text-parchment opacity-60 text-sm mt-4">© 2024 CEYLON DIRECTORY. ALL RIGHTS RESERVED.</p>
+</div>
+</div>
+</footer>
+<script>
+        // Simple Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal-active');
+                    // We don't use reveal-active in CSS yet, but let's just trigger the default reveal
+                    entry.target.style.opacity = "1";
+                    entry.target.style.transform = "translateY(0)";
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.staggered-reveal').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body></html>

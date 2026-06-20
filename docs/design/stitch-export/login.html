@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Login | Ceylon Directory</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#491f1f",
+                        "temple-gold": "#C19A4B",
+                        "on-primary-container": "#89b9a0",
+                        "on-surface-variant": "#414944",
+                        "warm-hairline-dark": "#39342B",
+                        "surface-container-low": "#f3f4f0",
+                        "on-background": "#1a1c1a",
+                        "secondary-fixed-dim": "#ffb5a0",
+                        "tertiary-fixed-dim": "#f9b5b4",
+                        "muted-bark": "#6E6456",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed": "#350f10",
+                        "on-secondary-fixed-variant": "#7f2b11",
+                        "jade-green": "#5FA882",
+                        "tertiary-container": "#633434",
+                        "outline": "#717973",
+                        "on-surface": "#1a1c1a",
+                        "status-rejected": "#9C4A3C",
+                        "surface-tint": "#3a6752",
+                        "inverse-surface": "#2e312f",
+                        "surface-bright": "#f9faf6",
+                        "surface-dim": "#d9dad7",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "canvas-ivory": "#FAF6EF",
+                        "terracotta-glow": "#D98463",
+                        "primary": "#003322",
+                        "surface-container-highest": "#e2e3df",
+                        "on-tertiary": "#ffffff",
+                        "warm-hairline": "#E6DCCB",
+                        "surface-container": "#edeeeb",
+                        "secondary": "#9e4126",
+                        "on-primary-fixed": "#002114",
+                        "elevated-surface": "#26231C",
+                        "on-tertiary-container": "#de9d9c",
+                        "secondary-container": "#ff8b69",
+                        "primary-fixed-dim": "#a1d1b8",
+                        "primary-fixed": "#bceed3",
+                        "warm-ink": "#241F1A",
+                        "secondary-fixed": "#ffdbd1",
+                        "surface-container-high": "#e7e8e5",
+                        "surface-variant": "#e2e3df",
+                        "deep-forest": "#143A2B",
+                        "raised-surface": "#1E1C17",
+                        "status-approved": "#2F7D5B",
+                        "tertiary-fixed": "#ffdad8",
+                        "parchment": "#F0E9DB",
+                        "muted-sand": "#A79C8A",
+                        "on-error": "#ffffff",
+                        "inverse-primary": "#a1d1b8",
+                        "background": "#f9faf6",
+                        "primary-container": "#1c4a37",
+                        "on-secondary-container": "#75240a",
+                        "status-pending": "#B7791F",
+                        "on-primary": "#ffffff",
+                        "temple-gold-bright": "#D9B65E",
+                        "surface": "#f9faf6",
+                        "pure-surface": "#FFFFFF",
+                        "char-green": "#14130F",
+                        "on-tertiary-fixed-variant": "#693939",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed": "#3b0a00",
+                        "warm-linen": "#F3ECE0",
+                        "on-primary-fixed-variant": "#214f3c",
+                        "outline-variant": "#c0c9c2",
+                        "error": "#ba1a1a",
+                        "inverse-on-surface": "#f0f1ee"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "4rem",
+                        "gutter-desktop": "2rem",
+                        "margin-mobile": "1.5rem",
+                        "gutter-mobile": "1rem",
+                        "container-max": "1320px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Plus Jakarta Sans", "sans-serif"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans", "sans-serif"],
+                        "headline-lg": ["Plus Jakarta Sans", "sans-serif"],
+                        "headline-md": ["Plus Jakarta Sans", "sans-serif"],
+                        "body-md": ["Plus Jakarta Sans", "sans-serif"],
+                        "numeric-data": ["JetBrains Mono", "monospace"],
+                        "label-eyebrow": ["Plus Jakarta Sans", "sans-serif"],
+                        "display-hero": ["Plus Jakarta Sans", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        @keyframes subtle-reveal {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .stagger-1 { animation: subtle-reveal 0.6s ease-out forwards; }
+        .stagger-2 { animation: subtle-reveal 0.6s ease-out 0.1s forwards; opacity: 0; }
+        .stagger-3 { animation: subtle-reveal 0.6s ease-out 0.2s forwards; opacity: 0; }
+
+        .form-focus-ring:focus {
+            outline: none;
+            border-color: #D98463; /* terracotta-glow */
+            box-shadow: 0 0 0 2px rgba(217, 132, 99, 0.2);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-canvas-ivory min-h-screen flex flex-col font-body-md text-on-surface overflow-hidden">
+<!-- Main Asymmetric Container -->
+<main class="flex-1 flex flex-col md:flex-row h-screen">
+<!-- Left Panel: Branding & Identity (The High-End Anchor) -->
+<!-- Fixed layout on mobile, split-screen on desktop -->
+<section class="w-full md:w-5/12 bg-primary relative overflow-hidden flex flex-col p-margin-mobile md:p-margin-desktop justify-between">
+<!-- Background Texture / Atmospheric Element -->
+<div class="absolute inset-0 opacity-20 pointer-events-none">
+<div class="absolute top-[-10%] right-[-10%] w-[80%] h-[80%] rounded-full bg-temple-gold blur-[120px]"></div>
+<div class="absolute bottom-[-5%] left-[-10%] w-[60%] h-[60%] rounded-full bg-jade-green blur-[100px]"></div>
+</div>
+<!-- Header Identity (Mirroring TopAppBar) -->
+<div class="relative z-10">
+<h1 class="font-headline-md text-headline-md tracking-widest text-parchment flex items-center gap-3">
+<span class="material-symbols-outlined text-temple-gold" style="font-variation-settings: 'FILL' 1;">temple_buddhist</span>
+                    CEYLON DIRECTORY
+                </h1>
+</div>
+<!-- Content Anchor -->
+<div class="relative z-10 mt-auto md:mb-12 stagger-1">
+<p class="font-label-eyebrow text-temple-gold uppercase mb-4">Heritage &amp; Hospitality</p>
+<h2 class="font-display-hero text-display-hero text-parchment leading-tight mb-6">
+                    Rediscover the <br/>Spirit of the Island.
+                </h2>
+<p class="font-body-lg text-body-lg text-parchment opacity-70 max-w-md">
+                    Access your curated collection of colonial villas, artisanal markets, and hidden gems across Sri Lanka.
+                </p>
+</div>
+<!-- Subtle Decorative Image Overlay -->
+<div class="absolute bottom-0 right-0 w-3/4 h-1/2 md:h-2/3 opacity-30 mask-image-gradient pointer-events-none">
+<div class="w-full h-full bg-cover bg-bottom bg-no-repeat grayscale-[0.2]" data-alt="A close-up, high-fashion architectural photograph of a traditional Sri Lankan clay tile roof against a deep emerald green jungle canopy. The lighting is soft morning gold, casting long shadows. The style is minimalist and boutique, emphasizing the texture of the warm terracotta and the rich, lush greens of the tropical environment." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAdoN6bCjRRdsnl5ORrOcJ1ELael3iC74MARKdJmDHnOgg_flFLdMrw4tJkl5bMS44AiwRmIMJEUZSUGcSjN79370AcfCm4O68sS-YGqS4RlKGsK8L1HqlntaID4RaMpfsE211-Rk-a3_RYB6lm_VVLJnwb1puUeRAMqFMriSTqNBUZCFvmP8fiYHlnJIhm08AHfNcUQZFtWvBLv7MXvHe75gKKJAMLY0lzK6Wot2KGL3GIeasaGHsBOPv3E8FA6JuKUPAAj76k8bs')"></div>
+</div>
+</section>
+<!-- Right Panel: The Transactional Form -->
+<section class="flex-1 bg-canvas-ivory flex items-center justify-center p-margin-mobile md:p-margin-desktop relative">
+<div class="w-full max-w-md space-y-12 stagger-2">
+<!-- Form Header -->
+<div class="space-y-2">
+<h3 class="font-headline-lg text-headline-lg text-primary">Welcome back</h3>
+<p class="text-muted-bark">Enter your credentials to continue your journey.</p>
+</div>
+<!-- Actual Form -->
+<form action="#" class="space-y-6">
+<!-- Email Input -->
+<div class="space-y-2">
+<label class="block font-body-md font-bold text-primary" for="email">Email Address</label>
+<input class="w-full px-4 py-3 bg-pure-surface border border-warm-hairline rounded-lg font-body-md text-on-surface placeholder:text-muted-sand form-focus-ring transition-all duration-300" id="email" name="email" placeholder="alexander@heritage.lk" type="email"/>
+</div>
+<!-- Password Input -->
+<div class="space-y-2">
+<div class="flex justify-between items-center">
+<label class="block font-body-md font-bold text-primary" for="password">Password</label>
+<a class="font-label-eyebrow text-terracotta-glow hover:underline" href="#">Forgot?</a>
+</div>
+<div class="relative">
+<input class="w-full px-4 py-3 bg-pure-surface border border-warm-hairline rounded-lg font-body-md text-on-surface placeholder:text-muted-sand form-focus-ring transition-all duration-300" id="password" name="password" placeholder="••••••••" type="password"/>
+<button class="absolute right-4 top-1/2 -translate-y-1/2 text-muted-sand hover:text-primary" type="button">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</div>
+</div>
+<!-- Remember Me -->
+<div class="flex items-center space-x-3">
+<input class="w-5 h-5 rounded border-warm-hairline text-primary focus:ring-terracotta-glow focus:ring-offset-canvas-ivory" id="remember" type="checkbox"/>
+<label class="font-body-md text-muted-bark cursor-pointer" for="remember">Keep me signed in</label>
+</div>
+<!-- Primary Action -->
+<button class="w-full py-4 bg-primary text-parchment font-bold rounded-lg hover:bg-deep-forest active:scale-[0.98] transition-all duration-200 shadow-lg shadow-primary/10" type="submit">
+                        Log in
+                    </button>
+</form>
+<!-- Footer Link -->
+<div class="pt-8 border-t border-warm-hairline flex flex-col sm:flex-row items-center justify-between gap-4">
+<span class="text-muted-bark">New to the directory?</span>
+<a class="flex items-center gap-2 font-bold text-secondary hover:text-terracotta-glow transition-colors" href="#">
+                        Create an account
+                        <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Background Decorative Symbol (Ghosted) -->
+<div class="absolute bottom-12 right-12 opacity-[0.03] select-none pointer-events-none">
+<span class="material-symbols-outlined text-[120px]">potted_plant</span>
+</div>
+</section>
+</main>
+<!-- Success Modal Hidden by Default (Micro-interaction demonstration) -->
+<div class="fixed inset-0 z-[100] flex items-center justify-center bg-primary/20 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-500" id="success-feedback">
+<div class="bg-pure-surface p-12 rounded-xl border border-warm-hairline shadow-2xl text-center max-w-sm transform scale-90 transition-transform duration-500">
+<span class="material-symbols-outlined text-status-approved text-[64px] mb-4" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<h4 class="font-headline-md text-primary mb-2">Authenticated</h4>
+<p class="text-muted-bark mb-6">Welcome back to the Ceylon Directory ecosystem.</p>
+<div class="w-full h-1 bg-warm-linen rounded-full overflow-hidden">
+<div class="h-full bg-primary w-0 animate-[progress_2s_ease-in-out_forwards]"></div>
+</div>
+</div>
+</div>
+<style>
+        @keyframes progress {
+            from { width: 0%; }
+            to { width: 100%; }
+        }
+    </style>
+<script>
+        // Micro-interaction for the login button
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            const feedback = document.getElementById('success-feedback');
+            
+            btn.disabled = true;
+            btn.innerHTML = '<span class="material-symbols-outlined animate-spin">progress_activity</span>';
+            
+            setTimeout(() => {
+                feedback.classList.remove('opacity-0', 'pointer-events-none');
+                feedback.querySelector('div').classList.remove('scale-90');
+                
+                setTimeout(() => {
+                    // Simulation logic: Redirect
+                    console.log('Redirecting to dashboard...');
+                }, 2200);
+            }, 800);
+        });
+    </script>
+</body></html>

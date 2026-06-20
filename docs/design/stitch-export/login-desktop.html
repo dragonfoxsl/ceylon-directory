@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Log In | Ceylon Directory</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+        
+        /* Mapping Satoshi to Plus Jakarta Sans for the boutique feel */
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #FAF6EF;
+            color: #1a1c1a;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+
+        .input-focus-ring:focus {
+            outline: none;
+            border-color: #D98463;
+            box-shadow: 0 0 0 2px rgba(217, 132, 99, 0.2);
+        }
+
+        .stagger-in {
+            animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed-variant": "#7f2b11",
+                        "surface-container-highest": "#e2e3df",
+                        "error": "#ba1a1a",
+                        "surface-container-high": "#e7e8e5",
+                        "tertiary": "#491f1f",
+                        "on-tertiary-container": "#de9d9c",
+                        "on-secondary-container": "#75240a",
+                        "error-container": "#ffdad6",
+                        "status-rejected": "#9C4A3C",
+                        "status-pending": "#B7791F",
+                        "raised-surface": "#1E1C17",
+                        "on-primary-fixed": "#002114",
+                        "outline-variant": "#c0c9c2",
+                        "on-error-container": "#93000a",
+                        "surface-tint": "#3a6752",
+                        "pure-surface": "#FFFFFF",
+                        "surface-variant": "#e2e3df",
+                        "on-primary-container": "#89b9a0",
+                        "on-error": "#ffffff",
+                        "jade-green": "#5FA882",
+                        "surface": "#f9faf6",
+                        "parchment": "#F0E9DB",
+                        "warm-hairline": "#E6DCCB",
+                        "muted-sand": "#A79C8A",
+                        "outline": "#717973",
+                        "on-secondary-fixed": "#3b0a00",
+                        "on-tertiary": "#ffffff",
+                        "primary-container": "#1c4a37",
+                        "primary": "#003322",
+                        "tertiary-fixed": "#ffdad8",
+                        "secondary-container": "#ff8b69",
+                        "inverse-surface": "#2e312f",
+                        "on-surface": "#1a1c1a",
+                        "on-surface-variant": "#414944",
+                        "on-secondary": "#ffffff",
+                        "warm-ink": "#241F1A",
+                        "terracotta-glow": "#D98463",
+                        "inverse-primary": "#a1d1b8",
+                        "on-primary-fixed-variant": "#214f3c",
+                        "muted-bark": "#6E6456",
+                        "secondary-fixed": "#ffdbd1",
+                        "elevated-surface": "#26231C",
+                        "on-tertiary-fixed": "#350f10",
+                        "on-background": "#1a1c1a",
+                        "deep-forest": "#143A2B",
+                        "temple-gold": "#C19A4B",
+                        "surface-container": "#edeeeb",
+                        "surface-bright": "#f9faf6",
+                        "canvas-ivory": "#FAF6EF",
+                        "temple-gold-bright": "#D9B65E",
+                        "tertiary-container": "#633434",
+                        "inverse-on-surface": "#f0f1ee",
+                        "status-approved": "#2F7D5B",
+                        "warm-hairline-dark": "#39342B",
+                        "tertiary-fixed-dim": "#f9b5b4",
+                        "secondary": "#9e4126",
+                        "warm-linen": "#F3ECE0",
+                        "surface-container-low": "#f3f4f0",
+                        "primary-fixed": "#bceed3",
+                        "background": "#f9faf6",
+                        "char-green": "#14130F",
+                        "secondary-fixed-dim": "#ffb5a0",
+                        "on-tertiary-fixed-variant": "#693939",
+                        "surface-dim": "#d9dad7",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed-dim": "#a1d1b8",
+                        "on-primary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "xxl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "1.5rem",
+                        "gutter-mobile": "1rem",
+                        "container-max": "1320px",
+                        "margin-desktop": "4rem",
+                        "gutter-desktop": "2rem"
+                    },
+                    "fontFamily": {
+                        "numeric-data": ["JetBrains Mono"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "label-eyebrow": ["Plus Jakarta Sans"],
+                        "display-hero": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "numeric-data": ["14px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-eyebrow": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.12em", "fontWeight": "500"}],
+                        "display-hero": ["clamp(40px, 5vw, 64px)", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-canvas-ivory text-on-surface">
+<main class="min-h-screen flex flex-col md:flex-row overflow-hidden">
+<!-- Left Panel: Brand Identity (45%) -->
+<section class="hidden md:flex md:w-[45%] bg-primary p-12 flex-col justify-between relative overflow-hidden">
+<div class="relative z-10">
+<h1 class="font-headline-lg text-headline-lg text-jade-green tracking-tight font-bold mb-4">
+                    Ceylon Directory
+                </h1>
+<p class="font-body-lg text-body-lg text-primary-fixed/80 max-w-sm leading-relaxed">
+                    A curated heritage collective. Rediscover the unhurried luxury of the island's most storied escapes.
+                </p>
+</div>
+<div class="relative z-10 mt-12 flex-grow flex items-center justify-center">
+<div class="w-full h-full max-h-[716px] rounded-xxl overflow-hidden border border-primary-container/30 shadow-2xl transform hover:scale-[1.02] transition-transform duration-700 ease-out">
+<img class="w-full h-full object-cover" data-alt="A lush, high-end colonial villa interior captured in soft, natural morning light. The scene features polished teak furniture, sprawling indoor tropical plants, and a checkered marble floor that leads to a sun-drenched courtyard. The atmosphere is quiet, sophisticated, and deeply rooted in heritage luxury, perfectly reflecting the brand's boutique aesthetic and warm-linen color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqOdSfUjkzCAsWvJaOALTsOTt9q86xh_Bj2cbpOZ0GYXSRK-CicMnZqK1m9iVF2TUVYpQ6M77PvdL86ZtqNXwU4kIOjSr0G7eETg6Cd50ANOTjvi6N35BHFfFzd_2zwNMdm6XvzN0p3t1lvTYT0QNZlYvQ03wzmwXaryO_MgQzDOoeFDJuMWxmPIaq3i24EvR6hyjPfY637vecYm2Jx_cuOoBD3-B_A6e0t2rypAe49P3NCH2QpBv0mX2umAYmhgA9nze9aIuEeAc"/>
+</div>
+</div>
+<!-- Subtle Texture Overlays -->
+<div class="absolute inset-0 opacity-5 pointer-events-none mix-blend-overlay" style="background-image: url('https://www.transparenttextures.com/patterns/natural-paper.png')"></div>
+</section>
+<!-- Right Panel: Login Form (55%) -->
+<section class="flex-1 flex flex-col items-center justify-center p-margin-mobile md:p-margin-desktop bg-canvas-ivory">
+<!-- Mobile Brand Header (Visible only on small screens) -->
+<div class="md:hidden w-full text-center mb-12">
+<h1 class="font-headline-lg text-headline-lg text-deep-forest font-bold tracking-tight">
+                    Ceylon Directory
+                </h1>
+</div>
+<div class="w-full max-w-[400px] stagger-in">
+<header class="mb-8">
+<h2 class="font-headline-lg text-headline-lg text-deep-forest mb-2">Welcome back</h2>
+<p class="font-body-md text-body-md text-muted-bark">
+                        Access your curated collection of heritage and hospitality.
+                    </p>
+</header>
+<!-- Error Region (Subtle & Inline) -->
+<div class="hidden mb-6 p-4 rounded-lg bg-status-rejected/10 border-l-4 border-status-rejected flex items-start gap-3" id="error-alert">
+<span class="material-symbols-outlined text-status-rejected text-[20px]">info</span>
+<p class="font-body-md text-body-md text-status-rejected font-medium">
+                        The email or password you entered is incorrect.
+                    </p>
+</div>
+<form class="space-y-6" id="login-form">
+<div>
+<label class="block font-body-md text-body-md font-medium text-deep-forest mb-2" for="email">
+                            Email Address
+                        </label>
+<input class="w-full px-4 py-3 rounded-lg bg-pure-surface border border-warm-hairline font-body-md text-body-md text-deep-forest placeholder:text-muted-sand transition-all input-focus-ring" id="email" name="email" placeholder="e.g. perera@heritage.lk" required="" type="email"/>
+</div>
+<div class="relative">
+<div class="flex justify-between items-center mb-2">
+<label class="block font-body-md text-body-md font-medium text-deep-forest" for="password">
+                                Password
+                            </label>
+<a class="font-label-eyebrow text-label-eyebrow text-terracotta-glow hover:underline transition-all" href="#">
+                                Forgot?
+                            </a>
+</div>
+<input class="w-full px-4 py-3 rounded-lg bg-pure-surface border border-warm-hairline font-body-md text-body-md text-deep-forest transition-all input-focus-ring" id="password" name="password" required="" type="password"/>
+</div>
+<div class="pt-2">
+<button class="w-full bg-primary text-parchment font-body-md text-body-md font-bold py-4 rounded-lg hover:bg-deep-forest transition-all duration-200 active:scale-[0.98] shadow-sm" type="submit">
+                            Log in
+                        </button>
+</div>
+</form>
+<div class="mt-8 text-center">
+<p class="font-body-md text-body-md text-muted-bark">
+                        Don't have an account? 
+                        <a class="text-terracotta-glow font-bold hover:underline transition-all ml-1" href="#">
+                            Create an account
+                        </a>
+</p>
+</div>
+</div>
+<!-- Small utility links footer -->
+<footer class="mt-auto pt-12 flex flex-wrap justify-center gap-6 opacity-60">
+<a class="font-label-eyebrow text-label-eyebrow text-muted-bark hover:text-deep-forest transition-colors" href="#">Privacy Policy</a>
+<a class="font-label-eyebrow text-label-eyebrow text-muted-bark hover:text-deep-forest transition-colors" href="#">Terms of Service</a>
+<a class="font-label-eyebrow text-label-eyebrow text-muted-bark hover:text-deep-forest transition-colors" href="#">Support</a>
+</footer>
+</section>
+</main>
+<!-- Shared Footer (Hidden on Login for focused UX, but available if user scrolls) -->
+<div class="bg-warm-linen dark:bg-char-green border-t border-warm-hairline" id="main-footer-container">
+<footer class="flex flex-col md:flex-row justify-between items-center w-full py-12 px-margin-desktop max-w-container-max mx-auto gap-8">
+<div class="flex flex-col items-center md:items-start gap-4">
+<span class="font-headline-md text-headline-md font-bold text-deep-forest dark:text-jade-green">Ceylon Directory</span>
+<p class="font-body-md text-body-md text-muted-bark dark:text-muted-sand text-center md:text-left">
+                    © 2024 Ceylon Directory. A curated heritage collective.
+                </p>
+</div>
+<nav class="flex flex-wrap justify-center md:justify-end gap-x-8 gap-y-4">
+<a class="font-body-md text-body-md text-muted-bark dark:text-muted-sand hover:text-deep-forest dark:hover:text-jade-green underline transition-all opacity-80 hover:opacity-100" href="#">About Us</a>
+<a class="font-body-md text-body-md text-muted-bark dark:text-muted-sand hover:text-deep-forest dark:hover:text-jade-green underline transition-all opacity-80 hover:opacity-100" href="#">Join as Provider</a>
+<a class="font-body-md text-body-md text-muted-bark dark:text-muted-sand hover:text-deep-forest dark:hover:text-jade-green underline transition-all opacity-80 hover:opacity-100" href="#">Privacy Policy</a>
+<a class="font-body-md text-body-md text-muted-bark dark:text-muted-sand hover:text-deep-forest dark:hover:text-jade-green underline transition-all opacity-80 hover:opacity-100" href="#">Terms of Service</a>
+<a class="font-body-md text-body-md text-muted-bark dark:text-muted-sand hover:text-deep-forest dark:hover:text-jade-green underline transition-all opacity-80 hover:opacity-100" href="#">Contact</a>
+</nav>
+</footer>
+</div>
+<script>
+        // Micro-interaction for form submission demo
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const errorAlert = document.getElementById('error-alert');
+            const submitBtn = e.target.querySelector('button');
+            
+            // Show loading state
+            submitBtn.innerHTML = 'Verifying...';
+            submitBtn.disabled = true;
+            submitBtn.style.opacity = '0.7';
+
+            setTimeout(() => {
+                // Simulate error for demo purposes
+                errorAlert.classList.remove('hidden');
+                errorAlert.classList.add('stagger-in');
+                submitBtn.innerHTML = 'Log in';
+                submitBtn.disabled = false;
+                submitBtn.style.opacity = '1';
+                
+                // Shake effect on error
+                errorAlert.animate([
+                    { transform: 'translateX(-5px)' },
+                    { transform: 'translateX(5px)' },
+                    { transform: 'translateX(-5px)' },
+                    { transform: 'translateX(5px)' },
+                    { transform: 'translateX(0)' }
+                ], {
+                    duration: 300,
+                    easing: 'ease-in-out'
+                });
+            }, 1200);
+        });
+
+        // Focus interactions for aesthetic weight
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.querySelector('label').style.color = '#D98463';
+            });
+            input.addEventListener('blur', () => {
+                input.parentElement.querySelector('label').style.color = '#143A2B';
+            });
+        });
+    </script>
+</body></html>

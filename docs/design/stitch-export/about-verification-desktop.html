@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>About &amp; Verification | Ceylon Directory</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "warm-ink": "#241F1A",
+                    "on-error-container": "#93000a",
+                    "surface-variant": "#e2e3df",
+                    "primary-fixed": "#bceed3",
+                    "inverse-surface": "#2e312f",
+                    "primary": "#003322",
+                    "char-green": "#14130F",
+                    "on-secondary-fixed": "#3b0a00",
+                    "on-secondary-container": "#75240a",
+                    "on-secondary-fixed-variant": "#7f2b11",
+                    "surface-container-low": "#f3f4f0",
+                    "secondary-fixed-dim": "#ffb5a0",
+                    "on-tertiary-fixed-variant": "#693939",
+                    "tertiary-container": "#633434",
+                    "status-approved": "#2F7D5B",
+                    "background": "#f9faf6",
+                    "warm-hairline-dark": "#39342B",
+                    "secondary-fixed": "#ffdbd1",
+                    "raised-surface": "#1E1C17",
+                    "on-tertiary-fixed": "#350f10",
+                    "status-rejected": "#9C4A3C",
+                    "on-primary-container": "#89b9a0",
+                    "tertiary-fixed-dim": "#f9b5b4",
+                    "temple-gold": "#C19A4B",
+                    "on-primary": "#ffffff",
+                    "deep-forest": "#143A2B",
+                    "surface-container-highest": "#e2e3df",
+                    "surface-dim": "#d9dad7",
+                    "on-primary-fixed-variant": "#214f3c",
+                    "surface-tint": "#3a6752",
+                    "terracotta-glow": "#D98463",
+                    "status-pending": "#B7791F",
+                    "secondary": "#9e4126",
+                    "jade-green": "#5FA882",
+                    "on-secondary": "#ffffff",
+                    "pure-surface": "#FFFFFF",
+                    "outline-variant": "#c0c9c2",
+                    "muted-sand": "#A79C8A",
+                    "primary-fixed-dim": "#a1d1b8",
+                    "on-tertiary": "#ffffff",
+                    "inverse-on-surface": "#f0f1ee",
+                    "canvas-ivory": "#FAF6EF",
+                    "tertiary-fixed": "#ffdad8",
+                    "primary-container": "#1c4a37",
+                    "surface-bright": "#f9faf6",
+                    "secondary-container": "#ff8b69",
+                    "surface": "#f9faf6",
+                    "warm-hairline": "#E6DCCB",
+                    "surface-container-lowest": "#ffffff",
+                    "muted-bark": "#6E6456",
+                    "parchment": "#F0E9DB",
+                    "error": "#ba1a1a",
+                    "surface-container": "#edeeeb",
+                    "temple-gold-bright": "#D9B65E",
+                    "outline": "#717973",
+                    "error-container": "#ffdad6",
+                    "inverse-primary": "#a1d1b8",
+                    "on-surface": "#1a1c1a",
+                    "on-tertiary-container": "#de9d9c",
+                    "elevated-surface": "#26231C",
+                    "tertiary": "#491f1f",
+                    "on-error": "#ffffff",
+                    "on-primary-fixed": "#002114",
+                    "surface-container-high": "#e7e8e5",
+                    "warm-linen": "#F3ECE0",
+                    "on-surface-variant": "#414944",
+                    "on-background": "#1a1c1a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "1.5rem",
+                    "margin-desktop": "4rem",
+                    "container-max": "1320px",
+                    "gutter-desktop": "2rem",
+                    "gutter-mobile": "1rem"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Plus Jakarta Sans", "sans-serif"],
+                    "headline-md": ["Plus Jakarta Sans", "sans-serif"],
+                    "body-md": ["Plus Jakarta Sans", "sans-serif"],
+                    "numeric-data": ["JetBrains Mono", "monospace"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans", "sans-serif"],
+                    "body-lg": ["Plus Jakarta Sans", "sans-serif"],
+                    "label-eyebrow": ["Plus Jakarta Sans", "sans-serif"],
+                    "display-hero": ["Plus Jakarta Sans", "sans-serif"]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        body {
+            background-color: #FAF6EF; /* canvas-ivory */
+            color: #1a1c1a; /* on-surface */
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .editorial-shadow {
+            box-shadow: 0 12px 40px -12px rgba(36, 31, 26, 0.08);
+        }
+        .transition-spring {
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md antialiased overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="w-full top-0 sticky z-50 bg-pure-surface dark:bg-raised-surface shadow-sm dark:shadow-none border-b border-warm-hairline dark:border-warm-hairline-dark">
+<nav class="flex justify-between items-center w-full px-margin-desktop py-4 max-w-container-max mx-auto">
+<div class="flex items-center gap-12">
+<a class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed" href="#">Ceylon Directory</a>
+<div class="hidden md:flex gap-8">
+<a class="font-body-md text-body-md uppercase tracking-wider text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Browse</a>
+<a class="font-body-md text-body-md uppercase tracking-wider text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Categories</a>
+<a class="font-body-md text-body-md uppercase tracking-wider text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Map</a>
+<a class="font-body-md text-body-md uppercase tracking-wider text-primary dark:text-primary-fixed font-bold border-b-2 border-primary dark:border-primary-fixed pb-1" href="#">About</a>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-low p-2 rounded-full transition-all">dark_mode</button>
+<div class="flex items-center gap-4">
+<a class="text-on-surface-variant hover:text-primary font-medium" href="#">Log in</a>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-lg font-medium hover:scale-95 transition-transform duration-150">List your service</button>
+</div>
+</div>
+</nav>
+</header>
+<main class="max-w-container-max mx-auto px-margin-desktop">
+<!-- Hero Section -->
+<section class="py-24 md:py-32 grid grid-cols-1 md:grid-cols-12 gap-gutter-desktop">
+<div class="col-span-1 md:col-span-8">
+<span class="font-label-eyebrow text-label-eyebrow text-secondary uppercase tracking-[0.2em] mb-4 block">Curation First</span>
+<h1 class="font-display-hero text-display-hero text-primary leading-tight mb-8">
+                    Hand-checked directory for the discerning traveler.
+                </h1>
+<p class="font-body-lg text-body-lg text-muted-bark max-w-xl">
+                    We bridge the gap between heritage and modern luxury. Every establishment listed is personally vetted to ensure it meets our standards of authenticity, service, and architectural significance.
+                </p>
+</div>
+</section>
+<!-- Verification Explainer (Zig-Zag) -->
+<section class="py-20 space-y-32">
+<!-- Step 1 -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
+<div class="order-2 md:order-1">
+<div class="aspect-[4/5] md:aspect-square bg-cover bg-center rounded-[1.5rem] editorial-shadow transform hover:scale-[1.03] transition-spring" data-alt="A sophisticated boutique hotel reception desk made of dark tropical wood and brass accents. The lighting is warm and soft, illuminating hand-woven textiles and a small vase of white lotuses. The overall aesthetic is one of unhurried colonial luxury, consistent with a premium Sri Lankan heritage brand." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBna6C7UUJMqzfvioDzz6GNHSFTzssUBNzBn2fW59ZTtsteAHHGTXoqYfmueMwmIldeql9An_73X65qVc3qcvQgKmejtUobx40vr6L9T2uuh_Y5-wr415UN2ir0QSzsNappP4_WZGE0Af6GnfSXVWoZf-v59ilHVGwWv-y3Q6aFWYcEW7bT0_ZMyVV-gemc3ZKb3OrmAsRca8_E8x9qSJHkLjupahPckH4sIbX7vGJH7MHzN1JkYAPoGQ-KNQJxKV5IwXoqXt8D3hs')"></div>
+</div>
+<div class="order-1 md:order-2">
+<span class="font-numeric-data text-numeric-data text-secondary mb-4 block">01 / PROCESS</span>
+<h2 class="font-headline-lg text-headline-lg text-primary mb-6">Submit your listing</h2>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                        Begin your journey by sharing the story of your establishment. We look for spaces that possess a unique character, whether it's a restored colonial manor or a pioneering eco-lodge.
+                    </p>
+<div class="mt-8 flex items-center gap-4 text-secondary">
+<span class="material-symbols-outlined">description</span>
+<span class="font-label-eyebrow uppercase tracking-widest">Detail-oriented application</span>
+</div>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
+<div class="order-1">
+<span class="font-numeric-data text-numeric-data text-secondary mb-4 block">02 / REVIEW</span>
+<h2 class="font-headline-lg text-headline-lg text-primary mb-6">Manual Review</h2>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                        Our curators personally visit or verify every entry. We assess the quality of the guest experience, the integrity of the architecture, and the commitment to local heritage.
+                    </p>
+<div class="mt-8 flex items-center gap-4 text-secondary">
+<span class="material-symbols-outlined">verified_user</span>
+<span class="font-label-eyebrow uppercase tracking-widest">Human-centered verification</span>
+</div>
+</div>
+<div class="order-2">
+<div class="aspect-[4/5] md:aspect-square bg-cover bg-center rounded-[1.5rem] editorial-shadow transform hover:scale-[1.03] transition-spring" data-alt="A close-up shot of a curator's hands holding a vintage fountain pen over a leather-bound notebook. Scattered on the warm wooden table are high-quality architectural sketches and fabric samples. The mood is focused and academic, capturing the essence of manual, meticulous review and professional discernment." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBLR76BxaTudHzoi9bipw1htXbDukylyXCVQdkxSIzP2ORZMlUjP9wh7HX7in3uHiasILldSfTy9XnmfNCiSyzIoR8833O_0R1TJiIZn1t0yElfbspXLRHALin3DOyd0AsXEDegGEHZQplgLwbW6abwH-hGhr_q6DUYuYcAs6ETccAQsXSyR3mJ8aoUUXRJyxZFfoSUswmo7Fc_Z2XBxx2feyxfbgkMFhOiPILW23M3Uk0Ax8U41rNbV7PBvq7E5d5-8WhnMHYsqJw')"></div>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
+<div class="order-2 md:order-1">
+<div class="aspect-[4/5] md:aspect-square bg-cover bg-center rounded-[1.5rem] editorial-shadow transform hover:scale-[1.03] transition-spring relative overflow-hidden" data-alt="A stunning wide-angle shot of a serene swimming pool overlooking the misty hill country of Sri Lanka at dawn. The water reflects the soft orange and pink hues of the sky. The architecture of the surrounding villa is minimalist and incorporates natural stone and wood, representing the ultimate 'Go Live' success for a high-end travel directory." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAjY_KLhCn-azAAin0e8_eSR6-DQtx_rTTYts6YHDk7dDtvbM4QsB3EE3LNhyyITTQRoIWrgz-SmH7AGa0xzEGHLVXpt8RK7HbtMlyuF2K6M4H47TVyWrm9_Oot2o8fMzL8TvsEKb0qv2rkG0p8UZftoqHPQlPY5FtbQbkSNBgzRQjsGVxZ8PSF8GrBASLuR8NFstSM5ykTG78F8WWlgs96ilw5VyipIurkthXYQEdF2cwPuKdYOqI_mBHqYyLUWO3gjCYLCdvBbiw')">
+<div class="absolute top-6 left-6 bg-temple-gold text-pure-surface px-4 py-1 rounded-full font-label-eyebrow uppercase flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                            Featured
+                        </div>
+</div>
+</div>
+<div class="order-1 md:order-2">
+<span class="font-numeric-data text-numeric-data text-secondary mb-4 block">03 / LAUNCH</span>
+<h2 class="font-headline-lg text-headline-lg text-primary mb-6">Go Live</h2>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                        Once approved, your property joins an elite collective. Every listing is beautifully presented with high-fidelity imagery and honest, expert-written copy to attract the right traveler.
+                    </p>
+<div class="mt-8 p-6 bg-surface-container-low rounded-xl border border-warm-hairline">
+<p class="text-temple-gold font-bold mb-2">Featured Status</p>
+<p class="text-on-surface-variant text-sm">Approved listings are eligible for our editorial spotlight, placing your legacy front and center for our global audience.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Who it's for Section -->
+<section class="py-32 border-t border-warm-hairline">
+<div class="mb-16">
+<h2 class="font-headline-lg text-headline-lg text-primary">A Dual Ecosystem</h2>
+<p class="text-muted-bark mt-4">Built for those who value depth over volume.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter-desktop">
+<div class="p-10 bg-pure-surface rounded-[1.5rem] border border-warm-hairline editorial-shadow">
+<span class="material-symbols-outlined text-secondary text-4xl mb-6">explore</span>
+<h3 class="font-headline-md text-headline-md text-primary mb-4">The Explorer</h3>
+<p class="text-on-surface-variant mb-6">For the traveler who seeks stories, not just beds. Our directory ensures your stay is part of the destination's cultural fabric.</p>
+<a class="text-secondary font-bold inline-flex items-center gap-2 hover:translate-x-1 transition-transform" href="#">
+                        Browse the collection <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+</div>
+<div class="p-10 bg-pure-surface rounded-[1.5rem] border border-warm-hairline editorial-shadow">
+<span class="material-symbols-outlined text-secondary text-4xl mb-6">castle</span>
+<h3 class="font-headline-md text-headline-md text-primary mb-4">The Proprietor</h3>
+<p class="text-on-surface-variant mb-6">For the owner who has invested a lifetime into their legacy. We offer a platform that respects the nuance of your service.</p>
+<a class="text-secondary font-bold inline-flex items-center gap-2 hover:translate-x-1 transition-transform" href="#">
+                        Join the collective <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+</div>
+</div>
+</section>
+</main>
+<!-- CTA Band -->
+<section class="bg-warm-linen py-24 mt-20">
+<div class="max-w-container-max mx-auto px-margin-desktop text-center">
+<h2 class="font-display-hero text-display-hero text-primary mb-6">Do you represent a legacy?</h2>
+<p class="font-body-lg text-body-lg text-muted-bark max-w-2xl mx-auto mb-10">
+                Join an exclusive network of Sri Lanka's most distinguished properties and experiences. Help us define the future of high-end island travel.
+            </p>
+<button class="bg-primary text-on-primary px-10 py-4 rounded-lg font-bold text-lg hover:scale-95 transition-transform duration-150">
+                List your service
+            </button>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full mt-auto bg-deep-forest dark:bg-char-green border-t border-warm-hairline-dark">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-margin-desktop py-12 max-w-container-max mx-auto">
+<div class="mb-8 md:mb-0">
+<span class="font-headline-md text-headline-md text-parchment">Ceylon Directory</span>
+<p class="font-body-md text-body-md text-surface-variant mt-2">The Heritage Standard.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-8 mb-8 md:mb-0">
+<a class="font-body-md text-body-md text-surface-variant hover:text-parchment transition-colors" href="#">Terms of Service</a>
+<a class="font-body-md text-body-md text-surface-variant hover:text-parchment transition-colors" href="#">Privacy Policy</a>
+<a class="font-body-md text-body-md text-surface-variant hover:text-parchment transition-colors" href="#">Contact Us</a>
+<a class="font-body-md text-body-md text-surface-variant hover:text-parchment transition-colors" href="#">Sitemap</a>
+</div>
+<div class="text-parchment dark:text-surface-variant font-body-md text-body-md opacity-60">
+                © 2024 Ceylon Directory. All rights reserved.
+            </div>
+</div>
+</footer>
+<script>
+        // Simple Intersection Observer for scroll reveal effects
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section > div').forEach(el => {
+            el.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-10');
+            observer.observe(el);
+        });
+    </script>
+</body></html>

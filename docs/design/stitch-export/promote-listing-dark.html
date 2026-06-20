@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Promote Listing | Ceylon Directory</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;family=JetBrains+Mono:wght@400;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary": "#491f1f",
+                    "temple-gold": "#C19A4B",
+                    "on-primary-container": "#89b9a0",
+                    "on-surface-variant": "#A79C8A",
+                    "warm-hairline-dark": "#39342B",
+                    "surface-container-low": "#1E1C17",
+                    "on-background": "#F0E9DB",
+                    "secondary-fixed-dim": "#ffb5a0",
+                    "tertiary-fixed-dim": "#f9b5b4",
+                    "muted-bark": "#A79C8A",
+                    "surface-container-lowest": "#14130F",
+                    "on-tertiary-fixed": "#350f10",
+                    "on-secondary-fixed-variant": "#7f2b11",
+                    "jade-green": "#5FA882",
+                    "tertiary-container": "#633434",
+                    "outline": "#39342B",
+                    "on-surface": "#F0E9DB",
+                    "status-rejected": "#9C4A3C",
+                    "surface-tint": "#5FA882",
+                    "inverse-surface": "#f0f1ee",
+                    "surface-bright": "#26231C",
+                    "surface-dim": "#14130F",
+                    "on-secondary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "canvas-ivory": "#14130F",
+                    "terracotta-glow": "#D98463",
+                    "primary": "#5FA882",
+                    "surface-container-highest": "#39342B",
+                    "on-tertiary": "#ffffff",
+                    "warm-hairline": "#39342B",
+                    "surface-container": "#1E1C17",
+                    "secondary": "#D98463",
+                    "on-primary-fixed": "#002114",
+                    "elevated-surface": "#26231C",
+                    "on-tertiary-container": "#de9d9c",
+                    "secondary-container": "#D98463",
+                    "primary-fixed-dim": "#a1d1b8",
+                    "primary-fixed": "#bceed3",
+                    "warm-ink": "#F0E9DB",
+                    "secondary-fixed": "#ffdbd1",
+                    "surface-container-high": "#26231C",
+                    "surface-variant": "#1E1C17",
+                    "deep-forest": "#143A2B",
+                    "raised-surface": "#1E1C17",
+                    "status-approved": "#2F7D5B",
+                    "tertiary-fixed": "#ffdad8",
+                    "parchment": "#F0E9DB",
+                    "muted-sand": "#A79C8A",
+                    "on-error": "#ffffff",
+                    "inverse-primary": "#003322",
+                    "background": "#14130F",
+                    "primary-container": "#1c4a37",
+                    "on-secondary-container": "#75240a",
+                    "status-pending": "#B7791F",
+                    "on-primary": "#14130F",
+                    "temple-gold-bright": "#D9B65E",
+                    "surface": "#14130F",
+                    "pure-surface": "#1E1C17",
+                    "char-green": "#14130F",
+                    "on-tertiary-fixed-variant": "#693939",
+                    "error-container": "#ffdad6",
+                    "on-secondary-fixed": "#3b0a00",
+                    "warm-linen": "#1E1C17",
+                    "on-primary-fixed-variant": "#214f3c",
+                    "outline-variant": "#39342B",
+                    "error": "#ba1a1a",
+                    "inverse-on-surface": "#1a1c1a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "4rem",
+                    "gutter-desktop": "2rem",
+                    "margin-mobile": "1.5rem",
+                    "gutter-mobile": "1rem",
+                    "container-max": "1320px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Plus Jakarta Sans"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "body-md": ["Plus Jakarta Sans"],
+                    "numeric-data": ["JetBrains Mono"],
+                    "label-eyebrow": ["Plus Jakarta Sans"],
+                    "display-hero": ["Plus Jakarta Sans"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-up {
+            animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+        .state-panel { display: none; }
+        .state-panel.active { display: block; }
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-char-green text-parchment font-body-md min-h-screen">
+<!-- TopAppBar -->
+<nav class="fixed top-0 w-full z-50 bg-char-green border-b border-warm-hairline-dark">
+<div class="flex justify-between items-center h-16 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-jade-green text-2xl">menu</button>
+<span class="font-headline-md text-headline-md tracking-widest text-jade-green">CEYLON DIRECTORY</span>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:flex gap-8 items-center">
+<a class="font-body-md text-muted-sand hover:text-terracotta-glow transition-colors" href="#">Browse</a>
+<a class="font-body-md text-jade-green font-bold border-b-2 border-jade-green" href="#">Management</a>
+</div>
+<button class="material-symbols-outlined text-jade-green text-2xl">dark_mode</button>
+</div>
+</div>
+</nav>
+<main class="pt-24 pb-20 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<!-- Listing Summary Card -->
+<section class="animate-fade-up mb-12">
+<div class="bg-raised-surface rounded-xl border border-warm-hairline-dark overflow-hidden flex flex-col md:flex-row shadow-xl">
+<div class="md:w-1/3 h-48 md:h-auto overflow-hidden">
+<img alt="A luxurious boutique colonial villa in Galle, Sri Lanka" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAA1X5iBExLMxEPIZvDhJg88osoTOcBAiyYIi8yPmSegvQ5MrCx4KphsB9JvCpoEborMO4ULgM9omWZSh7w4wC-BeJ-8UZN9UGQSBy3FeV9XcfO7o3b5gqUYTyrZ5gU8eVa_fhylKpYlTHg2XgpgH3nZu-Aet7MadzcWIXSPC4JLH8im5vpYwBrl1idoqVBKlIUNieWYB3D6noQn8rmHP7ZdUg4TGQ-SHPINZFMGJAjFVVb5GwPEks-YUJT5l2gV8yygflBZjT8mGA"/>
+</div>
+<div class="p-8 md:w-2/3 flex flex-col justify-center">
+<div class="flex items-center gap-2 mb-2">
+<span class="font-label-eyebrow text-label-eyebrow text-terracotta-glow uppercase tracking-widest">Heritage Stay</span>
+<span class="w-1 h-1 rounded-full bg-muted-sand"></span>
+<span class="font-label-eyebrow text-label-eyebrow text-muted-sand">Galle, Southern Province</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-parchment mb-4">The Cinnamon Manor &amp; Spa</h1>
+<div class="flex items-center gap-4">
+<span class="bg-status-approved/20 text-status-approved px-3 py-1 rounded-full text-xs font-bold uppercase tracking-tighter">Verified Listing</span>
+<span class="font-numeric-data text-muted-sand">LKR 45,000 / Night</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Explainer -->
+<section class="animate-fade-up stagger-1 mb-12 grid md:grid-cols-3 gap-12 border-b border-warm-hairline-dark pb-12">
+<div class="col-span-2">
+<h2 class="font-headline-md text-headline-md text-jade-green mb-4">Elevate Your Presence</h2>
+<p class="font-body-lg text-body-lg text-muted-sand mb-6 leading-relaxed">
+                    Promotion places your listing at the top of search results and category pages for 30 days. Our manual verification ensures that only high-quality, curated experiences are promoted to our discerning clientele.
+                </p>
+<div class="flex flex-col gap-4">
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-temple-gold-bright bg-temple-gold-bright/10 p-2 rounded-lg">star</span>
+<div>
+<p class="font-bold text-parchment">Top-tier Visibility</p>
+<p class="text-muted-sand text-sm">Always appear in the first row of results for your region and category.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-terracotta-glow bg-terracotta-glow/10 p-2 rounded-lg">trending_up</span>
+<div>
+<p class="font-bold text-parchment">Increased Inquiry Rate</p>
+<p class="text-muted-sand text-sm">Promoted listings receive up to 4x more direct booking requests.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-raised-surface p-8 rounded-xl border border-warm-hairline-dark h-fit">
+<p class="font-label-eyebrow text-label-eyebrow text-muted-sand mb-2 uppercase tracking-widest">Investment</p>
+<p class="font-numeric-data text-3xl font-bold text-parchment mb-1">LKR 12,500</p>
+<p class="text-xs text-muted-sand mb-6">per 30-day billing cycle</p>
+<div class="space-y-3">
+<div class="flex justify-between text-sm border-b border-warm-hairline-dark/30 pb-2">
+<span class="text-muted-sand">Promotion Duration</span>
+<span class="font-bold text-parchment">30 Days</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-muted-sand">Verification Time</span>
+<span class="font-bold text-parchment">&lt; 24 Hours</span>
+</div>
+</div>
+</div>
+</section>
+<!-- State Selector -->
+<div class="mb-8 flex gap-4 overflow-x-auto pb-2 no-scrollbar">
+<button class="state-btn active px-4 py-2 text-xs font-bold uppercase tracking-widest border border-warm-hairline-dark rounded-full hover:bg-raised-surface transition-colors" onclick="switchState('default')">Default View</button>
+<button class="state-btn px-4 py-2 text-xs font-bold uppercase tracking-widest border border-warm-hairline-dark rounded-full hover:bg-raised-surface transition-colors" onclick="switchState('requested')">Requested State</button>
+<button class="state-btn px-4 py-2 text-xs font-bold uppercase tracking-widest border border-warm-hairline-dark rounded-full hover:bg-raised-surface transition-colors" onclick="switchState('featured')">Featured State</button>
+</div>
+<!-- State Content Panels -->
+<div class="state-panel active animate-fade-up stagger-2" id="panel-default">
+<div class="grid md:grid-cols-2 gap-8">
+<!-- Payment Instructions -->
+<div class="bg-raised-surface border border-warm-hairline-dark rounded-xl p-8">
+<h3 class="font-headline-md text-headline-md text-jade-green mb-6 flex items-center gap-3">
+<span class="material-symbols-outlined">account_balance</span>
+                        Bank Transfer Details
+                    </h3>
+<div class="space-y-4 font-body-md text-muted-sand">
+<div class="p-4 bg-char-green rounded-lg border border-warm-hairline-dark">
+<p class="text-xs font-bold uppercase tracking-wider mb-1 opacity-60">Bank Name</p>
+<p class="font-numeric-data text-parchment">Seylan Bank PLC</p>
+</div>
+<div class="p-4 bg-char-green rounded-lg border border-warm-hairline-dark">
+<p class="text-xs font-bold uppercase tracking-wider mb-1 opacity-60">Account Holder</p>
+<p class="font-numeric-data text-parchment">CEYLON DIRECTORY (PVT) LTD</p>
+</div>
+<div class="p-4 bg-char-green rounded-lg border border-warm-hairline-dark">
+<p class="text-xs font-bold uppercase tracking-wider mb-1 opacity-60">Account Number</p>
+<p class="font-numeric-data text-parchment">0010-4567-8902-114</p>
+</div>
+<div class="p-4 bg-char-green rounded-lg border border-warm-hairline-dark">
+<p class="text-xs font-bold uppercase tracking-wider mb-1 opacity-60">Reference</p>
+<p class="font-numeric-data text-parchment">PROMO-LST-8821</p>
+</div>
+</div>
+</div>
+<!-- PayHere / Action Area -->
+<div class="flex flex-col gap-6">
+<div class="bg-raised-surface border border-warm-hairline-dark rounded-xl p-8 flex flex-col items-center justify-center text-center">
+<div class="bg-white/10 p-4 rounded-lg mb-4">
+<img alt="PayHere" class="h-10 opacity-90 invert brightness-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqxPmw9vAWiLu8yrfkf4Hx9R-nB_WG_z6fvVZwIJcasTmz2H-Hkqr5AGiPDI236fQ4eV9rKPwBmakfpGFIDsbFa6aql2e4VT5Q0rCutrLyCnX5uaDkVCo7vefumSxkvSyTeRq6V2Z_9VvN6HtPFFHRLpsN4xAnQLzDR9-EnNaNfwypMBeWpEX59VHTtmkkB43FfNw8MDJDzYIXR0pcB6RL4yzkk1D9fuaXFId2ENrY_n4dudXp3KL8-t-q0kk6G7dA2niv4dT2pPk"/>
+</div>
+<p class="text-muted-sand text-sm mb-6 max-w-xs">Pay securely via Credit/Debit card using Sri Lanka's leading payment gateway.</p>
+<button class="w-full py-4 border-2 border-jade-green text-jade-green font-bold uppercase tracking-widest rounded-lg hover:bg-jade-green hover:text-char-green transition-all flex items-center justify-center gap-2">
+                            Pay with PayHere
+                            <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+<div class="bg-jade-green p-8 rounded-xl shadow-xl">
+<h4 class="text-char-green font-bold mb-2">Already transferred manually?</h4>
+<p class="text-char-green/80 text-sm mb-6">Please notify us after making the bank transfer. We will verify and activate your promotion within 24 hours.</p>
+<button class="w-full py-4 bg-char-green text-jade-green font-bold uppercase tracking-widest rounded-lg hover:bg-black active:translate-y-px transition-all shadow-lg" onclick="switchState('requested')">
+                            I've paid — request promotion
+                        </button>
+</div>
+</div>
+</div>
+</div>
+<div class="state-panel animate-fade-up" id="panel-requested">
+<div class="max-w-2xl mx-auto bg-raised-surface border-l-4 border-temple-gold-bright border-y border-r border-warm-hairline-dark rounded-xl p-10 text-center shadow-lg">
+<div class="mb-6 inline-flex items-center justify-center w-20 h-20 bg-temple-gold-bright/10 rounded-full">
+<span class="material-symbols-outlined text-4xl text-temple-gold-bright">pending_actions</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-jade-green mb-4">Promotion Request Received</h2>
+<div class="inline-flex items-center gap-2 px-4 py-2 bg-temple-gold-bright/10 text-temple-gold-bright rounded-full mb-6">
+<span class="w-2 h-2 rounded-full bg-temple-gold-bright animate-pulse"></span>
+<span class="font-label-eyebrow text-label-eyebrow uppercase tracking-widest">Pending admin activation</span>
+</div>
+<p class="text-muted-sand leading-relaxed mb-8">
+                    Your request for promotion is currently being reviewed by our curation team. This process typically takes less than 24 hours. We will notify you via email once your listing is featured.
+                </p>
+<div class="flex flex-col md:flex-row gap-4 justify-center">
+<button class="px-8 py-3 border border-warm-hairline-dark text-muted-sand font-bold uppercase tracking-widest rounded-lg hover:bg-char-green transition-colors" onclick="switchState('default')">View Receipt</button>
+<a class="px-8 py-3 bg-jade-green text-char-green font-bold uppercase tracking-widest rounded-lg hover:bg-deep-forest hover:text-parchment transition-colors" href="#">Back to Dashboard</a>
+</div>
+</div>
+</div>
+<div class="state-panel animate-fade-up" id="panel-featured">
+<div class="max-w-4xl mx-auto">
+<div class="relative bg-elevated-surface rounded-2xl overflow-hidden p-12 text-center border border-warm-hairline-dark">
+<div class="absolute inset-0 opacity-5 pointer-events-none" style="background-image: radial-gradient(circle at 2px 2px, #D9B65E 1px, transparent 0); background-size: 24px 24px;"></div>
+<div class="relative z-10">
+<div class="mb-6 inline-flex items-center justify-center w-24 h-24 bg-temple-gold-bright rounded-full shadow-xl shadow-temple-gold-bright/20">
+<span class="material-symbols-outlined text-5xl text-char-green" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-temple-gold-bright mb-2">Currently Featured</h2>
+<p class="text-parchment font-numeric-data text-lg mb-8 tracking-wide">Active until <span class="text-terracotta-glow">12 DEC 2024</span></p>
+<div class="grid md:grid-cols-3 gap-6 mb-10">
+<div class="bg-char-green p-4 rounded-xl border border-warm-hairline-dark">
+<p class="text-xs text-muted-sand uppercase tracking-widest mb-1">Days Remaining</p>
+<p class="text-2xl font-bold text-parchment font-numeric-data">24</p>
+</div>
+<div class="bg-char-green p-4 rounded-xl border border-warm-hairline-dark">
+<p class="text-xs text-muted-sand uppercase tracking-widest mb-1">Total Impressions</p>
+<p class="text-2xl font-bold text-parchment font-numeric-data">4,821</p>
+</div>
+<div class="bg-char-green p-4 rounded-xl border border-warm-hairline-dark">
+<p class="text-xs text-muted-sand uppercase tracking-widest mb-1">Clicks Today</p>
+<p class="text-2xl font-bold text-parchment font-numeric-data">156</p>
+</div>
+</div>
+<div class="flex justify-center gap-6">
+<button class="px-8 py-3 bg-temple-gold-bright text-char-green font-bold uppercase tracking-widest rounded-lg hover:bg-white transition-colors shadow-lg">Extend Promotion</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-raised-surface text-parchment font-body-md py-12 border-t border-warm-hairline-dark">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div>
+<h3 class="font-headline-md text-headline-md text-jade-green mb-4">CEYLON DIRECTORY</h3>
+<p class="text-muted-sand max-w-xs mb-6">Curating the finest heritage stays and boutique experiences across the Pearl of the Indian Ocean.</p>
+<p class="text-xs text-muted-sand/50">© 2024 CEYLON DIRECTORY. ALL RIGHTS RESERVED.</p>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="flex flex-col gap-3">
+<a class="text-muted-sand hover:text-jade-green transition-colors" href="#">Privacy Policy</a>
+<a class="text-muted-sand hover:text-jade-green transition-colors" href="#">Terms of Service</a>
+</div>
+<div class="flex flex-col gap-3">
+<a class="text-muted-sand hover:text-jade-green transition-colors" href="#">Partner Support</a>
+<a class="text-muted-sand hover:text-jade-green transition-colors" href="#">Contact Us</a>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        function switchState(state) {
+            // Hide all panels
+            document.querySelectorAll('.state-panel').forEach(panel => {
+                panel.classList.remove('active');
+            });
+            // Show target panel
+            const target = document.getElementById('panel-' + state);
+            if(target) target.classList.add('active');
+
+            // Update buttons
+            document.querySelectorAll('.state-btn').forEach(btn => {
+                btn.classList.remove('active', 'bg-jade-green', 'text-char-green');
+                if(btn.innerText.toLowerCase().includes(state)) {
+                    btn.classList.add('bg-jade-green', 'text-char-green');
+                }
+            });
+        }
+
+        // Initialize state
+        switchState('default');
+    </script>
+</body></html>
