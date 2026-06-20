@@ -17,6 +17,7 @@ export function Nav({ user }: { user: NavUser }) {
   const links = [
     { href: "/", label: "Home" },
     { href: "/listings", label: "Browse" },
+    { href: "/map", label: "Map" },
     ...(user ? [{ href: "/dashboard", label: "Dashboard" }] : []),
     ...(user?.profile?.role === "admin"
       ? [{ href: "/admin", label: "Admin" }]
