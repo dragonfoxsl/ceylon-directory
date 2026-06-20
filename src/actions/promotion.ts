@@ -28,7 +28,8 @@ export async function requestPromotion(listingId: string): Promise<PromotionResu
   const { error } = await supabase
     .from("listings")
     .update({ promotion_requested_at: new Date().toISOString() })
-    .eq("id", listingId);
+    .eq("id", listingId)
+    .eq("owner_id", user.id);
 
   if (error) {
     return { ok: false, message: error.message };
