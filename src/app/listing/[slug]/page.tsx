@@ -111,6 +111,17 @@ export default async function ListingDetailPage({ params }: { params: Params }) 
     ? listing.contact_whatsapp.replace(/\D/g, "")
     : null;
 
+  // Website: only allow http/https schemes (block javascript:, data:, etc.)
+  const safeWebsite = (() => {
+    if (!listing.website) return null;
+    try {
+      const u = new URL(listing.website);
+      return u.protocol === "http:" || u.protocol === "https:" ? u.toString() : null;
+    } catch {
+      return null;
+    }
+  })();
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero / cover image */}
@@ -274,9 +285,9 @@ export default async function ListingDetailPage({ params }: { params: Params }) 
                 </a>
               )}
 
-              {listing.website && (
+              {safeWebsite && (
                 <a
-                  href={listing.website}
+                  href={safeWebsite}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 w-full rounded-lg border border-teal-300 px-4 py-3 text-sm font-semibold text-teal-700 hover:bg-teal-50 transition-colors"
@@ -286,7 +297,7 @@ export default async function ListingDetailPage({ params }: { params: Params }) 
                 </a>
               )}
 
-              {!listing.contact_phone && !whatsappNumber && !listing.contact_email && !listing.website && (
+              {!listing.contact_phone && !whatsappNumber && !listing.contact_email && !safeWebsite && (
                 <p className="text-sm text-gray-400 text-center py-2">
                   No contact details provided.
                 </p>

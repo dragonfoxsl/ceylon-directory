@@ -11,7 +11,15 @@ export const listingSchema = z.object({
   contact_phone: optionalText,
   contact_whatsapp: optionalText,
   contact_email: z.string().email("Invalid email").optional().or(z.literal("")),
-  website: z.string().url("Invalid URL").optional().or(z.literal("")),
+  website: z
+    .string()
+    .url("Invalid URL")
+    .refine(
+      (v) => /^https?:\/\//i.test(v),
+      "Website must start with http:// or https://"
+    )
+    .optional()
+    .or(z.literal("")),
 });
 
 export type ListingInput = z.infer<typeof listingSchema>;

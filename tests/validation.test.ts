@@ -28,6 +28,11 @@ describe("listingSchema", () => {
   it("rejects bad website url", () => {
     expect(listingSchema.safeParse({ ...valid, website: "not-a-url" }).success).toBe(false);
   });
+  it("rejects non-http(s) website schemes (e.g. javascript:)", () => {
+    expect(
+      listingSchema.safeParse({ ...valid, website: "javascript:alert(1)" }).success
+    ).toBe(false);
+  });
   it("accepts empty website", () => {
     expect(listingSchema.safeParse({ ...valid, website: "" }).success).toBe(true);
   });
