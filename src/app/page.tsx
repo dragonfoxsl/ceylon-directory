@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -138,19 +139,27 @@ export default async function HomePage() {
 
         {/* Asymmetric photo collage */}
         <div className="reveal grid grid-cols-2 gap-4" style={{ animationDelay: "120ms" }}>
-          <div className="row-span-2 overflow-hidden rounded-[1.5rem] border border-hairline">
-            <img
+          <div className="relative row-span-2 overflow-hidden rounded-[1.5rem] border border-hairline">
+            <Image
               src={`https://picsum.photos/seed/${HERO_PHOTOS[0].seed}/640/${HERO_PHOTOS[0].h}`}
               alt={HERO_PHOTOS[0].alt}
-              className="h-full w-full object-cover"
+              fill
+              sizes="(min-width: 1024px) 24vw, 50vw"
+              priority
+              className="object-cover"
             />
           </div>
           {HERO_PHOTOS.slice(1).map((p) => (
-            <div key={p.seed} className="overflow-hidden rounded-[1.5rem] border border-hairline">
-              <img
+            <div
+              key={p.seed}
+              className="relative aspect-[640/248] overflow-hidden rounded-[1.5rem] border border-hairline"
+            >
+              <Image
                 src={`https://picsum.photos/seed/${p.seed}/640/${p.h}`}
                 alt={p.alt}
-                className="h-full w-full object-cover"
+                fill
+                sizes="(min-width: 1024px) 24vw, 50vw"
+                className="object-cover"
               />
             </div>
           ))}

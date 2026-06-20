@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import Image from "next/image";
 import { X } from "lucide-react";
 import { createBrowserClient } from "@/lib/supabase/client";
 
@@ -131,11 +132,13 @@ export function ImageUploader({ listingId }: { listingId: string }) {
       {images.length > 0 && (
         <div className="grid grid-cols-3 gap-3 sm:grid-cols-4">
           {images.map((img) => (
-            <div key={img.id} className="group relative">
-              <img
+            <div key={img.id} className="group relative h-24">
+              <Image
                 src={img.publicUrl}
                 alt=""
-                className="h-24 w-full rounded-lg border border-hairline object-cover"
+                fill
+                sizes="160px"
+                className="rounded-lg border border-hairline object-cover"
               />
               {img.is_cover && (
                 <span className="chip chip-featured absolute left-1 top-1 !px-1.5 !py-0.5 !text-[10px]">

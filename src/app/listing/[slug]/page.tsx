@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import {
   ChevronRight,
   Globe,
@@ -178,10 +179,13 @@ export default async function ListingDetailPage({ params }: { params: Params }) 
       {/* Cover */}
       <div className="relative mt-6 aspect-[21/9] w-full overflow-hidden rounded-[1.5rem] border border-hairline bg-linen">
         {coverImage ? (
-          <img
+          <Image
             src={coverImage.publicUrl}
             alt={listing.title}
-            className="h-full w-full object-cover"
+            fill
+            sizes="(min-width: 1320px) 1320px, 100vw"
+            priority
+            className="object-cover"
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center text-muted/50">
@@ -248,12 +252,14 @@ export default async function ListingDetailPage({ params }: { params: Params }) 
                 {images.map((img) => (
                   <div
                     key={img.id}
-                    className="aspect-square overflow-hidden rounded-xl border border-hairline bg-linen"
+                    className="relative aspect-square overflow-hidden rounded-xl border border-hairline bg-linen"
                   >
-                    <img
+                    <Image
                       src={img.publicUrl}
                       alt={listing.title}
-                      className="h-full w-full object-cover transition-transform duration-500 ease-out hover:scale-[1.04]"
+                      fill
+                      sizes="(min-width: 640px) 22vw, 45vw"
+                      className="object-cover transition-transform duration-500 ease-out hover:scale-[1.04]"
                     />
                   </div>
                 ))}
