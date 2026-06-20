@@ -2,6 +2,7 @@ import Link from "next/link";
 import { requireAdmin } from "@/lib/auth";
 import { createServerClient } from "@/lib/supabase/server";
 import { StatusBadge } from "@/components/StatusBadge";
+import { AdminTabs } from "@/components/AdminTabs";
 import { setActive, setFeatured } from "@/actions/moderation";
 
 type Listing = {
@@ -38,62 +39,44 @@ export default async function AdminListingsPage() {
   return (
     <div className="mx-auto max-w-7xl px-6 py-12">
       {/* Header */}
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-8">
+      <div className="mb-8 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 tracking-tight">
-            All Listings
+          <p className="eyebrow">Moderation</p>
+          <h1 className="mt-3 text-3xl font-bold tracking-tight text-ink">
+            All listings
           </h1>
-          <p className="mt-1 text-gray-500 text-sm">
+          <p className="num mt-2 text-sm text-muted">
             {listings.length} total listing{listings.length !== 1 ? "s" : ""}
           </p>
         </div>
-        <div className="flex items-center gap-3 text-sm">
-          <Link
-            href="/admin"
-            className="rounded-lg border border-yellow-200 bg-yellow-50 px-4 py-2 font-medium text-yellow-800 hover:bg-yellow-100 transition-colors"
-          >
-            Pending queue
-          </Link>
-          <Link
-            href="/admin/promotions"
-            className="rounded-lg border border-amber-200 bg-amber-50 px-4 py-2 font-medium text-amber-800 hover:bg-amber-100 transition-colors"
-          >
-            Promotions
-          </Link>
-        </div>
+        <AdminTabs active="/admin/listings" />
       </div>
 
       {listings.length === 0 ? (
-        <p className="text-gray-500 text-center py-20">No listings yet.</p>
+        <p className="card px-8 py-20 text-center text-muted">No listings yet.</p>
       ) : (
-        <div className="overflow-x-auto rounded-xl border border-gray-200 bg-white shadow-sm">
-          <table className="min-w-full divide-y divide-gray-200 text-sm">
-            <thead className="bg-gray-50">
-              <tr>
-                <th className="py-3 pl-6 pr-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
-                  Listing
-                </th>
-                <th className="py-3 px-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500 hidden lg:table-cell">
+        <div className="card overflow-x-auto p-0">
+          <table className="min-w-full text-sm">
+            <thead>
+              <tr className="bg-linen">
+                <th className="eyebrow py-3 pl-6 pr-3 font-medium">Listing</th>
+                <th className="eyebrow hidden py-3 px-3 font-medium lg:table-cell">
                   Provider
                 </th>
-                <th className="py-3 px-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500 hidden md:table-cell">
+                <th className="eyebrow hidden py-3 px-3 font-medium md:table-cell">
                   Category / Region
                 </th>
-                <th className="py-3 px-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
-                  Status
-                </th>
-                <th className="py-3 px-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
-                  Active
-                </th>
-                <th className="py-3 px-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500 hidden xl:table-cell">
+                <th className="eyebrow py-3 px-3 font-medium">Status</th>
+                <th className="eyebrow py-3 px-3 font-medium">Active</th>
+                <th className="eyebrow hidden py-3 px-3 font-medium xl:table-cell">
                   Featured until
                 </th>
-                <th className="py-3 pl-3 pr-6 text-right text-xs font-semibold uppercase tracking-wider text-gray-500">
+                <th className="eyebrow py-3 pl-3 pr-6 text-right font-medium">
                   Actions
                 </th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-100 bg-white">
+            <tbody>
               {listings.map((listing) => {
                 async function handleToggleActive() {
                   "use server";
@@ -123,21 +106,22 @@ export default async function AdminListingsPage() {
                   new Date(listing.featured_until) > now;
 
                 return (
-                  <tr key={listing.id} className="hover:bg-gray-50 transition-colors align-top">
+                  <tr
+                    key={listing.id}
+                    className="border-t border-hairline align-top transition-colors hover:bg-linen/50"
+                  >
                     <td className="py-4 pl-6 pr-3">
-                      <div className="font-medium text-gray-900">{listing.title}</div>
+                      <div className="font-medium text-ink">{listing.title}</div>
                       {featuredActive && (
-                        <span className="mt-1 inline-block rounded-full bg-amber-100 px-2 py-0.5 text-xs font-semibold text-amber-800">
-                          Featured
-                        </span>
+                        <span className="chip chip-featured mt-1.5">Featured</span>
                       )}
                     </td>
-                    <td className="py-4 px-3 text-gray-600 hidden lg:table-cell">
+                    <td className="hidden py-4 px-3 text-muted lg:table-cell">
                       {listing.profiles?.full_name ?? "—"}
                     </td>
-                    <td className="py-4 px-3 text-gray-600 hidden md:table-cell">
-                      <div>{listing.categories?.name ?? "—"}</div>
-                      <div className="text-gray-400">{listing.regions?.name ?? ""}</div>
+                    <td className="hidden py-4 px-3 text-muted md:table-cell">
+                      <div className="text-ink">{listing.categories?.name ?? "—"}</div>
+                      <div>{listing.regions?.name ?? ""}</div>
                     </td>
                     <td className="py-4 px-3">
                       <StatusBadge status={listing.status} />
@@ -146,17 +130,17 @@ export default async function AdminListingsPage() {
                       <form action={handleToggleActive}>
                         <button
                           type="submit"
-                          className={`rounded-full px-3 py-1 text-xs font-semibold transition-colors ${
+                          className={`chip transition-colors ${
                             listing.is_active
-                              ? "bg-green-100 text-green-800 hover:bg-green-200"
-                              : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                              ? "chip-approved hover:opacity-80"
+                              : "bg-muted/15 text-muted hover:bg-muted/25"
                           }`}
                         >
                           {listing.is_active ? "Active" : "Inactive"}
                         </button>
                       </form>
                     </td>
-                    <td className="py-4 px-3 hidden xl:table-cell text-gray-500 text-xs">
+                    <td className="num hidden py-4 px-3 text-xs text-muted xl:table-cell">
                       {listing.featured_until
                         ? new Date(listing.featured_until).toLocaleDateString("en-GB", {
                             day: "numeric",
@@ -168,7 +152,7 @@ export default async function AdminListingsPage() {
                     <td className="py-4 pl-3 pr-6">
                       <div className="flex flex-col items-end gap-2">
                         {/* Set featured date */}
-                        <form action={handleSetFeatured} className="flex items-center gap-1">
+                        <form action={handleSetFeatured} className="flex items-center gap-1.5">
                           <input
                             type="date"
                             name="until"
@@ -178,11 +162,11 @@ export default async function AdminListingsPage() {
                                 ? listing.featured_until.slice(0, 10)
                                 : ""
                             }
-                            className="rounded border border-gray-200 px-2 py-1 text-xs text-gray-700 focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-400"
+                            className="field num !px-2 !py-1 !text-xs"
                           />
                           <button
                             type="submit"
-                            className="rounded bg-amber-500 px-2 py-1 text-xs font-semibold text-white hover:bg-amber-600 transition-colors"
+                            className="rounded-lg bg-brand px-3 py-1.5 text-xs font-semibold text-on-brand transition-colors hover:bg-brand-deep"
                           >
                             Set
                           </button>
@@ -191,14 +175,14 @@ export default async function AdminListingsPage() {
                         <form action={handleClearFeatured}>
                           <button
                             type="submit"
-                            className="rounded border border-gray-200 bg-white px-2 py-1 text-xs font-medium text-gray-600 hover:bg-gray-100 transition-colors"
+                            className="rounded-lg border border-hairline px-2.5 py-1 text-xs font-medium text-muted transition-colors hover:text-ink"
                           >
                             Clear featured
                           </button>
                         </form>
                         <Link
                           href={`/dashboard/${listing.id}/edit`}
-                          className="text-xs font-medium text-teal-600 hover:text-teal-800 transition-colors"
+                          className="text-xs font-medium text-accent transition-colors hover:text-accent-deep"
                         >
                           Edit
                         </Link>
