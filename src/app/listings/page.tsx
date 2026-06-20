@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import Link from "next/link";
 import { MapIcon, SearchX } from "lucide-react";
 import { createServerClient } from "@/lib/supabase/server";
@@ -149,13 +150,19 @@ export default async function ListingsPage({
 
       {/* Filters */}
       <div className="card mt-10 p-5">
-        <Filters
-          categories={categories ?? []}
-          regions={regions ?? []}
-          currentCategory={categorySlug ?? ""}
-          currentRegion={regionSlug ?? ""}
-          currentQ={q ?? ""}
-        />
+        <Suspense
+          fallback={
+            <div className="h-11 animate-pulse rounded-lg bg-linen" />
+          }
+        >
+          <Filters
+            categories={categories ?? []}
+            regions={regions ?? []}
+            currentCategory={categorySlug ?? ""}
+            currentRegion={regionSlug ?? ""}
+            currentQ={q ?? ""}
+          />
+        </Suspense>
       </div>
 
       {/* Results */}

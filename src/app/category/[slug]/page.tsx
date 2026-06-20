@@ -35,9 +35,7 @@ export async function generateMetadata({
     .eq("slug", slug)
     .maybeSingle();
 
-  if (!category) {
-    return { title: "Category Not Found — Ceylon Directory" };
-  }
+  if (!category) notFound();
 
   return {
     title: `${category.name} — Ceylon Directory`,

@@ -35,9 +35,7 @@ export async function generateMetadata({
     .eq("slug", slug)
     .maybeSingle();
 
-  if (!region) {
-    return { title: "Region Not Found — Ceylon Directory" };
-  }
+  if (!region) notFound();
 
   return {
     title: `${region.name} — Ceylon Directory`,
