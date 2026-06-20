@@ -152,7 +152,7 @@ export function ListingForm({ categories, regions, listing }: Props) {
             name="price_info"
             type="text"
             defaultValue={listing?.price_info ?? ""}
-            placeholder="e.g. From $25 / person"
+            placeholder="e.g. From LKR 7,500 / person"
             className={inputClass(!!errors.price_info)}
           />
           <FieldError errors={errors.price_info} />
