@@ -172,6 +172,7 @@ export default async function AdminListingsPage() {
                           <input
                             type="date"
                             name="until"
+                            required
                             defaultValue={
                               listing.featured_until
                                 ? listing.featured_until.slice(0, 10)
