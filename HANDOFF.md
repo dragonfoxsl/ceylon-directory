@@ -1,6 +1,6 @@
 # Handoff — Ceylon Directory (Sri Lanka Tourist Services Directory)
 
-_Last updated: 2026-06-20_
+_Last updated: 2026-06-21_
 
 ## What this is
 
@@ -15,6 +15,40 @@ are deferred to a later phase.
 - **Stack:** Next.js 16 (App Router, TS, Tailwind) + Supabase (Postgres, Auth,
   Storage, RLS). Vitest for unit tests. Deploy target: Vercel + hosted Supabase.
 - **Setup & deploy runbook:** `README.md` (the canonical reference now).
+
+## Design system (v2) — ✅ complete, merged to `main`, pushed
+
+_Updated 2026-06-21._ The whole app was redesigned from stock Next.js styling to the
+**Ceylon Boutique Heritage** system in `DESIGN.md`, plus two new capabilities. All
+merged to `main` and pushed (latest `66023b6`). **20/20 tests pass; build clean (16
+routes); ESLint clean.**
+
+- **Design foundation:** self-hosted **Satoshi** (variable woff2, Fontshare, in
+  `src/app/fonts/`) + **Geist Mono** via `src/lib/fonts.ts`. `globals.css` holds the warm
+  token system — light `:root` + `.dark` overrides, Tailwind v4 `@theme` mapping
+  (`bg-canvas`/`text-ink`/`text-accent`/`bg-shell`…), class-driven dark variant, and
+  reusable primitives: `.btn(-primary/-secondary/-onbrand)`, `.card`, `.chip-*`,
+  `.field`, `.eyebrow`, `.num`, `.reveal`. **Lucide** icons (no emoji). Dark theme via
+  `ThemeToggle` (`useSyncExternalStore` + no-flash head script).
+- **Every screen rebuilt:** home, browse + `Filters` (debounced search, active pills),
+  listing detail, category/region, about, auth (split brand-panel layout in
+  `(auth)/layout.tsx`), provider dashboard + `ListingForm`/`ImageUploader`/`StatusBadge`
+  (→ chips) + new/edit/promote, admin (pending/all/promotions + `AdminTabs`).
+- **`next/image`** everywhere — `next.config.ts` `remotePatterns` derives the Supabase
+  Storage host from `NEXT_PUBLIC_SUPABASE_URL` (works local + prod) + picsum for mockups.
+- **Region map view** at `/map` (Leaflet + react-leaflet v5): clusters listings at the
+  11 **region centroids** (`src/lib/regions.ts`) since listings have **no per-record
+  lat/lng**; terracotta→gold pins, mono counts, warm/dark CARTO tiles via CSS filter,
+  list+map split (mobile List/Map toggle).
+- **Verification:** public pages screenshot-checked light+dark; auth-gated screens
+  verified via a **local-only** seeded admin (`admin@ceylon.test` / `Test1234!` — local
+  Supabase only, NOT prod).
+
+**Deferred from v2 (intentional):**
+
+- **Exact map pins** need a migration adding `latitude`/`longitude` to `listings` + a
+  map-picker in `ListingForm`; until then `/map` uses region centroids (approximate).
+- The promote page bank-transfer / PayHere details are still placeholders (see below).
 
 ## Current state — ✅ v1 complete and merged to `main`
 
