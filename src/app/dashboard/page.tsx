@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { LayoutGrid, Plus } from "lucide-react";
 import { requireUser } from "@/lib/auth";
 import { createServerClient } from "@/lib/supabase/server";
 import { StatusBadge } from "@/components/StatusBadge";
@@ -31,73 +31,75 @@ export default async function DashboardPage() {
   const rows = (listings ?? []) as unknown as Listing[];
 
   return (
-    <div className="mx-auto max-w-5xl px-6 py-12">
+    <div className="mx-auto max-w-[1100px] px-6 py-12">
       {/* Header */}
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-10">
+      <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 tracking-tight">My Listings</h1>
-          <p className="mt-1 text-gray-500 text-sm">
+          <p className="eyebrow">Dashboard</p>
+          <h1 className="mt-3 text-3xl font-bold tracking-tight text-ink">
+            My listings
+          </h1>
+          <p className="mt-2 text-sm text-muted">
             Manage your Sri Lanka tourist service listings.
           </p>
         </div>
-        <Link
-          href="/dashboard/new"
-          className="inline-flex items-center gap-2 rounded-full bg-teal-600 px-6 py-2.5 text-sm font-semibold text-white shadow hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 transition-colors"
-        >
-          <span aria-hidden="true">+</span> Add listing
+        <Link href="/dashboard/new" className="btn btn-primary shrink-0">
+          <Plus className="h-4 w-4" strokeWidth={2.5} />
+          Add listing
         </Link>
       </div>
 
       {/* Empty state */}
       {rows.length === 0 ? (
-        <div className="rounded-2xl border-2 border-dashed border-teal-200 bg-teal-50 py-20 px-8 text-center">
-          <div className="text-5xl mb-4" aria-hidden="true">🌴</div>
-          <h2 className="text-xl font-semibold text-teal-800 mb-2">No listings yet</h2>
-          <p className="text-teal-600 max-w-md mx-auto mb-6">
-            Add your first tourist service — hotels, tours, transport or experiences — and
-            reach thousands of travellers exploring Sri Lanka.
+        <div className="card flex flex-col items-center gap-4 px-8 py-20 text-center">
+          <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-linen text-brand">
+            <LayoutGrid className="h-7 w-7" strokeWidth={1.5} />
+          </span>
+          <h2 className="text-xl font-semibold text-ink">No listings yet</h2>
+          <p className="max-w-md text-muted">
+            Add your first service — a tour, stay, transfer, or experience — and
+            reach travellers planning their Sri Lanka trip.
           </p>
-          <Link
-            href="/dashboard/new"
-            className="inline-block rounded-full bg-teal-700 px-8 py-3 text-sm font-semibold text-white hover:bg-teal-600 transition-colors"
-          >
+          <Link href="/dashboard/new" className="btn btn-primary mt-2">
+            <Plus className="h-4 w-4" strokeWidth={2.5} />
             Add your first listing
           </Link>
         </div>
       ) : (
-        <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
-          <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-50">
-              <tr>
-                <th className="py-3 pl-6 pr-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
-                  Title
-                </th>
-                <th className="py-3 px-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500 hidden sm:table-cell">
+        <div className="card overflow-hidden p-0">
+          <table className="min-w-full text-left">
+            <thead>
+              <tr className="bg-linen">
+                <th className="eyebrow py-3 pl-6 pr-3 font-medium">Title</th>
+                <th className="eyebrow hidden py-3 px-3 font-medium sm:table-cell">
                   Category
                 </th>
-                <th className="py-3 px-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500 hidden md:table-cell">
+                <th className="eyebrow hidden py-3 px-3 font-medium md:table-cell">
                   Region
                 </th>
-                <th className="py-3 px-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
-                  Status
-                </th>
-                <th className="py-3 pl-3 pr-6 text-right text-xs font-semibold uppercase tracking-wider text-gray-500">
+                <th className="eyebrow py-3 px-3 font-medium">Status</th>
+                <th className="eyebrow py-3 pl-3 pr-6 text-right font-medium">
                   Actions
                 </th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-100 bg-white">
+            <tbody>
               {rows.map((listing) => (
-                <tr key={listing.id} className="hover:bg-gray-50 transition-colors">
-                  <td className="py-4 pl-6 pr-3">
-                    <div className="font-medium text-gray-900 text-sm">{listing.title}</div>
+                <tr
+                  key={listing.id}
+                  className="border-t border-hairline transition-colors hover:bg-linen/50"
+                >
+                  <td className="py-4 pl-6 pr-3 align-top">
+                    <div className="text-sm font-medium text-ink">
+                      {listing.title}
+                    </div>
                     {listing.status === "rejected" && listing.admin_note && (
-                      <div className="mt-1.5 rounded-md bg-red-50 border border-red-200 px-3 py-1.5 text-xs text-red-700">
+                      <div className="mt-1.5 rounded-md border border-rejected/30 bg-rejected/10 px-3 py-1.5 text-xs text-rejected">
                         <span className="font-semibold">Reviewer note: </span>
                         {listing.admin_note}
                       </div>
                     )}
-                    <div className="mt-1 text-xs text-gray-400">
+                    <div className="num mt-1 text-xs text-muted">
                       {new Date(listing.created_at).toLocaleDateString("en-GB", {
                         day: "numeric",
                         month: "short",
@@ -105,26 +107,26 @@ export default async function DashboardPage() {
                       })}
                     </div>
                   </td>
-                  <td className="py-4 px-3 text-sm text-gray-600 hidden sm:table-cell">
+                  <td className="hidden py-4 px-3 align-top text-sm text-muted sm:table-cell">
                     {listing.categories?.name ?? "—"}
                   </td>
-                  <td className="py-4 px-3 text-sm text-gray-600 hidden md:table-cell">
+                  <td className="hidden py-4 px-3 align-top text-sm text-muted md:table-cell">
                     {listing.regions?.name ?? "—"}
                   </td>
-                  <td className="py-4 px-3">
+                  <td className="py-4 px-3 align-top">
                     <StatusBadge status={listing.status} />
                   </td>
-                  <td className="py-4 pl-3 pr-6 text-right">
-                    <div className="flex items-center justify-end gap-3">
+                  <td className="py-4 pl-3 pr-6 text-right align-top">
+                    <div className="flex items-center justify-end gap-4">
                       <Link
                         href={`/dashboard/${listing.id}/edit`}
-                        className="text-sm font-medium text-teal-600 hover:text-teal-800 transition-colors"
+                        className="text-sm font-medium text-accent transition-colors hover:text-accent-deep"
                       >
                         Edit
                       </Link>
                       <Link
                         href={`/dashboard/${listing.id}/promote`}
-                        className="text-sm font-medium text-amber-600 hover:text-amber-800 transition-colors"
+                        className="text-sm font-medium text-muted transition-colors hover:text-ink"
                       >
                         Promote
                       </Link>

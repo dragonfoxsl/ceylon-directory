@@ -27,7 +27,7 @@ Provider: `dashboard`, `dashboard-dark`, `newedit-form`, `newedit-form-dark`,
 Admin: `admin-pending`, `admin-pending-dark`, `admin-manage-all`,
 `admin-promotions`
 
-## Desktop frames (2560px) — 13
+## Desktop frames (2560px) — 16
 
 Public: `home-landing-desktop` (+ `-2`, `-3` alternates; `-3` is the most
 complete, with the closing CTA band), `browse-listings-desktop`,
@@ -35,11 +35,10 @@ complete, with the closing CTA band), `browse-listings-desktop`,
 `map-browse-desktop`
 Auth: `signup-desktop`, `login-desktop`
 Provider: `dashboard-desktop`, `newedit-form-desktop`, `promote-listing-desktop`
+Admin: `admin-pending-desktop`, `admin-manage-all-desktop`,
+`admin-promotions-desktop` (generated in the Stitch UI — the MCP DESKTOP
+generation kept failing for these three)
 
 ## Not yet exported
 
-- **Admin desktop frames** (Pending Queue, Manage-All table, Promotions Queue):
-  Stitch failed to generate these (DESKTOP generation errored twice). Use the
-  mobile admin frames + the dense-table rules in the design system, or retry
-  generation later.
 - No **dark** desktop variants (only light desktop was generated).

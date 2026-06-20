@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { SearchX } from "lucide-react";
 import { createServerClient } from "@/lib/supabase/server";
 import { sortListings } from "@/lib/featured";
 import { ListingCard } from "@/components/ListingCard";
@@ -23,6 +25,7 @@ type Listing = {
   featured_until: string | null;
   created_at: string;
   cover_url?: string | null;
+  region?: string | null;
 };
 
 export default async function ListingsPage({
@@ -77,7 +80,9 @@ export default async function ListingsPage({
   // Build listings query — approved + active is required in every public query
   let query = supabase
     .from("listings")
-    .select("id, slug, title, price_info, status, is_active, is_featured, featured_until, created_at")
+    .select(
+      "id, slug, title, price_info, status, is_active, is_featured, featured_until, created_at, regions(name)"
+    )
     .eq("status", "approved")
     .eq("is_active", true);
 
@@ -108,7 +113,11 @@ export default async function ListingsPage({
         cover_url = data.publicUrl;
       }
 
-      listings.push({ ...listing, cover_url });
+      const region =
+        (listing as unknown as { regions?: { name: string } | null }).regions
+          ?.name ?? null;
+
+      listings.push({ ...listing, cover_url, region });
     }
   }
 
@@ -117,57 +126,61 @@ export default async function ListingsPage({
   const hasFilters = !!categorySlug || !!regionSlug || !!q;
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="mx-auto max-w-[1320px] px-6 py-12 lg:py-16">
       {/* Page header */}
-      <section className="bg-gradient-to-br from-teal-900 to-emerald-800 text-white py-14 px-6">
-        <div className="mx-auto max-w-7xl">
-          <h1 className="text-3xl sm:text-4xl font-bold mb-2">
-            Browse All Services
-          </h1>
-          <p className="text-teal-200 text-base sm:text-lg">
-            Every listing verified by our team before going live
-          </p>
-        </div>
-      </section>
+      <header className="max-w-2xl">
+        <p className="eyebrow">Directory</p>
+        <h1 className="mt-3 text-[clamp(2rem,4vw,3rem)] font-bold tracking-tight text-ink">
+          Browse listings
+        </h1>
+        <p className="mt-3 text-lg text-muted">
+          Every service here is reviewed by hand before it goes live.
+        </p>
+      </header>
 
-      <div className="mx-auto max-w-7xl px-6 py-10">
-        {/* Filters */}
-        <div className="mb-8 rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
-          <Filters
-            categories={categories ?? []}
-            regions={regions ?? []}
-            currentCategory={categorySlug ?? ""}
-            currentRegion={regionSlug ?? ""}
-            currentQ={q ?? ""}
-          />
-        </div>
-
-        {/* Results */}
-        {sorted.length > 0 ? (
-          <>
-            <p className="text-sm text-gray-500 mb-6">
-              {sorted.length} {sorted.length === 1 ? "listing" : "listings"} found
-            </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {sorted.map((listing) => (
-                <ListingCard key={listing.id} listing={listing} />
-              ))}
-            </div>
-          </>
-        ) : (
-          <div className="rounded-2xl border-2 border-dashed border-teal-200 bg-teal-50 py-20 px-8 text-center">
-            <div className="text-5xl mb-4" aria-hidden="true">🌴</div>
-            <h2 className="text-xl font-semibold text-teal-800 mb-2">
-              {hasFilters ? "No listings match your filters" : "No listings yet"}
-            </h2>
-            <p className="text-teal-600 max-w-md mx-auto">
-              {hasFilters
-                ? "Try removing some filters or searching with a different term."
-                : "Check back soon — new services are being verified all the time."}
-            </p>
-          </div>
-        )}
+      {/* Filters */}
+      <div className="card mt-10 p-5">
+        <Filters
+          categories={categories ?? []}
+          regions={regions ?? []}
+          currentCategory={categorySlug ?? ""}
+          currentRegion={regionSlug ?? ""}
+          currentQ={q ?? ""}
+        />
       </div>
+
+      {/* Results */}
+      {sorted.length > 0 ? (
+        <>
+          <p className="num mt-8 text-sm text-muted">
+            {sorted.length} {sorted.length === 1 ? "listing" : "listings"}
+          </p>
+          <div className="mt-5 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {sorted.map((listing) => (
+              <ListingCard key={listing.id} listing={listing} />
+            ))}
+          </div>
+        </>
+      ) : (
+        <div className="card mt-8 flex flex-col items-center gap-4 px-8 py-20 text-center">
+          <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-linen text-brand">
+            <SearchX className="h-7 w-7" strokeWidth={1.5} />
+          </span>
+          <h2 className="text-xl font-semibold text-ink">
+            {hasFilters ? "No listings match your filters" : "No listings yet"}
+          </h2>
+          <p className="max-w-md text-muted">
+            {hasFilters
+              ? "Try removing a filter or searching with a different term."
+              : "Check back soon — new services are being verified all the time."}
+          </p>
+          {hasFilters && (
+            <Link href="/listings" className="btn btn-secondary mt-2">
+              Clear filters
+            </Link>
+          )}
+        </div>
+      )}
     </div>
   );
 }
