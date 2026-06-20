@@ -1,26 +1,269 @@
 @import "tailwindcss";
 
+/* Dark theme is class-driven (toggle adds `.dark` to <html>), not OS-driven. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ── Ceylon Boutique Heritage tokens ───────────────────────────────────────
+   One continuously warm palette. Green is the brand, terracotta the lone
+   accent, temple gold reserved for Featured only. Never a cool grey. */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Surfaces */
+  --canvas: #faf6ef; /* warm ivory page bg */
+  --linen: #f3ece0; /* alternating bands, inset panels */
+  --surface: #ffffff; /* cards, containers */
+  --elevated: #ffffff; /* popovers, sticky bars */
+  --hairline: #e6dccb; /* 1px borders, dividers */
+
+  /* Brand & accents */
+  --brand: #1c4a37; /* Kandyan green */
+  --brand-deep: #143a2b; /* pressed/hover, footer */
+  --on-brand: #faf6ef; /* label on brand fill */
+  --accent: #bf5a3c; /* terracotta — links, secondary CTA, focus, pins */
+  --accent-deep: #a44a2f;
+  --gold: #c19a4b; /* temple gold — Featured only */
+
+  /* Text */
+  --ink: #241f1a; /* primary text (never pure black) */
+  --muted: #6e6456; /* secondary text, metadata, eyebrows */
+
+  /* Status */
+  --pending: #b7791f;
+  --approved: #2f7d5b;
+  --rejected: #9c4a3c;
+
+  /* Shell — nav + footer chrome (theme-fixed, always carries light text) */
+  --shell: #1c4a37; /* top nav */
+  --shell-deep: #143a2b; /* footer */
+  --on-shell: #faf6ef;
+  --on-shell-muted: #b7c4ba;
+
+  --ring: var(--accent);
 }
 
+.dark {
+  --canvas: #14130f; /* char green, warm near-black */
+  --linen: #1a1813;
+  --surface: #1e1c17; /* raised card */
+  --elevated: #26231c; /* popovers, modals, sticky */
+  --hairline: #39342b;
+
+  --brand: #5fa882; /* jade green */
+  --brand-deep: #4d916e;
+  --on-brand: #14130f; /* dark label on jade fill */
+  --accent: #d98463; /* terracotta glow */
+  --accent-deep: #c4704f;
+  --gold: #d9b65e; /* temple gold bright */
+
+  --ink: #f0e9db; /* parchment */
+  --muted: #a79c8a; /* muted sand */
+
+  --pending: #d8a23b;
+  --approved: #5fa882;
+  --rejected: #cf7a66;
+
+  --shell: #1a1813; /* warm near-black nav */
+  --shell-deep: #110f0c; /* footer */
+  --on-shell: #f0e9db;
+  --on-shell-muted: #8c8475;
+
+  --ring: var(--accent);
+}
+
+/* Map tokens into Tailwind's utility namespace so `bg-canvas`, `text-ink`,
+   `border-hairline`, `text-accent` etc. all work in both themes. */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-canvas: var(--canvas);
+  --color-linen: var(--linen);
+  --color-surface: var(--surface);
+  --color-elevated: var(--elevated);
+  --color-hairline: var(--hairline);
+
+  --color-brand: var(--brand);
+  --color-brand-deep: var(--brand-deep);
+  --color-on-brand: var(--on-brand);
+  --color-accent: var(--accent);
+  --color-accent-deep: var(--accent-deep);
+  --color-gold: var(--gold);
+
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+
+  --color-pending: var(--pending);
+  --color-approved: var(--approved);
+  --color-rejected: var(--rejected);
+
+  --color-shell: var(--shell);
+  --color-shell-deep: var(--shell-deep);
+  --color-on-shell: var(--on-shell);
+  --color-on-shell-muted: var(--on-shell-muted);
+
+  --font-sans: var(--font-satoshi), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  --radius-card: 1.5rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ── Base ──────────────────────────────────────────────────────────────── */
+body {
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  /* Smooth light↔dark crossfade. */
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent) 28%, transparent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ── Reusable primitives ───────────────────────────────────────────────── */
+@layer components {
+  /* Uppercase, letter-spaced category/region/section kicker. */
+  .eyebrow {
+    font-size: 0.75rem;
+    line-height: 1;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* Numeric — prices, dates, IDs, dashboard counts. */
+  .num {
+    font-family: var(--font-mono);
+    font-feature-settings: "tnum" 1;
+  }
+
+  /* Buttons. Flat, no glow; tactile -1px on press. */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 0.75rem;
+    padding: 0.625rem 1.25rem;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    line-height: 1.2;
+    transition: background-color 0.18s ease, color 0.18s ease,
+      border-color 0.18s ease, transform 0.06s ease;
+    cursor: pointer;
+  }
+  .btn:active {
+    transform: translateY(1px);
+  }
+  .btn-primary {
+    background: var(--brand);
+    color: var(--on-brand);
+  }
+  .btn-primary:hover {
+    background: var(--brand-deep);
+  }
+  .btn-secondary {
+    background: transparent;
+    color: var(--accent);
+    border: 1px solid color-mix(in srgb, var(--accent) 55%, transparent);
+  }
+  .btn-secondary:hover {
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
+    border-color: var(--accent);
+  }
+  /* For use on green/dark bands where a green fill would vanish. */
+  .btn-onbrand {
+    background: var(--canvas);
+    color: var(--brand);
+  }
+  .btn-onbrand:hover {
+    background: color-mix(in srgb, var(--canvas) 88%, var(--brand));
+  }
+
+  /* Listing card surface. */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-card);
+    box-shadow: 0 1px 2px color-mix(in srgb, var(--ink) 6%, transparent),
+      0 12px 28px -18px color-mix(in srgb, var(--ink) 22%, transparent);
+  }
+
+  /* Status pill — tinted bg of the status color, solid color text. */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    border-radius: 9999px;
+    padding: 0.25rem 0.625rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1;
+  }
+  .chip-pending {
+    background: color-mix(in srgb, var(--pending) 14%, transparent);
+    color: var(--pending);
+  }
+  .chip-approved {
+    background: color-mix(in srgb, var(--approved) 14%, transparent);
+    color: var(--approved);
+  }
+  .chip-rejected {
+    background: color-mix(in srgb, var(--rejected) 14%, transparent);
+    color: var(--rejected);
+  }
+  .chip-featured {
+    background: color-mix(in srgb, var(--gold) 16%, transparent);
+    color: var(--gold);
+  }
+
+  /* Form fields. */
+  .field {
+    width: 100%;
+    background: var(--surface);
+    color: var(--ink);
+    border: 1px solid var(--hairline);
+    border-radius: 0.625rem;
+    padding: 0.625rem 0.875rem;
+    font-size: 0.9375rem;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .field::placeholder {
+    color: color-mix(in srgb, var(--muted) 80%, transparent);
+  }
+  .field:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent);
+  }
+}
+
+/* Staggered fade-up reveal on load. Pair with inline animation-delay for a
+   waterfall. Disabled wholesale by the reduced-motion block above. */
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.reveal {
+  animation: reveal-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
 }

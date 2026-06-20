@@ -1,18 +1,11 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { MapPin } from "lucide-react";
+import Link from "next/link";
 import "./globals.css";
+import { satoshi, geistMono } from "@/lib/fonts";
+import { themeInitScript } from "@/components/ThemeToggle";
 import { Nav } from "@/components/Nav";
 import { getSessionUser } from "@/lib/auth";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Ceylon Directory — Verified Sri Lanka Tourist Services",
@@ -30,32 +23,49 @@ export default async function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${satoshi.variable} ${geistMono.variable} h-full`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col bg-gray-50 text-gray-900">
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
+      <body className="min-h-full flex flex-col">
         <Nav user={user} />
         <main className="flex-1">{children}</main>
-        <footer className="bg-teal-900 text-teal-200 py-10">
-          <div className="mx-auto max-w-7xl px-6">
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-              <div>
-                <p className="text-lg font-bold text-white">Ceylon Directory</p>
-                <p className="text-sm mt-1">
-                  Verified tourist services across Sri Lanka
+
+        <footer className="bg-shell-deep text-on-shell-muted">
+          <div className="mx-auto max-w-[1320px] px-6 py-14">
+            <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
+              <div className="max-w-xs">
+                <p className="flex items-center gap-2 text-lg font-bold text-on-shell">
+                  <MapPin className="h-5 w-5 text-gold" strokeWidth={2} />
+                  Ceylon Directory
+                </p>
+                <p className="mt-3 text-sm leading-relaxed">
+                  A curated directory of verified tourist services across Sri
+                  Lanka — every listing reviewed by hand before it goes live.
                 </p>
               </div>
-              <nav aria-label="Footer navigation" className="flex gap-6 text-sm">
-                <a href="/listings" className="hover:text-white transition-colors">
-                  Browse
-                </a>
-                <a href="/login" className="hover:text-white transition-colors">
+              <nav
+                aria-label="Footer"
+                className="flex flex-col gap-3 text-sm sm:items-end"
+              >
+                <Link href="/listings" className="hover:text-on-shell transition-colors">
+                  Browse listings
+                </Link>
+                <Link href="/about" className="hover:text-on-shell transition-colors">
+                  How verification works
+                </Link>
+                <Link href="/login" className="hover:text-on-shell transition-colors">
                   List your business
-                </a>
+                </Link>
               </nav>
             </div>
-            <p className="mt-8 text-xs text-teal-400">
-              © {new Date().getFullYear()} Ceylon Directory. All rights reserved.
-            </p>
+            <div className="mt-12 border-t border-white/10 pt-6">
+              <p className="num text-xs">
+                © {new Date().getFullYear()} Ceylon Directory · Colombo, Sri Lanka
+              </p>
+            </div>
           </div>
         </footer>
       </body>
