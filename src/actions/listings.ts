@@ -136,6 +136,7 @@ export async function updateListing(
       status: "pending",
       is_active: false,
       is_featured: false,
+      featured_until: null,
       updated_at: new Date().toISOString(),
     })
     .eq("id", id);
