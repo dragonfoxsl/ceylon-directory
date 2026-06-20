@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Heritage Portal | Manage All Listings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Using script id="tailwind-config" as requested -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed": "#bceed3",
+                    "on-surface-variant": "#414944",
+                    "tertiary-fixed-dim": "#f9b5b4",
+                    "surface-tint": "#3a6752",
+                    "tertiary-fixed": "#ffdad8",
+                    "on-error-container": "#93000a",
+                    "surface-container": "#edeeeb",
+                    "inverse-primary": "#a1d1b8",
+                    "outline-variant": "#c0c9c2",
+                    "surface-container-low": "#f3f4f0",
+                    "parchment": "#F0E9DB",
+                    "primary-container": "#1c4a37",
+                    "on-secondary-fixed-variant": "#7f2b11",
+                    "on-primary-fixed": "#002114",
+                    "on-tertiary": "#ffffff",
+                    "primary-fixed-dim": "#a1d1b8",
+                    "on-primary-container": "#89b9a0",
+                    "raised-surface": "#1E1C17",
+                    "secondary": "#9e4126",
+                    "on-tertiary-fixed-variant": "#693939",
+                    "warm-hairline": "#E6DCCB",
+                    "canvas-ivory": "#FAF6EF",
+                    "status-approved": "#2F7D5B",
+                    "on-tertiary-fixed": "#350f10",
+                    "on-background": "#1a1c1a",
+                    "muted-bark": "#6E6456",
+                    "primary": "#003322",
+                    "on-tertiary-container": "#de9d9c",
+                    "outline": "#717973",
+                    "tertiary-container": "#633434",
+                    "jade-green": "#5FA882",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed-dim": "#ffb5a0",
+                    "surface": "#f9faf6",
+                    "on-secondary-fixed": "#3b0a00",
+                    "inverse-surface": "#2e312f",
+                    "muted-sand": "#A79C8A",
+                    "on-surface": "#1a1c1a",
+                    "temple-gold": "#C19A4B",
+                    "surface-variant": "#e2e3df",
+                    "surface-container-highest": "#e2e3df",
+                    "status-rejected": "#9C4A3C",
+                    "inverse-on-surface": "#f0f1ee",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-container": "#75240a",
+                    "tertiary": "#491f1f",
+                    "surface-bright": "#f9faf6",
+                    "error-container": "#ffdad6",
+                    "secondary-container": "#ff8b69",
+                    "deep-forest": "#143A2B",
+                    "surface-container-high": "#e7e8e5",
+                    "terracotta-glow": "#D98463",
+                    "warm-ink": "#241F1A",
+                    "temple-gold-bright": "#D9B65E",
+                    "pure-surface": "#FFFFFF",
+                    "elevated-surface": "#26231C",
+                    "status-pending": "#B7791F",
+                    "secondary-fixed": "#ffdbd1",
+                    "background": "#f9faf6",
+                    "on-secondary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "warm-hairline-dark": "#39342B",
+                    "warm-linen": "#F3ECE0",
+                    "on-primary-fixed-variant": "#214f3c",
+                    "char-green": "#14130F",
+                    "surface-dim": "#d9dad7",
+                    "on-error": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "4rem",
+                    "gutter-desktop": "2rem",
+                    "container-max": "1320px",
+                    "gutter-mobile": "1rem",
+                    "margin-mobile": "1.5rem"
+            },
+            "fontFamily": {
+                    "body-md": ["Plus Jakarta Sans", "sans-serif"],
+                    "numeric-data": ["JetBrains Mono", "monospace"],
+                    "headline-lg": ["Plus Jakarta Sans", "sans-serif"],
+                    "label-eyebrow": ["Plus Jakarta Sans", "sans-serif"],
+                    "headline-md": ["Plus Jakarta Sans", "sans-serif"],
+                    "display-hero": ["Plus Jakarta Sans", "sans-serif"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans", "sans-serif"],
+                    "body-lg": ["Plus Jakarta Sans", "sans-serif"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "numeric-data": ["14px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "label-eyebrow": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.12em", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "500"}],
+                    "display-hero": ["clamp(40px, 5vw, 64px)", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #FAF6EF;
+        }
+        .custom-toggle:checked + .toggle-bg {
+            background-color: #003322;
+        }
+        .custom-toggle:checked + .toggle-bg .toggle-dot {
+            transform: translateX(100%);
+        }
+        .sticky-header {
+            position: sticky;
+            top: 5rem;
+            z-index: 30;
+        }
+    </style>
+</head>
+<body class="bg-canvas-ivory text-on-surface">
+<!-- TopNavBar -->
+<header class="bg-canvas-ivory dark:bg-char-green border-b border-warm-hairline dark:border-warm-hairline-dark fixed top-0 w-full z-50 h-20 flex items-center">
+<div class="flex justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto">
+<div class="flex items-center gap-12">
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">Heritage Portal</span>
+<nav class="hidden md:flex gap-8">
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-secondary dark:hover:text-terracotta-glow transition-colors duration-200 font-body-md text-body-md" href="#">Browse</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-secondary dark:hover:text-terracotta-glow transition-colors duration-200 font-body-md text-body-md" href="#">About</a>
+<a class="text-primary dark:text-primary-fixed border-b-2 border-secondary font-bold pb-1 font-body-md text-body-md" href="#">Verification</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border border-warm-hairline rounded-lg focus:outline-none focus:ring-1 focus:ring-terracotta-glow text-body-md" placeholder="Search entries..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-outline hover:text-primary transition-colors">notifications</button>
+<button class="material-symbols-outlined text-outline hover:text-primary transition-colors">settings</button>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-lg font-bold text-body-md transition-transform active:-translate-y-px duration-200">Create Entry</button>
+<img alt="Administrator profile avatar" class="w-10 h-10 rounded-full border border-warm-hairline object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1ailVr_H-kOQYRfuMqBfZomaa0u1DseUC5Wa9avpf7BIXBz_1TM519ANf2P_CXqBV1j1jo7XtxutGy689LsBMqh5xGd_TpdhkmDDGPN82VHeAGTjVTawTNA4Xq-jXifit69iXYHBHAMX8sLPnWXnNyf5TpftV14W-XLAm4NycEEThW4KMdZulFCHMRoL-7WMDfYhx4tlrT-oT4gD6SpUCe7TU2qKj_Hm4MLjdLuTHiUTKXK05T-EDJfQsmPTtyiL9twIqXH357jA"/>
+</div>
+</div>
+</div>
+</header>
+<main class="pt-28 pb-20 px-margin-desktop max-w-container-max mx-auto">
+<!-- Header & Counter -->
+<section class="mb-8">
+<h1 class="font-headline-lg text-headline-lg text-primary mb-2">Manage All Listings</h1>
+<div class="flex items-center gap-2">
+<span class="font-label-eyebrow text-label-eyebrow text-muted-sand uppercase tracking-widest">Global Directory</span>
+<div class="h-px w-8 bg-warm-hairline"></div>
+<span class="font-numeric-data text-numeric-data text-primary font-medium">1,284 Total Objects</span>
+</div>
+</section>
+<!-- Sticky Filter Bar -->
+<section class="sticky top-20 z-40 bg-canvas-ivory py-4 border-b border-warm-hairline mb-8">
+<div class="flex flex-wrap items-center gap-4">
+<div class="relative flex-grow max-w-xs">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-muted-sand text-sm">search</span>
+<input class="w-full pl-9 pr-4 py-2 bg-pure-surface border border-warm-hairline rounded focus:border-terracotta-glow outline-none text-body-md font-body-md" placeholder="Filter by ID or Name..." type="text"/>
+</div>
+<select class="bg-pure-surface border border-warm-hairline px-4 py-2 rounded text-body-md font-body-md text-on-surface-variant focus:border-terracotta-glow outline-none cursor-pointer">
+<option>All Status</option>
+<option>Pending</option>
+<option>Approved</option>
+<option>Rejected</option>
+</select>
+<select class="bg-pure-surface border border-warm-hairline px-4 py-2 rounded text-body-md font-body-md text-on-surface-variant focus:border-terracotta-glow outline-none cursor-pointer">
+<option>All Categories</option>
+<option>Architecture</option>
+<option>Culinary</option>
+<option>Textiles</option>
+<option>Artifacts</option>
+<option>Landmarks</option>
+<option>Festivals</option>
+<option>Handicrafts</option>
+<option>Literature</option>
+</select>
+<select class="bg-pure-surface border border-warm-hairline px-4 py-2 rounded text-body-md font-body-md text-on-surface-variant focus:border-terracotta-glow outline-none cursor-pointer">
+<option>All Regions</option>
+<option>Central Highlands</option>
+<option>Northern Plains</option>
+<option>Coastal South</option>
+<option>Eastern Shores</option>
+<option>Western Metro</option>
+<option>Sabaragamuwa</option>
+<option>North Western</option>
+<option>Uva Valley</option>
+<option>North Central</option>
+<option>Mannar Basin</option>
+<option>Galle Fort</option>
+</select>
+<button class="ml-auto flex items-center gap-2 text-primary font-bold text-body-md hover:text-secondary transition-colors">
+<span class="material-symbols-outlined text-lg">filter_alt</span>
+                    Advanced Filters
+                </button>
+</div>
+</section>
+<!-- Data Table Container -->
+<div class="bg-pure-surface border border-warm-hairline rounded-xl overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-warm-hairline">
+<th class="px-6 py-4 font-label-eyebrow text-label-eyebrow text-muted-bark uppercase tracking-wider">Title</th>
+<th class="px-6 py-4 font-label-eyebrow text-label-eyebrow text-muted-bark uppercase tracking-wider">Provider</th>
+<th class="px-6 py-4 font-label-eyebrow text-label-eyebrow text-muted-bark uppercase tracking-wider">Category</th>
+<th class="px-6 py-4 font-label-eyebrow text-label-eyebrow text-muted-bark uppercase tracking-wider">Region</th>
+<th class="px-6 py-4 font-label-eyebrow text-label-eyebrow text-muted-bark uppercase tracking-wider">Status</th>
+<th class="px-6 py-4 font-label-eyebrow text-label-eyebrow text-muted-bark uppercase tracking-wider">Featured Until</th>
+<th class="px-6 py-4 font-label-eyebrow text-label-eyebrow text-muted-bark uppercase tracking-wider">Active</th>
+<th class="px-6 py-4 font-label-eyebrow text-label-eyebrow text-muted-bark uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-warm-hairline">
+<!-- Row 1 -->
+<tr class="hover:bg-warm-linen transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded border border-warm-hairline object-cover" data-alt="A macro photograph of an ornate, hand-woven silk textile with intricate patterns of gold thread and deep jade green, captured with soft museum-quality lighting that highlights the texture and heritage craftsmanship of the fabric." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpS344VhkFlxQBZ4Q3dVaW3nUbq5rAf9rQdW6-nyEnV6iTcbbFDlibZejK07sFVkjeJfl0uzFlCpJJaG0ZJWTX6_20Eu7ktXjrCw7Sqb2m60bW_os2jg-Uc8FOsyvX73Sp89FqpJXr6XEK-BXxZTqzGo4jq8DNGyzjkCPBZvXVaWfGACQaKgLdYEuKnch3FlIII-lOXP3HuAaTjA-DDmI8d56K6Wxs4OmldhaZG7OeG3g2Oufrz10PAqAqgO6Q_HhjvAVuExwnq5Q"/>
+<div>
+<div class="font-body-md text-body-md font-bold text-primary">Kandy Silk Weaver's Guild</div>
+<div class="font-numeric-data text-[11px] text-muted-sand">ID: #HR-9921</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-body-md text-on-surface-variant">Heritage Crafts Council</td>
+<td class="px-6 py-4 text-body-md text-on-surface-variant">Textiles</td>
+<td class="px-6 py-4 text-body-md text-on-surface-variant">Central Highlands</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-[#2F7D5B]/10 text-status-approved rounded-full text-label-eyebrow font-bold">Approved</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<input class="font-numeric-data text-numeric-data border-warm-hairline rounded px-2 py-1 focus:ring-temple-gold focus:border-temple-gold outline-none" type="date" value="2024-12-31"/>
+<button class="bg-temple-gold text-white px-3 py-1 rounded text-label-eyebrow font-bold hover:bg-temple-gold-bright transition-colors uppercase">Set</button>
+</div>
+</td>
+<td class="px-6 py-4">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only custom-toggle" type="checkbox"/>
+<div class="w-10 h-5 bg-warm-hairline rounded-full toggle-bg transition-colors">
+<div class="absolute left-1 top-1 w-3 h-3 bg-white rounded-full toggle-dot transition-transform"></div>
+</div>
+</label>
+</td>
+<td class="px-6 py-4 text-right">
+<a class="text-secondary font-bold text-body-md hover:underline decoration-terracotta-glow underline-offset-4" href="#">Edit Entry</a>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-warm-linen transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded border border-warm-hairline object-cover" data-alt="An architectural detail of a restored colonial villa showing white-washed pillars and dark wood beams against a soft amber sunset glow, emphasizing clean lines and the historical significance of the structure in a quiet, boutique-style presentation." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvI64IanPPf5loGLyDpKV3Y1pqO5sX1XTnFYDtlaAnZlbrbrOZTXq85NiVWzJG2Aup2caSek1KLWjKBauM5UKCLi5mUeVIba_0d6HH_i1rGzBJ8kENr1cG1YtMx337p-iJlyjWJEJ3Yt1bM0aXKq3lzxCNtZDgjt47fTvZuqcUHjy7K5gADS6yRTmqIaPh3eZCkZ-Lhz6cywlHYApSCZ9pquAq20VsjAip5Xj-n8QOzyaygR40N_FYUaxoI49CFeIDm5-RUPtfHV4"/>
+<div>
+<div class="font-body-md text-body-md font-bold text-primary">Old Dutch Fort Residency</div>
+<div class="font-numeric-data text-[11px] text-muted-sand">ID: #HR-4432</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-body-md text-on-surface-variant">Southern Realty Trust</td>
+<td class="px-6 py-4 text-body-md text-on-surface-variant">Architecture</td>
+<td class="px-6 py-4 text-body-md text-on-surface-variant">Galle Fort</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-[#B7791F]/10 text-status-pending rounded-full text-label-eyebrow font-bold">Pending</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<input class="font-numeric-data text-numeric-data border-warm-hairline rounded px-2 py-1 focus:ring-temple-gold focus:border-temple-gold outline-none" type="date"/>
+<button class="bg-temple-gold text-white px-3 py-1 rounded text-label-eyebrow font-bold hover:bg-temple-gold-bright transition-colors uppercase">Set</button>
+</div>
+</td>
+<td class="px-6 py-4">
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only custom-toggle" type="checkbox"/>
+<div class="w-10 h-5 bg-warm-hairline rounded-full toggle-bg transition-colors">
+<div class="absolute left-1 top-1 w-3 h-3 bg-white rounded-full toggle-dot transition-transform"></div>
+</div>
+</label>
+</td>
+<td class="px-6 py-4 text-right">
+<a class="text-secondary font-bold text-body-md hover:underline decoration-terracotta-glow underline-offset-4" href="#">Edit Entry</a>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-warm-linen transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded border border-warm-hairline object-cover" data-alt="A close-up shot of hand-carved sandalwood sculptures sitting on a rough linen cloth, illuminated by warm side-lighting that casts soft shadows. The wood grains and intricate artisanal details are clearly visible, conveying a sense of timeless cultural heritage." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdcnVw_Q_MDGFscCvPGP5MtHazwhPJ56Xwf08kXKI3mggNmZ5RVrZZaKhwsroIMga3dCIaifUJFIcECWC8y5zO1Ou2CFsa6RO8J83en3GZ5thS0ags01uERvL0EJ7atdQbKblyTa0M-_LE9mG_QzoqRwEh3g-v8vEkFweOUJqx3Ys1M1okItDZvKGeEktImhjKL9x4m3y33SKdpY5WZB6HKXmiLhrijHn4bZkGdjxSZ9evNMUZr0e0mSVRpFk-r2HKuQjZTxU5lIg"/>
+<div>
+<div class="font-body-md text-body-md font-bold text-primary">Sandalwood Carvers Collective</div>
+<div class="font-numeric-data text-[11px] text-muted-sand">ID: #HR-1055</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-body-md text-on-surface-variant">Artisans of the North</td>
+<td class="px-6 py-4 text-body-md text-on-surface-variant">Handicrafts</td>
+<td class="px-6 py-4 text-body-md text-on-surface-variant">Northern Plains</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-[#9C4A3C]/10 text-status-rejected rounded-full text-label-eyebrow font-bold">Rejected</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<input class="font-numeric-data text-numeric-data border-warm-hairline rounded px-2 py-1 focus:ring-temple-gold focus:border-temple-gold outline-none" type="date"/>
+<button class="bg-temple-gold text-white px-3 py-1 rounded text-label-eyebrow font-bold hover:bg-temple-gold-bright transition-colors uppercase">Set</button>
+</div>
+</td>
+<td class="px-6 py-4">
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only custom-toggle" type="checkbox"/>
+<div class="w-10 h-5 bg-warm-hairline rounded-full toggle-bg transition-colors">
+<div class="absolute left-1 top-1 w-3 h-3 bg-white rounded-full toggle-dot transition-transform"></div>
+</div>
+</label>
+</td>
+<td class="px-6 py-4 text-right">
+<a class="text-secondary font-bold text-body-md hover:underline decoration-terracotta-glow underline-offset-4" href="#">Edit Entry</a>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-warm-linen transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded border border-warm-hairline object-cover" data-alt="An atmospheric wide shot of a misty lake at dawn with a traditional wooden fishing boat silhouetted against the rising sun. The colors are muted earth tones with a primary focus on deep greens and soft ivory mist, creating a tranquil and historic mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAw9PvVCNwXTRJK29bN4gA8xBOcynbgIAGrF2YCT-xf3Mo0BObn-7tQSI11mhGK_elK3Ka-ba2QrRORgo0KgdeUb61ESNQHvPmEJmA0A867yRmMbgnymvaFNRJw7nG6c8y_a_rVhVDtvOtnaE8bR7dtvTsmOnETfvB7XdjRKCb9w8KIQTu-yMVLCDQEUvx6jLJx-qZW7hx8c6OfUsFE4Kc5LPabrskZe1_1MM-9J9NIBhOVPw4Zcjo0Z6ALi34ArwnQy40IG-GjkTw"/>
+<div>
+<div class="font-body-md text-body-md font-bold text-primary">Lake Gregory Historical Tours</div>
+<div class="font-numeric-data text-[11px] text-muted-sand">ID: #HR-6771</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-body-md text-on-surface-variant">Victoria Heritage Co.</td>
+<td class="px-6 py-4 text-body-md text-on-surface-variant">Landmarks</td>
+<td class="px-6 py-4 text-body-md text-on-surface-variant">Uva Valley</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-[#2F7D5B]/10 text-status-approved rounded-full text-label-eyebrow font-bold">Approved</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<input class="font-numeric-data text-numeric-data border-warm-hairline rounded px-2 py-1 focus:ring-temple-gold focus:border-temple-gold outline-none" type="date" value="2025-05-15"/>
+<button class="bg-temple-gold text-white px-3 py-1 rounded text-label-eyebrow font-bold hover:bg-temple-gold-bright transition-colors uppercase">Set</button>
+</div>
+</td>
+<td class="px-6 py-4">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only custom-toggle" type="checkbox"/>
+<div class="w-10 h-5 bg-warm-hairline rounded-full toggle-bg transition-colors">
+<div class="absolute left-1 top-1 w-3 h-3 bg-white rounded-full toggle-dot transition-transform"></div>
+</div>
+</label>
+</td>
+<td class="px-6 py-4 text-right">
+<a class="text-secondary font-bold text-body-md hover:underline decoration-terracotta-glow underline-offset-4" href="#">Edit Entry</a>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-warm-linen transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded border border-warm-hairline object-cover" data-alt="A curated collection of antique brass culinary tools resting on a rustic wooden table in a sunlit kitchen. The composition is asymmetrical and confident, highlighting the warm metal tones and the unhurried atmosphere of traditional boutique cooking heritage." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqYl2WdCx9gFVP7Sm-CumxSb1oEY2YWgVWHAaSd1aU31-Vra54rmGziF48ff7oWqraxGDoghN3Q0CmL9SgXgctpI21wTKP4Qrq5akamnTWiA9CktKdxiJ42xfZNIIbJiBHYKHP2qM-v8OjnbZkjBk9GzdwT3Z3_Ttxezmmmt7G0mCxc7I1PGnfAvwoZN9OITqfOt0Lb5NjD25TtpDskylp7MSEjSlTAHpB-RGtIfvnqkin6igpf8nNivWBZb_SH2UZkutcfkxRhpI"/>
+<div>
+<div class="font-body-md text-body-md font-bold text-primary">Traditional Spice Grinders</div>
+<div class="font-numeric-data text-[11px] text-muted-sand">ID: #HR-2283</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-body-md text-on-surface-variant">Lanka Culinary Arts</td>
+<td class="px-6 py-4 text-body-md text-on-surface-variant">Culinary</td>
+<td class="px-6 py-4 text-body-md text-on-surface-variant">Western Metro</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-[#2F7D5B]/10 text-status-approved rounded-full text-label-eyebrow font-bold">Approved</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<input class="font-numeric-data text-numeric-data border-warm-hairline rounded px-2 py-1 focus:ring-temple-gold focus:border-temple-gold outline-none" type="date"/>
+<button class="bg-temple-gold text-white px-3 py-1 rounded text-label-eyebrow font-bold hover:bg-temple-gold-bright transition-colors uppercase">Set</button>
+</div>
+</td>
+<td class="px-6 py-4">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only custom-toggle" type="checkbox"/>
+<div class="w-10 h-5 bg-warm-hairline rounded-full toggle-bg transition-colors">
+<div class="absolute left-1 top-1 w-3 h-3 bg-white rounded-full toggle-dot transition-transform"></div>
+</div>
+</label>
+</td>
+<td class="px-6 py-4 text-right">
+<a class="text-secondary font-bold text-body-md hover:underline decoration-terracotta-glow underline-offset-4" href="#">Edit Entry</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination / Footer Controls -->
+<div class="px-6 py-4 bg-surface-container-low border-t border-warm-hairline flex items-center justify-between">
+<div class="flex items-center gap-4">
+<span class="text-label-eyebrow text-muted-sand font-bold uppercase">Rows per page:</span>
+<select class="bg-transparent border-none text-body-md font-numeric-data text-primary focus:ring-0 cursor-pointer">
+<option>10</option>
+<option>25</option>
+<option>50</option>
+</select>
+</div>
+<div class="flex items-center gap-8">
+<span class="font-numeric-data text-numeric-data text-on-surface-variant">1-5 of 1,284 entries</span>
+<div class="flex gap-2">
+<button class="p-2 border border-warm-hairline rounded hover:bg-warm-linen disabled:opacity-30">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="p-2 border border-warm-hairline rounded hover:bg-warm-linen">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-warm-linen dark:bg-raised-surface border-t border-warm-hairline dark:border-warm-hairline-dark">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-margin-desktop py-12 max-w-container-max mx-auto">
+<div class="mb-8 md:mb-0">
+<span class="font-headline-lg text-headline-lg font-bold text-primary dark:text-primary-fixed">Heritage Portal</span>
+<p class="text-muted-bark dark:text-muted-sand mt-2 font-body-md text-body-md">© 2024 Boutique-Heritage Directory. All rights reserved.</p>
+</div>
+<div class="flex flex-wrap gap-8">
+<a class="text-muted-bark dark:text-muted-sand font-label-eyebrow text-label-eyebrow hover:text-secondary dark:hover:text-terracotta-glow underline uppercase tracking-widest" href="#">Heritage Standards</a>
+<a class="text-muted-bark dark:text-muted-sand font-label-eyebrow text-label-eyebrow hover:text-secondary dark:hover:text-terracotta-glow underline uppercase tracking-widest" href="#">Terms of Service</a>
+<a class="text-muted-bark dark:text-muted-sand font-label-eyebrow text-label-eyebrow hover:text-secondary dark:hover:text-terracotta-glow underline uppercase tracking-widest" href="#">Privacy Policy</a>
+<a class="text-muted-bark dark:text-muted-sand font-label-eyebrow text-label-eyebrow hover:text-secondary dark:hover:text-terracotta-glow underline uppercase tracking-widest" href="#">Contact Support</a>
+</div>
+</div>
+</footer>
+<script>
+        // Simple Micro-interaction for Table Rows
+        document.querySelectorAll('tr').forEach(row => {
+            row.addEventListener('mouseenter', () => {
+                row.style.transition = 'transform 0.2s ease-out';
+            });
+            row.addEventListener('mouseleave', () => {
+                row.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Search Bar Focus Effect
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('ring-2', 'ring-terracotta-glow', 'ring-opacity-20');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('ring-2', 'ring-terracotta-glow', 'ring-opacity-20');
+        });
+    </script>
+</body></html>
