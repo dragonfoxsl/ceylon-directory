@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { SearchX } from "lucide-react";
+import { MapIcon, SearchX } from "lucide-react";
 import { createServerClient } from "@/lib/supabase/server";
 import { sortListings } from "@/lib/featured";
 import { ListingCard } from "@/components/ListingCard";
@@ -128,15 +128,24 @@ export default async function ListingsPage({
   return (
     <div className="mx-auto max-w-[1320px] px-6 py-12 lg:py-16">
       {/* Page header */}
-      <header className="max-w-2xl">
-        <p className="eyebrow">Directory</p>
-        <h1 className="mt-3 text-[clamp(2rem,4vw,3rem)] font-bold tracking-tight text-ink">
-          Browse listings
-        </h1>
-        <p className="mt-3 text-lg text-muted">
-          Every service here is reviewed by hand before it goes live.
-        </p>
-      </header>
+      <div className="flex flex-wrap items-start justify-between gap-4">
+        <header className="max-w-2xl">
+          <p className="eyebrow">Directory</p>
+          <h1 className="mt-3 text-[clamp(2rem,4vw,3rem)] font-bold tracking-tight text-ink">
+            Browse listings
+          </h1>
+          <p className="mt-3 text-lg text-muted">
+            Every service here is reviewed by hand before it goes live.
+          </p>
+        </header>
+        <Link
+          href="/map"
+          className="inline-flex items-center gap-2 rounded-xl border border-hairline px-4 py-2 text-sm font-medium text-ink transition-colors hover:border-accent hover:text-accent"
+        >
+          <MapIcon className="h-4 w-4" strokeWidth={2} />
+          Map view
+        </Link>
+      </div>
 
       {/* Filters */}
       <div className="card mt-10 p-5">
