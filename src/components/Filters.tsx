@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { ChevronDown, Search, X } from "lucide-react";
 
@@ -40,6 +40,15 @@ export function Filters({
     setPrevQ(currentQ);
     setQ(currentQ);
   }
+
+  // When the URL `q` changes (incl. Clear all / pill removal), drop any pending
+  // debounced push so a stale keystroke can't re-add a term the user cleared.
+  // Also cancels a pending push if the component unmounts mid-debounce.
+  useEffect(() => {
+    return () => {
+      if (debounce.current) clearTimeout(debounce.current);
+    };
+  }, [currentQ]);
 
   function pushParam(key: string, value: string) {
     const params = new URLSearchParams(searchParams.toString());

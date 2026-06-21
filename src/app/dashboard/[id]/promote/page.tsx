@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { requireUser } from "@/lib/auth";
 import { createServerClient } from "@/lib/supabase/server";
+import { getPromotionPaymentConfig } from "@/lib/promotion-config";
 import { requestPromotion } from "@/actions/promotion";
 
 type Props = {
@@ -40,6 +41,7 @@ export default async function PromoteListingPage({ params }: Props) {
     new Date(listing.featured_until) > now;
 
   const alreadyRequested = !!listing.promotion_requested_at;
+  const payment = getPromotionPaymentConfig();
 
   async function handleRequestPromotion() {
     "use server";
@@ -136,61 +138,92 @@ export default async function PromoteListingPage({ params }: Props) {
       ) : (
         /* State: not yet requested — payment instructions + request button */
         <>
-          {/* Payment instructions — CONFIGURABLE PLACEHOLDERS */}
-          {/* ⚠️ SITE OPERATOR: Replace all placeholder values below with your real payment details */}
+          {/* Payment instructions — driven by env config (see promotion-config.ts) */}
           <div className="mt-8">
             <p className="eyebrow">Step 1 of 2</p>
             <h2 className="mt-2 text-lg font-semibold text-ink">How to pay</h2>
             <p className="mt-1 text-sm text-muted">
-              Complete payment with one of the methods below, then request the
-              promotion to notify us.
+              {payment.configured
+                ? "Complete payment with one of the methods below, then request the promotion to notify us."
+                : "Request the promotion below and we'll be in touch with payment details."}
             </p>
 
-            <div className="mt-5 space-y-4">
-              {/* Bank transfer */}
-              <div className="card p-5">
-                <p className="flex items-center gap-2 text-sm font-semibold text-ink">
-                  <Landmark className="h-4 w-4 text-brand" strokeWidth={2} />
-                  Option A — Bank transfer
-                </p>
-                {/* SITE OPERATOR: replace with your real bank details */}
-                <dl className="mt-3 space-y-1.5 text-sm">
-                  {[
-                    ["Bank", "[Bank name — replace me]"],
-                    ["Account name", "[Account name — replace me]"],
-                    ["Account number", "[Account number — replace me]"],
-                    ["Amount", "[Price in LKR — replace me]"],
-                  ].map(([label, value]) => (
-                    <div key={label} className="flex gap-2">
-                      <dt className="w-32 shrink-0 text-muted">{label}</dt>
-                      <dd className="font-medium italic text-accent">{value}</dd>
-                    </div>
-                  ))}
-                  <div className="flex gap-2">
-                    <dt className="w-32 shrink-0 text-muted">Reference</dt>
-                    <dd className="num break-all text-xs text-ink">{id}</dd>
+            {payment.configured ? (
+              <div className="mt-5 space-y-4">
+                {payment.bank && (
+                  <div className="card p-5">
+                    <p className="flex items-center gap-2 text-sm font-semibold text-ink">
+                      <Landmark className="h-4 w-4 text-brand" strokeWidth={2} />
+                      {payment.payhereUrl ? "Option A — Bank transfer" : "Bank transfer"}
+                    </p>
+                    <dl className="mt-3 space-y-1.5 text-sm">
+                      {[
+                        ["Bank", payment.bank.name],
+                        ["Account name", payment.bank.accountName],
+                        ["Account number", payment.bank.accountNumber],
+                        ...(payment.price ? [["Amount", payment.price] as const] : []),
+                      ].map(([label, value]) => (
+                        <div key={label} className="flex gap-2">
+                          <dt className="w-32 shrink-0 text-muted">{label}</dt>
+                          <dd className="font-medium text-ink">{value}</dd>
+                        </div>
+                      ))}
+                      <div className="flex gap-2">
+                        <dt className="w-32 shrink-0 text-muted">Reference</dt>
+                        <dd className="num break-all text-xs text-ink">{id}</dd>
+                      </div>
+                    </dl>
+                    <p className="mt-3 text-xs text-muted">
+                      Use your listing ID as the payment reference so we can match it.
+                    </p>
                   </div>
-                </dl>
-                <p className="mt-3 text-xs text-muted">
-                  Use your listing ID as the payment reference so we can match it.
-                </p>
-              </div>
+                )}
 
-              {/* PayHere */}
-              <div className="card p-5">
-                <p className="flex items-center gap-2 text-sm font-semibold text-ink">
-                  <CreditCard className="h-4 w-4 text-brand" strokeWidth={2} />
-                  Option B — Pay online via PayHere
-                </p>
-                {/* SITE OPERATOR: replace with your real PayHere payment link */}
-                <p className="mt-2 text-sm italic text-accent">
-                  [PayHere payment link — replace me]
-                </p>
-                <p className="mt-1 text-xs text-muted">
-                  After paying on PayHere, return here and request the promotion.
+                {payment.payhereUrl && (
+                  <div className="card p-5">
+                    <p className="flex items-center gap-2 text-sm font-semibold text-ink">
+                      <CreditCard className="h-4 w-4 text-brand" strokeWidth={2} />
+                      {payment.bank ? "Option B — Pay online via PayHere" : "Pay online via PayHere"}
+                    </p>
+                    {payment.price && (
+                      <p className="num mt-2 text-sm font-medium text-ink">
+                        {payment.price}
+                      </p>
+                    )}
+                    <a
+                      href={payment.payhereUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-secondary mt-3"
+                    >
+                      Pay with PayHere
+                    </a>
+                    <p className="mt-2 text-xs text-muted">
+                      After paying on PayHere, return here and request the promotion.
+                    </p>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div className="card mt-5 p-5">
+                <p className="text-sm text-muted">
+                  Payment details aren&apos;t set up online yet. Request the
+                  promotion below and an admin will follow up
+                  {payment.contactEmail ? (
+                    <>
+                      {" "}at{" "}
+                      <a
+                        href={`mailto:${payment.contactEmail}`}
+                        className="font-medium text-accent hover:underline"
+                      >
+                        {payment.contactEmail}
+                      </a>
+                    </>
+                  ) : null}
+                  {" "}with how to pay.
                 </p>
               </div>
-            </div>
+            )}
           </div>
 
           {/* Request button — step 2 */}

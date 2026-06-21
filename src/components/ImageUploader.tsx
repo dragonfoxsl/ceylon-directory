@@ -87,7 +87,12 @@ export function ImageUploader({ listingId }: { listingId: string }) {
           .select("id, storage_path, sort_order, is_cover")
           .single();
 
-        if (insertErr) throw new Error(insertErr.message);
+        if (insertErr) {
+          // The object uploaded but its DB row failed — remove the now-orphaned
+          // file so storage doesn't accumulate unreferenced uploads.
+          await supabase.storage.from("listing-images").remove([storagePath]);
+          throw new Error(insertErr.message);
+        }
 
         const publicUrl = supabase.storage
           .from("listing-images")

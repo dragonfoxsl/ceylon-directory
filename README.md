@@ -101,6 +101,19 @@ In the Vercel project settings → Environment Variables, set (for all environme
 
 > No service-role key is needed — the app never uses one. Do **not** add it.
 
+**Promote-page payment details (optional, server-only).** The promote page
+(`/dashboard/[id]/promote`) reads these to show providers how to pay for featured
+placement. Set whichever methods you offer; the page renders only the fully
+configured ones and otherwise shows a "we'll be in touch" notice. None are
+required to deploy.
+
+| Variable | Notes |
+|----------|-------|
+| `PROMO_BANK_NAME`, `PROMO_ACCOUNT_NAME`, `PROMO_ACCOUNT_NUMBER` | All three needed for the bank-transfer card to appear |
+| `PROMO_PRICE_LKR` | Amount, e.g. `7500` (rendered as `LKR 7,500`) |
+| `PROMO_PAYHERE_URL` | `https://…` PayHere payment link |
+| `PROMO_CONTACT_EMAIL` | Shown in the fallback when no online method is set |
+
 ### 4. Point Supabase Auth at the deployed URL
 
 In Supabase → Authentication → URL Configuration, set the **Site URL** to your
