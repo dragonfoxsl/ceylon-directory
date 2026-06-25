@@ -26,33 +26,87 @@ privileged transition is enforced in the database:
 - Admin writes are authorized by the session + an `is_admin()` `SECURITY DEFINER`
   function, not by a privileged key.
 
-## Local development
+## Prerequisites
 
-Requires Node.js 20+ and Docker (for the local Supabase stack).
+Before running the app, make sure these are installed. Verify each with the
+command shown — if it prints a version you're good; if it errors, install it.
+
+| Tool | Check | Install |
+|------|-------|---------|
+| **Node.js** 20+ | `node -v` | [nodejs.org](https://nodejs.org) or `nvm install --lts` |
+| **npm** | `npm -v` | comes with Node.js |
+| **Git** | `git --version` | [git-scm.com](https://git-scm.com/downloads) |
+| **Docker** | `docker --version` | [docs.docker.com/get-docker](https://docs.docker.com/get-docker/) |
+| **Supabase CLI** | `supabase --version` | see below |
+
+**Docker must be running** (not just installed) before `supabase start`. Verify with:
 
 ```bash
-npm install
-
-# Start local Supabase (Postgres, Auth, Storage, Studio) — needs Docker
-npx supabase start
-
-# Apply migrations (0001–0003) + seed (8 categories, 11 regions)
-npx supabase db reset
+docker info        # prints details if the daemon is running
 ```
 
-Create `.env.local` from the values printed by `npx supabase status`:
+Start it via Docker Desktop, or on Linux: `sudo systemctl start docker`.
+
+**Supabase CLI** — install whichever way suits your OS:
+
+```bash
+# macOS / Linux (Homebrew)
+brew install supabase/tap/supabase
+
+# Arch / CachyOS (AUR)
+yay -S supabase-bin
+
+# Windows (Scoop)
+scoop install supabase
+```
+
+> No global install? Prefix the `supabase` commands below with `npx` and they'll
+> run via the version pinned in this repo (e.g. `npx supabase start`).
+
+## Getting started
+
+Once the prerequisites above are in place, **one command** sets everything up
+(installs deps, starts the local database, loads sample data, writes `.env.local`)
+and runs the app:
+
+```bash
+make up
+```
+
+Then open **http://localhost:3000**.
+
+### Make targets
+
+| Command | What it does |
+|---------|--------------|
+| `make up` | Full setup **and** start the app (use this first) |
+| `make setup` | Setup only (checks, deps, database, `.env.local`) |
+| `make dev` | Run the app at http://localhost:3000 |
+| `make build` | Production build |
+| `make test` | Run unit tests |
+| `make stop` | Stop the local Supabase stack |
+| `make reset` | Re-apply schema + seed data |
+| `make` / `make help` | List all targets |
+
+### Doing it manually
+
+If you'd rather not use `make`:
+
+```bash
+npm install                 # 1. install dependencies
+npx supabase start          # 2. start the local database (needs Docker)
+npx supabase db reset       # 3. load schema + sample data
+```
+
+Step 2 prints an **API URL** and an **anon key** — put them in `.env.local`:
 
 ```bash
 NEXT_PUBLIC_SUPABASE_URL=http://127.0.0.1:54321
-NEXT_PUBLIC_SUPABASE_ANON_KEY=<anon key from `npx supabase status`>
+NEXT_PUBLIC_SUPABASE_ANON_KEY=<anon key printed by `npx supabase start`>
 ```
 
-Then:
-
 ```bash
-npm run dev     # http://localhost:3000
-npm run build   # production build
-npm test        # Vitest unit tests
+npm run dev                 # 4. run the app → http://localhost:3000
 ```
 
 ### Becoming an admin locally
