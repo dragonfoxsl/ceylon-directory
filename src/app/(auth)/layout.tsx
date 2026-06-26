@@ -38,8 +38,8 @@ export default function AuthLayout({
         <p className="num text-xs text-on-shell-muted">Colombo, Sri Lanka</p>
       </aside>
 
-      {/* Form area */}
-      <div className="flex items-center justify-center px-6 py-12 sm:px-12">
+      {/* Form area — top-aligned on mobile, centred on desktop */}
+      <div className="flex items-start justify-center px-6 py-16 sm:px-12 lg:items-center lg:py-12">
         <div className="w-full max-w-sm">{children}</div>
       </div>
     </div>
