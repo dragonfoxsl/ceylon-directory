@@ -103,9 +103,13 @@ export default async function ListingsPage({
       .ilike("name", `%${q}%`);
     const regionIds = (matchingRegions ?? []).map((r) => r.id);
 
+    // Double-quote the value per PostgREST quoting rules so that metacharacters
+    // in the search string (commas, parentheses, dots) are not parsed as filter
+    // syntax. Strip literal " to prevent premature quote termination.
+    const safeQ = q.replace(/"/g, "");
     const orFilter = regionIds.length > 0
-      ? `title.ilike.%${q}%,description.ilike.%${q}%,region_id.in.(${regionIds.join(",")})`
-      : `title.ilike.%${q}%,description.ilike.%${q}%`;
+      ? `title.ilike."%${safeQ}%",description.ilike."%${safeQ}%",region_id.in.(${regionIds.join(",")})`
+      : `title.ilike."%${safeQ}%",description.ilike."%${safeQ}%"`;
 
     query = query.or(orFilter);
   }
