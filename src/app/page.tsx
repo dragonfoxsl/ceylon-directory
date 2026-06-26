@@ -16,6 +16,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { createServerClient } from "@/lib/supabase/server";
+import { fetchCoverUrls } from "@/lib/covers";
 import { ListingCard } from "@/components/ListingCard";
 
 type Category = {
@@ -34,6 +35,8 @@ type FeaturedListing = {
   is_active: boolean;
   is_featured: boolean;
   featured_until: string | null;
+  is_sponsored: boolean;
+  sponsored_until: string | null;
   created_at: string;
   cover_url?: string | null;
   region?: string | null;
@@ -72,7 +75,7 @@ export default async function HomePage() {
   const { data: rawListings, error: listingsErr } = await supabase
     .from("listings")
     .select(
-      "id, slug, title, price_info, status, is_active, is_featured, featured_until, created_at, regions(name)"
+      "id, slug, title, price_info, status, is_active, is_featured, featured_until, is_sponsored, sponsored_until, created_at, regions(name)"
     )
     .eq("status", "approved")
     .eq("is_active", true)
@@ -83,29 +86,18 @@ export default async function HomePage() {
 
   const featuredListings: FeaturedListing[] = [];
   if (rawListings && rawListings.length > 0) {
+    const ids = rawListings.map((l) => l.id);
+    const coverUrls = await fetchCoverUrls(supabase, ids);
+
     for (const listing of rawListings) {
-      const { data: imageRow, error: imageErr } = await supabase
-        .from("listing_images")
-        .select("storage_path")
-        .eq("listing_id", listing.id)
-        .eq("is_cover", true)
-        .single();
-      if (imageErr) console.error(`[home] cover image query failed for listing ${listing.id}:`, imageErr);
-
-      let cover_url: string | null = null;
-      if (imageRow?.storage_path) {
-        const { data } = supabase.storage
-          .from("listing-images")
-          .getPublicUrl(imageRow.storage_path);
-        cover_url = data.publicUrl;
-      }
-
-      // Supabase types the join as an array but returns a single row.
       const region =
         (listing as unknown as { regions?: { name: string } | null }).regions
           ?.name ?? null;
-
-      featuredListings.push({ ...listing, cover_url, region });
+      featuredListings.push({
+        ...listing,
+        cover_url: coverUrls.get(listing.id) ?? null,
+        region,
+      });
     }
   }
 
@@ -159,6 +151,7 @@ export default async function HomePage() {
                 alt={p.alt}
                 fill
                 sizes="(min-width: 1024px) 24vw, 50vw"
+                priority
                 className="object-cover"
               />
             </div>
@@ -251,34 +244,36 @@ export default async function HomePage() {
 
       {/* ── Trust strip ──────────────────────────────────────────────────── */}
       <section className="border-y border-hairline bg-linen">
-        <div className="mx-auto grid max-w-[1320px] gap-10 px-6 py-14 sm:grid-cols-3">
-          {[
-            {
-              Icon: ShieldCheck,
-              label: "Reviewed by hand",
-              desc: "An admin checks every listing before it goes live — no automated approvals.",
-            },
-            {
-              Icon: MapPinned,
-              label: "Island-wide",
-              desc: "Providers from Colombo and Kandy to Jaffna, Arugam Bay, and Mirissa.",
-            },
-            {
-              Icon: Sparkles,
-              label: "No pay-to-rank",
-              desc: "Featured spots are clearly marked. Ordering is never sold off as search results.",
-            },
-          ].map(({ Icon, label, desc }) => (
-            <div key={label} className="flex gap-4">
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-surface text-brand">
-                <Icon className="h-5 w-5" strokeWidth={1.75} />
-              </span>
-              <div>
-                <p className="font-semibold text-ink">{label}</p>
-                <p className="mt-1 text-sm leading-relaxed text-muted">{desc}</p>
-              </div>
+        <div className="mx-auto max-w-[1320px] px-6 py-10">
+          <dl className="flex flex-col gap-6 sm:flex-row sm:items-start sm:gap-0 sm:divide-x sm:divide-hairline">
+            <div className="sm:pr-10">
+              <dt className="flex items-center gap-2 text-sm font-semibold text-ink">
+                <ShieldCheck className="h-4 w-4 shrink-0 text-brand" strokeWidth={1.75} />
+                Reviewed by hand
+              </dt>
+              <dd className="mt-1 max-w-[22ch] text-sm leading-relaxed text-muted">
+                Every listing checked by a person before it goes live.
+              </dd>
             </div>
-          ))}
+            <div className="sm:px-10">
+              <dt className="flex items-center gap-2 text-sm font-semibold text-ink">
+                <MapPinned className="h-4 w-4 shrink-0 text-brand" strokeWidth={1.75} />
+                Island-wide
+              </dt>
+              <dd className="mt-1 max-w-[22ch] text-sm leading-relaxed text-muted">
+                From Colombo and Kandy to Jaffna, Arugam Bay, and Mirissa.
+              </dd>
+            </div>
+            <div className="sm:pl-10">
+              <dt className="flex items-center gap-2 text-sm font-semibold text-ink">
+                <Sparkles className="h-4 w-4 shrink-0 text-brand" strokeWidth={1.75} />
+                No pay-to-rank
+              </dt>
+              <dd className="mt-1 max-w-[22ch] text-sm leading-relaxed text-muted">
+                Featured spots are marked. Search order is never sold.
+              </dd>
+            </div>
+          </dl>
         </div>
       </section>
 

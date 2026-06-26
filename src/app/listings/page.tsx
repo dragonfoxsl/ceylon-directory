@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import Link from "next/link";
-import { MapIcon, SearchX } from "lucide-react";
+import { ChevronLeft, ChevronRight, MapIcon, SearchX } from "lucide-react";
 import { createServerClient } from "@/lib/supabase/server";
 import { sortListings } from "@/lib/featured";
+import { fetchCoverUrls } from "@/lib/covers";
 import { ListingCard } from "@/components/ListingCard";
 import { Filters } from "@/components/Filters";
 
@@ -24,6 +25,8 @@ type Listing = {
   is_active: boolean;
   is_featured: boolean;
   featured_until: string | null;
+  is_sponsored: boolean;
+  sponsored_until: string | null;
   created_at: string;
   cover_url?: string | null;
   region?: string | null;
@@ -38,6 +41,8 @@ export default async function ListingsPage({
   const categorySlug = typeof sp.category === "string" ? sp.category : undefined;
   const regionSlug = typeof sp.region === "string" ? sp.region : undefined;
   const q = typeof sp.q === "string" ? sp.q.trim() : undefined;
+  const PAGE_SIZE = 24;
+  const page = Math.max(1, parseInt(typeof sp.page === "string" ? sp.page : "1", 10) || 1);
 
   const supabase = await createServerClient();
 
@@ -82,49 +87,66 @@ export default async function ListingsPage({
   let query = supabase
     .from("listings")
     .select(
-      "id, slug, title, price_info, status, is_active, is_featured, featured_until, created_at, regions(name)"
+      "id, slug, title, price_info, status, is_active, is_featured, featured_until, is_sponsored, sponsored_until, created_at, regions(name)"
     )
     .eq("status", "approved")
     .eq("is_active", true);
 
   if (categoryId) query = query.eq("category_id", categoryId);
   if (regionId) query = query.eq("region_id", regionId);
-  if (q) query = query.ilike("title", `%${q}%`);
+  if (q) {
+    // Search title + description. Also include listings whose region name matches
+    // (e.g. searching "kandy" finds listings in the Kandy region).
+    const { data: matchingRegions } = await supabase
+      .from("regions")
+      .select("id")
+      .ilike("name", `%${q}%`);
+    const regionIds = (matchingRegions ?? []).map((r) => r.id);
+
+    // Double-quote the value per PostgREST quoting rules so that metacharacters
+    // in the search string (commas, parentheses, dots) are not parsed as filter
+    // syntax. Strip literal " to prevent premature quote termination.
+    const safeQ = q.replace(/"/g, "");
+    const orFilter = regionIds.length > 0
+      ? `title.ilike."%${safeQ}%",description.ilike."%${safeQ}%",region_id.in.(${regionIds.join(",")})`
+      : `title.ilike."%${safeQ}%",description.ilike."%${safeQ}%"`;
+
+    query = query.or(orFilter);
+  }
 
   const { data: rawListings, error: listingsErr } = await query;
   if (listingsErr) console.error("[listings] listings query failed:", listingsErr);
 
-  // Fetch cover images (N+1 acceptable — matches home page pattern)
   const listings: Listing[] = [];
   if (rawListings && rawListings.length > 0) {
+    const ids = rawListings.map((l) => l.id);
+    const coverUrls = await fetchCoverUrls(supabase, ids);
+
     for (const listing of rawListings) {
-      const { data: imageRow, error: imageErr } = await supabase
-        .from("listing_images")
-        .select("storage_path")
-        .eq("listing_id", listing.id)
-        .eq("is_cover", true)
-        .single();
-      if (imageErr) console.error(`[listings] cover image query failed for listing ${listing.id}:`, imageErr);
-
-      let cover_url: string | null = null;
-      if (imageRow?.storage_path) {
-        const { data } = supabase.storage
-          .from("listing-images")
-          .getPublicUrl(imageRow.storage_path);
-        cover_url = data.publicUrl;
-      }
-
       const region =
         (listing as unknown as { regions?: { name: string } | null }).regions
           ?.name ?? null;
-
-      listings.push({ ...listing, cover_url, region });
+      listings.push({ ...listing, cover_url: coverUrls.get(listing.id) ?? null, region });
     }
   }
 
   const sorted = sortListings(listings);
+  const totalCount = sorted.length;
+  const totalPages = Math.max(1, Math.ceil(totalCount / PAGE_SIZE));
+  const currentPage = Math.min(page, totalPages);
+  const paginated = sorted.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
 
   const hasFilters = !!categorySlug || !!regionSlug || !!q;
+
+  function pageUrl(p: number) {
+    const params = new URLSearchParams();
+    if (categorySlug) params.set("category", categorySlug);
+    if (regionSlug) params.set("region", regionSlug);
+    if (q) params.set("q", q);
+    if (p > 1) params.set("page", String(p));
+    const qs = params.toString();
+    return qs ? `/listings?${qs}` : "/listings";
+  }
 
   return (
     <div className="mx-auto max-w-[1320px] px-6 py-12 lg:py-16">
@@ -169,13 +191,57 @@ export default async function ListingsPage({
       {sorted.length > 0 ? (
         <>
           <p className="num mt-8 text-sm text-muted">
-            {sorted.length} {sorted.length === 1 ? "listing" : "listings"}
+            {totalCount} {totalCount === 1 ? "listing" : "listings"}
+            {totalPages > 1 && (
+              <span className="text-muted/60"> · page {currentPage} of {totalPages}</span>
+            )}
           </p>
           <div className="mt-5 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {sorted.map((listing) => (
-              <ListingCard key={listing.id} listing={listing} />
+            {paginated.map((listing, i) => (
+              <div key={listing.id} className="reveal" style={{ animationDelay: `${i * 40}ms` }}>
+                <ListingCard listing={listing} />
+              </div>
             ))}
           </div>
+
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <div className="mt-10 flex items-center justify-center gap-3">
+              {currentPage > 1 ? (
+                <Link
+                  href={pageUrl(currentPage - 1)}
+                  className="inline-flex h-10 items-center gap-1.5 rounded-xl border border-hairline px-4 text-sm font-medium text-ink transition-colors hover:border-accent hover:text-accent"
+                >
+                  <ChevronLeft className="h-4 w-4" strokeWidth={2} />
+                  Previous
+                </Link>
+              ) : (
+                <span className="inline-flex h-10 items-center gap-1.5 rounded-xl border border-hairline px-4 text-sm font-medium text-muted/40 cursor-not-allowed select-none">
+                  <ChevronLeft className="h-4 w-4" strokeWidth={2} />
+                  Previous
+                </span>
+              )}
+
+              <span className="num text-sm text-muted">
+                {currentPage} / {totalPages}
+              </span>
+
+              {currentPage < totalPages ? (
+                <Link
+                  href={pageUrl(currentPage + 1)}
+                  className="inline-flex h-10 items-center gap-1.5 rounded-xl border border-hairline px-4 text-sm font-medium text-ink transition-colors hover:border-accent hover:text-accent"
+                >
+                  Next
+                  <ChevronRight className="h-4 w-4" strokeWidth={2} />
+                </Link>
+              ) : (
+                <span className="inline-flex h-10 items-center gap-1.5 rounded-xl border border-hairline px-4 text-sm font-medium text-muted/40 cursor-not-allowed select-none">
+                  Next
+                  <ChevronRight className="h-4 w-4" strokeWidth={2} />
+                </span>
+              )}
+            </div>
+          )}
         </>
       ) : (
         <div className="card mt-8 flex flex-col items-center gap-4 px-8 py-20 text-center">

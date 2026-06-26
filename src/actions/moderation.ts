@@ -10,6 +10,7 @@ function revalidateAdminPaths() {
   revalidatePath("/admin");
   revalidatePath("/admin/listings");
   revalidatePath("/admin/promotions");
+  revalidatePath("/admin/sponsorships");
   revalidatePath("/listings");
 }
 
@@ -93,6 +94,28 @@ export async function setFeatured(
   return { ok: true };
 }
 
+export async function setSponsored(
+  id: string,
+  until: string | null,
+): Promise<ModerationResult> {
+  await requireAdmin();
+  const supabase = await createServerClient();
+
+  const { error } = await supabase
+    .from("listings")
+    .update(
+      until !== null
+        ? { is_sponsored: true, sponsored_until: until, sponsored_requested_at: null }
+        : { is_sponsored: false, sponsored_until: null },
+    )
+    .eq("id", id);
+
+  if (error) return { ok: false, message: error.message };
+
+  revalidateAdminPaths();
+  return { ok: true };
+}
+
 export async function clearPromotionRequest(
   id: string,
 ): Promise<ModerationResult> {
@@ -102,6 +125,23 @@ export async function clearPromotionRequest(
   const { error } = await supabase
     .from("listings")
     .update({ promotion_requested_at: null })
+    .eq("id", id);
+
+  if (error) return { ok: false, message: error.message };
+
+  revalidateAdminPaths();
+  return { ok: true };
+}
+
+export async function clearSponsorshipRequest(
+  id: string,
+): Promise<ModerationResult> {
+  await requireAdmin();
+  const supabase = await createServerClient();
+
+  const { error } = await supabase
+    .from("listings")
+    .update({ sponsored_requested_at: null })
     .eq("id", id);
 
   if (error) return { ok: false, message: error.message };

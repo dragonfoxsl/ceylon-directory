@@ -2,7 +2,8 @@ import { describe, it, expect } from "vitest";
 import { isLive, isCurrentlyFeatured, sortListings } from "@/lib/featured";
 
 const base = { status: "approved", is_active: true, is_featured: false,
-  featured_until: null, created_at: "2026-01-01T00:00:00Z" } as const;
+  featured_until: null, is_sponsored: false, sponsored_until: null,
+  created_at: "2026-01-01T00:00:00Z" } as const;
 
 describe("isLive", () => {
   it("true when approved + active", () => expect(isLive({ ...base })).toBe(true));

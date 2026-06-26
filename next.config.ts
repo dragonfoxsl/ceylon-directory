@@ -25,7 +25,11 @@ if (supabaseUrl) {
 }
 
 const nextConfig: NextConfig = {
-  images: { remotePatterns },
+  images: {
+    remotePatterns,
+    formats: ["image/avif", "image/webp"],
+    minimumCacheTTL: 86400,
+  },
 };
 
 export default nextConfig;

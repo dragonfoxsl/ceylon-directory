@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ChevronRight, Compass } from "lucide-react";
 import { createServerClient } from "@/lib/supabase/server";
 import { sortListings } from "@/lib/featured";
+import { fetchCoverUrls } from "@/lib/covers";
 import { ListingCard } from "@/components/ListingCard";
 
 type Params = Promise<{ slug: string }>;
@@ -17,6 +18,8 @@ type Listing = {
   is_active: boolean;
   is_featured: boolean;
   featured_until: string | null;
+  is_sponsored: boolean;
+  sponsored_until: string | null;
   created_at: string;
   cover_url?: string | null;
   region?: string | null;
@@ -60,38 +63,23 @@ export default async function CategoryPage({ params }: { params: Params }) {
   const { data: rawListings, error: listingsErr } = await supabase
     .from("listings")
     .select(
-      "id, slug, title, price_info, status, is_active, is_featured, featured_until, created_at, regions(name)"
+      "id, slug, title, price_info, status, is_active, is_featured, featured_until, is_sponsored, sponsored_until, created_at, regions(name)"
     )
     .eq("status", "approved")
     .eq("is_active", true)
     .eq("category_id", category.id);
   if (listingsErr) console.error("[category] listings query failed:", listingsErr);
 
-  // Fetch cover images (N+1 — matches home page pattern)
   const listings: Listing[] = [];
   if (rawListings && rawListings.length > 0) {
+    const ids = rawListings.map((l) => l.id);
+    const coverUrls = await fetchCoverUrls(supabase, ids);
+
     for (const listing of rawListings) {
-      const { data: imageRow, error: imageErr } = await supabase
-        .from("listing_images")
-        .select("storage_path")
-        .eq("listing_id", listing.id)
-        .eq("is_cover", true)
-        .single();
-      if (imageErr) console.error(`[category] cover image query failed for listing ${listing.id}:`, imageErr);
-
-      let cover_url: string | null = null;
-      if (imageRow?.storage_path) {
-        const { data } = supabase.storage
-          .from("listing-images")
-          .getPublicUrl(imageRow.storage_path);
-        cover_url = data.publicUrl;
-      }
-
       const region =
         (listing as unknown as { regions?: { name: string } | null }).regions
           ?.name ?? null;
-
-      listings.push({ ...listing, cover_url, region });
+      listings.push({ ...listing, cover_url: coverUrls.get(listing.id) ?? null, region });
     }
   }
 
@@ -104,7 +92,7 @@ export default async function CategoryPage({ params }: { params: Params }) {
         aria-label="Breadcrumb"
       >
         <Link href="/listings" className="transition-colors hover:text-accent">
-          Browse
+          All listings
         </Link>
         <ChevronRight className="h-3.5 w-3.5" strokeWidth={2} aria-hidden="true" />
         <span className="font-medium text-ink">{category.name}</span>
@@ -112,22 +100,25 @@ export default async function CategoryPage({ params }: { params: Params }) {
 
       <header className="mt-6 max-w-2xl">
         <p className="eyebrow">Category</p>
-        <h1 className="mt-3 text-[clamp(2rem,4vw,3rem)] font-bold tracking-tight text-ink">
+        <h1 className="mt-3 text-[clamp(2.25rem,4.5vw,3.5rem)] font-bold leading-[1.06] tracking-tight text-ink">
           {category.name}
         </h1>
-        <p className="mt-3 text-lg text-muted">
-          Verified {category.name.toLowerCase()} across Sri Lanka.
+        <p className="mt-4 text-lg leading-relaxed text-muted">
+          Verified {category.name.toLowerCase()} services across Sri Lanka, reviewed before they go live.
         </p>
       </header>
 
       {sorted.length > 0 ? (
         <>
-          <p className="num mt-10 text-sm text-muted">
-            {sorted.length} {sorted.length === 1 ? "listing" : "listings"}
+          <p className="mt-10 text-sm text-muted">
+            <span className="num font-semibold text-ink">{sorted.length}</span>
+            {" "}{sorted.length === 1 ? "listing" : "listings"}
           </p>
           <div className="mt-5 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {sorted.map((listing) => (
-              <ListingCard key={listing.id} listing={listing} />
+            {sorted.map((listing, i) => (
+              <div key={listing.id} className="reveal" style={{ animationDelay: `${i * 40}ms` }}>
+                <ListingCard listing={listing} />
+              </div>
             ))}
           </div>
         </>

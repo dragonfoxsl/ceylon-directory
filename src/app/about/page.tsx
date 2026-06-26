@@ -23,7 +23,7 @@ const STEPS = [
   },
   {
     title: "Ongoing monitoring",
-    body: "We monitor active listings and can deactivate any that slip below our standards. Providers can also request a featured spot.",
+    body: "We monitor active listings and can deactivate any that slip below our standards. Providers can also request Featured or Sponsored placement to reach more travellers.",
   },
 ];
 

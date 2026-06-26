@@ -43,9 +43,26 @@ export function ImageUploader({ listingId }: { listingId: string }) {
     };
   }, [listingId, supabase]);
 
+  const ALLOWED_TYPES = new Set(["image/jpeg", "image/png", "image/webp", "image/gif"]);
+  const MAX_BYTES = 8 * 1024 * 1024; // 8 MB
+
   async function handleFiles(e: React.ChangeEvent<HTMLInputElement>) {
     const files = Array.from(e.target.files ?? []);
     if (!files.length) return;
+
+    const invalid = files.find((f) => !ALLOWED_TYPES.has(f.type));
+    if (invalid) {
+      setError(`"${invalid.name}" is not a supported format. Use JPG, PNG, WebP, or GIF.`);
+      if (fileRef.current) fileRef.current.value = "";
+      return;
+    }
+    const oversized = files.find((f) => f.size > MAX_BYTES);
+    if (oversized) {
+      setError(`"${oversized.name}" is too large. Maximum file size is 8 MB.`);
+      if (fileRef.current) fileRef.current.value = "";
+      return;
+    }
+
     setUploading(true);
     setError(null);
 
@@ -133,6 +150,9 @@ export function ImageUploader({ listingId }: { listingId: string }) {
   return (
     <div className="space-y-3">
       <p className="text-sm font-medium text-ink">Photos</p>
+      <p className="text-xs text-muted">
+        JPG, PNG, WebP, or GIF — max 8 MB each. The first photo becomes the cover.
+      </p>
 
       {images.length > 0 && (
         <div className="grid grid-cols-3 gap-3 sm:grid-cols-4">
@@ -140,7 +160,7 @@ export function ImageUploader({ listingId }: { listingId: string }) {
             <div key={img.id} className="group relative h-24">
               <Image
                 src={img.publicUrl}
-                alt=""
+                alt={img.is_cover ? "Cover photo" : "Listing photo"}
                 fill
                 sizes="160px"
                 className="rounded-lg border border-hairline object-cover"
@@ -154,7 +174,7 @@ export function ImageUploader({ listingId }: { listingId: string }) {
                 type="button"
                 onClick={() => handleDelete(img)}
                 aria-label="Remove photo"
-                className="absolute right-1 top-1 hidden h-6 w-6 items-center justify-center rounded-full bg-rejected text-xs font-bold text-white shadow group-hover:flex hover:opacity-90"
+                className="absolute right-1 top-1 flex h-8 w-8 items-center justify-center rounded-full bg-rejected text-xs font-bold text-white shadow transition-opacity hover:opacity-90 sm:opacity-0 sm:group-hover:opacity-100"
               >
                 <X className="h-3.5 w-3.5" strokeWidth={2.5} />
               </button>
@@ -168,7 +188,7 @@ export function ImageUploader({ listingId }: { listingId: string }) {
         <input
           ref={fileRef}
           type="file"
-          accept="image/*"
+          accept="image/jpeg,image/png,image/webp,image/gif"
           multiple
           onChange={handleFiles}
           disabled={uploading}

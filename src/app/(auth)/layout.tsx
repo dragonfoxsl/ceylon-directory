@@ -27,7 +27,7 @@ export default function AuthLayout({
           <ul className="mt-8 space-y-4">
             {POINTS.map(({ Icon, text }) => (
               <li key={text} className="flex items-center gap-3 text-on-shell-muted">
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white/10 text-gold">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-on-shell-overlay-sm text-gold">
                   <Icon className="h-4.5 w-4.5" strokeWidth={1.75} />
                 </span>
                 <span className="text-sm">{text}</span>
@@ -39,9 +39,9 @@ export default function AuthLayout({
       </aside>
 
       {/* Form area */}
-      <main className="flex items-center justify-center px-6 py-12 sm:px-12">
+      <div className="flex items-center justify-center px-6 py-12 sm:px-12">
         <div className="w-full max-w-sm">{children}</div>
-      </main>
+      </div>
     </div>
   );
 }
