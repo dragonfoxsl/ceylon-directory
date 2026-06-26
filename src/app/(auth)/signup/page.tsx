@@ -31,7 +31,18 @@ export default function SignupPage() {
     });
 
     if (error) {
-      setError(error.message);
+      const msg = error.message.toLowerCase();
+      setError(
+        msg.includes("already registered") || msg.includes("user already")
+          ? "An account with this email already exists. Try signing in instead."
+          : msg.includes("password should be") || msg.includes("password must")
+          ? "Password must be at least 8 characters."
+          : msg.includes("invalid format") || msg.includes("invalid email")
+          ? "Please enter a valid email address."
+          : msg.includes("too many")
+          ? "Too many attempts. Please wait a few minutes and try again."
+          : error.message
+      );
       setLoading(false);
       return;
     }
@@ -91,7 +102,7 @@ export default function SignupPage() {
         Create an account
       </h1>
       <p className="mt-2 text-sm text-muted">
-        List or manage tourist services on Ceylon Directory.
+        Add your Sri Lanka tourist service and reach travellers planning their trip.
       </p>
 
       <form onSubmit={handleSubmit} noValidate className="mt-8 space-y-5">

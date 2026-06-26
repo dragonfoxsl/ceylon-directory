@@ -6,27 +6,28 @@ import {
   ChevronRight,
   Clock,
   CreditCard,
+  Info,
   Landmark,
-  Star,
+  Megaphone,
 } from "lucide-react";
 import { requireUser } from "@/lib/auth";
 import { createServerClient } from "@/lib/supabase/server";
 import { getPromotionPaymentConfig } from "@/lib/promotion-config";
-import { requestPromotion } from "@/actions/promotion";
-import { PromoteRequestForm } from "@/components/PromoteRequestForm";
+import { requestSponsorship } from "@/actions/promotion";
+import { SponsorRequestForm } from "@/components/SponsorRequestForm";
 
 type Props = {
   params: Promise<{ id: string }>;
 };
 
-export default async function PromoteListingPage({ params }: Props) {
+export default async function SponsorListingPage({ params }: Props) {
   const { id } = await params;
   const user = await requireUser();
   const supabase = await createServerClient();
 
   const { data: listing, error } = await supabase
     .from("listings")
-    .select("id, title, is_featured, featured_until, promotion_requested_at")
+    .select("id, title, is_sponsored, sponsored_until, sponsored_requested_at")
     .eq("id", id)
     .eq("owner_id", user.id)
     .maybeSingle();
@@ -36,17 +37,17 @@ export default async function PromoteListingPage({ params }: Props) {
   }
 
   const now = new Date();
-  const isFeatured =
-    listing.is_featured &&
-    listing.featured_until &&
-    new Date(listing.featured_until) > now;
+  const isSponsored =
+    listing.is_sponsored &&
+    listing.sponsored_until &&
+    new Date(listing.sponsored_until) > now;
 
-  const alreadyRequested = !!listing.promotion_requested_at;
+  const alreadyRequested = !!listing.sponsored_requested_at;
   const payment = getPromotionPaymentConfig();
 
-  async function handleRequestPromotion(_prev: unknown, _data: FormData) {
+  async function handleRequestSponsorship(_prev: unknown, _data: FormData) {
     "use server";
-    return requestPromotion(id);
+    return requestSponsorship(id);
   }
 
   const fmtDate = (d: string) =>
@@ -71,82 +72,90 @@ export default async function PromoteListingPage({ params }: Props) {
           {listing.title}
         </span>
         <ChevronRight className="h-3.5 w-3.5" strokeWidth={2} aria-hidden="true" />
-        <span className="font-medium text-ink">Promote</span>
+        <span className="font-medium text-ink">Sponsored placement</span>
       </nav>
 
       <p className="eyebrow mt-6 flex items-center gap-2">
-        <Star className="h-3.5 w-3.5 text-gold" strokeWidth={2.5} />
-        Featured placement
+        <Megaphone className="h-3.5 w-3.5 text-brand" strokeWidth={2.5} />
+        Sponsored listing
       </p>
       <h1 className="mt-2 text-3xl font-bold tracking-tight text-ink">
-        Promote your listing
+        Get sponsored placement
       </h1>
       <p className="mt-2 text-sm text-muted">
-        Reach more travellers planning their Sri Lanka trip.
+        Reach more travellers by appearing at the very top of every relevant results page.
       </p>
 
       {/* What you get */}
-      <div className="mt-8 rounded-[1.5rem] border border-gold/30 bg-gold/[0.06] px-6 py-5">
+      <div className="mt-8 rounded-[1.5rem] border border-brand/30 bg-brand/[0.06] px-6 py-5">
         <h2 className="text-base font-semibold text-ink">
-          What featured placement includes
+          What sponsored placement includes
         </h2>
         <ul className="mt-3 space-y-2.5 text-sm text-ink/90">
           {[
-            "Highlighted at the top of category and region results",
-            "A temple-gold Featured badge on your listing card",
-            "A spot in “Featured experiences” on the home page",
+            "Priority position above all featured and regular listings",
+            "A prominent Sponsored banner across the top of your listing card",
+            "A sponsored chip on your listing detail page with a disclosure notice",
+            "Included in all relevant category, region, and search results",
           ].map((item) => (
             <li key={item} className="flex items-start gap-2.5">
-              <Check className="mt-0.5 h-4 w-4 shrink-0 text-gold" strokeWidth={2.5} />
+              <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand" strokeWidth={2.5} />
               {item}
             </li>
           ))}
         </ul>
+        <div className="mt-4 flex items-start gap-2 border-t border-brand/20 pt-4 text-xs text-muted">
+          <Info className="mt-0.5 h-3.5 w-3.5 shrink-0 text-brand/60" strokeWidth={2} />
+          <span>
+            Sponsored listings are clearly disclosed to travellers. All listings — sponsored or
+            not — meet the same verification standards.
+          </span>
+        </div>
       </div>
 
-      {/* State: currently featured */}
-      {isFeatured ? (
+      {/* State: currently sponsored */}
+      {isSponsored ? (
         <div className="card mt-8 px-6 py-8 text-center">
-          <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-gold/15 text-gold">
-            <Star className="h-6 w-6" strokeWidth={1.75} />
+          <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-brand/10 text-brand">
+            <Megaphone className="h-6 w-6" strokeWidth={1.75} />
           </span>
-          <p className="mt-3 text-lg font-semibold text-ink">Currently featured</p>
+          <p className="mt-3 text-lg font-semibold text-ink">Currently sponsored</p>
           <p className="mt-1 text-sm text-muted">
-            Your listing is featured until{" "}
+            Your listing is sponsored until{" "}
             <span className="num font-medium text-ink">
-              {fmtDate(listing.featured_until!)}
+              {fmtDate(listing.sponsored_until!)}
             </span>
             .
           </p>
         </div>
       ) : alreadyRequested ? (
-        /* State: promotion requested, awaiting admin */
+        /* State: request submitted, awaiting admin */
         <div className="card mt-8 px-6 py-8 text-center">
           <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-pending/15 text-pending">
             <Clock className="h-6 w-6" strokeWidth={1.75} />
           </span>
           <p className="mt-3 text-lg font-semibold text-ink">
-            Promotion requested
+            Sponsorship requested
           </p>
           <p className="mt-1 text-sm text-muted">
             Requested on{" "}
             <span className="num font-medium text-ink">
-              {fmtDate(listing.promotion_requested_at!)}
+              {fmtDate(listing.sponsored_requested_at!)}
             </span>
-            . We&apos;ll activate your featured placement after confirming payment.
+            . We&apos;ll activate your sponsored placement after confirming payment.
           </p>
         </div>
       ) : (
-        /* State: not yet requested — payment instructions + request button */
+        /* State: not yet requested */
         <>
-          {/* Payment instructions — driven by env config (see promotion-config.ts) */}
+          {/* Payment instructions */}
           <div className="mt-8">
             <p className="eyebrow">Step 1 of 2</p>
             <h2 className="mt-2 text-lg font-semibold text-ink">How to pay</h2>
             <p className="mt-1 text-sm text-muted">
               {payment.configured
-                ? "Complete payment with one of the methods below, then request the promotion to notify us."
-                : "Request the promotion below and we'll be in touch with payment details."}
+                ? "Complete payment with one of the methods below, then notify us to activate your placement."
+                : "Request the placement below and we'll be in touch with payment details."}
             </p>
 
             {payment.configured ? (
@@ -200,7 +209,7 @@ export default async function PromoteListingPage({ params }: Props) {
                       Pay with PayHere
                     </a>
                     <p className="mt-2 text-xs text-muted">
-                      After paying on PayHere, return here and request the promotion.
+                      After paying on PayHere, return here and request the placement.
                     </p>
                   </div>
                 )}
@@ -208,8 +217,8 @@ export default async function PromoteListingPage({ params }: Props) {
             ) : (
               <div className="card mt-5 p-5">
                 <p className="text-sm text-muted">
-                  Payment details aren&apos;t set up online yet. Request the
-                  promotion below and an admin will follow up
+                  Payment details aren&apos;t set up online yet. Request the placement below
+                  and an admin will follow up
                   {payment.contactEmail ? (
                     <>
                       {" "}at{" "}
@@ -234,10 +243,10 @@ export default async function PromoteListingPage({ params }: Props) {
               Notify us after payment
             </h2>
             <p className="mx-auto mt-1 max-w-md text-sm text-muted">
-              Once you&apos;ve sent payment, request the promotion. An admin will
-              verify and activate your featured placement, usually within 24 hours.
+              Once you&apos;ve sent payment, request the placement. An admin will verify
+              and activate your sponsored listing, usually within 24 hours.
             </p>
-            <PromoteRequestForm action={handleRequestPromotion} />
+            <SponsorRequestForm action={handleRequestSponsorship} />
           </div>
         </>
       )}

@@ -122,12 +122,13 @@ export function Filters({
       {/* Active filter pills */}
       {activePills.length > 0 && (
         <div className="flex flex-wrap items-center gap-2">
-          {activePills.map((pill) => (
+          {activePills.map((pill, i) => (
             <button
               key={pill.key}
               type="button"
               onClick={() => pushParam(pill.key, "")}
-              className="inline-flex items-center gap-1.5 rounded-full bg-accent px-3 py-1.5 text-xs font-medium text-white transition-colors hover:bg-accent-deep"
+              style={{ animationDelay: `${i * 40}ms` }}
+              className="pill-enter inline-flex min-h-[2.75rem] items-center gap-1.5 rounded-full bg-accent px-3 py-2 text-xs font-medium text-on-brand transition-colors hover:bg-accent-deep"
             >
               {pill.label}
               <X className="h-3.5 w-3.5" strokeWidth={2.5} />

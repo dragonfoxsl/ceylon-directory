@@ -93,7 +93,7 @@ export function ListingForm({ categories, regions, listing }: Props) {
             required
             className={inputClass(!!errors.category_id)}
           >
-            <option value="">— select —</option>
+            <option value="">Select a category</option>
             {categories.map((c) => (
               <option key={c.id} value={c.id}>
                 {c.name}
@@ -114,7 +114,7 @@ export function ListingForm({ categories, regions, listing }: Props) {
             required
             className={inputClass(!!errors.region_id)}
           >
-            <option value="">— select —</option>
+            <option value="">Select a region</option>
             {regions.map((r) => (
               <option key={r.id} value={r.id}>
                 {r.name}

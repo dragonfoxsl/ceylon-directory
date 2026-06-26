@@ -36,6 +36,10 @@
   --shell-deep: #143a2b; /* footer */
   --on-shell: #faf6ef;
   --on-shell-muted: #b7c4ba;
+  --on-shell-overlay-sm: rgba(255, 255, 255, 0.10); /* subtle overlay on shell */
+  --on-shell-overlay-md: rgba(255, 255, 255, 0.15); /* stronger overlay on shell */
+  --on-shell-border: rgba(255, 255, 255, 0.10); /* dividers on shell */
+  --on-shell-border-md: rgba(255, 255, 255, 0.25); /* stronger border on shell */
 
   --ring: var(--accent);
 }
@@ -65,6 +69,10 @@
   --shell-deep: #110f0c; /* footer */
   --on-shell: #f0e9db;
   --on-shell-muted: #8c8475;
+  --on-shell-overlay-sm: rgba(255, 255, 255, 0.08);
+  --on-shell-overlay-md: rgba(255, 255, 255, 0.12);
+  --on-shell-border: rgba(255, 255, 255, 0.08);
+  --on-shell-border-md: rgba(255, 255, 255, 0.20);
 
   --ring: var(--accent);
 }
@@ -96,6 +104,10 @@
   --color-shell-deep: var(--shell-deep);
   --color-on-shell: var(--on-shell);
   --color-on-shell-muted: var(--on-shell-muted);
+  --color-on-shell-overlay-sm: var(--on-shell-overlay-sm);
+  --color-on-shell-overlay-md: var(--on-shell-overlay-md);
+  --color-on-shell-border: var(--on-shell-border);
+  --color-on-shell-border-md: var(--on-shell-border-md);
 
   --font-sans: var(--font-satoshi), system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
@@ -158,7 +170,7 @@ body {
     justify-content: center;
     gap: 0.5rem;
     border-radius: 0.75rem;
-    padding: 0.625rem 1.25rem;
+    padding: 0.75rem 1.25rem;
     font-weight: 600;
     font-size: 0.9375rem;
     line-height: 1.2;
@@ -230,6 +242,10 @@ body {
     background: color-mix(in srgb, var(--gold) 16%, transparent);
     color: var(--gold);
   }
+  .chip-sponsored {
+    background: var(--brand);
+    color: var(--on-brand);
+  }
 
   /* Form fields. */
   .field {
@@ -268,6 +284,36 @@ body {
   animation: reveal-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+/* Mobile nav panel slide-down. */
+@keyframes nav-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.nav-panel-enter {
+  animation: nav-panel-in 0.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Filter pill fade-in (stagger via inline animation-delay). */
+@keyframes pill-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.pill-enter {
+  animation: pill-in 0.18s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
 /* ── Map (Leaflet) ─────────────────────────────────────────────────────────
    Pin HTML is injected by Leaflet outside React, so these live at the top
    level. Colors use theme tokens, so pins follow light/dark automatically. */
@@ -282,7 +328,7 @@ body {
   border-radius: 50% 50% 50% 0;
   transform: rotate(-45deg);
   box-shadow: 0 4px 10px -2px color-mix(in srgb, var(--ink) 45%, transparent);
-  transition: background-color 0.18s ease, width 0.18s ease, height 0.18s ease;
+  transition: background-color 0.18s ease, transform 0.18s ease;
 }
 .cd-pin-active {
   width: 38px;
@@ -295,7 +341,7 @@ body {
   font-family: var(--font-mono);
   font-size: 12px;
   font-weight: 600;
-  color: #fff;
+  color: var(--on-brand);
   font-feature-settings: "tnum" 1;
 }
 

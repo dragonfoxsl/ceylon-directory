@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { List } from "lucide-react";
+import { List, MapPin } from "lucide-react";
 import { createServerClient } from "@/lib/supabase/server";
 import { sortListings } from "@/lib/featured";
+import { fetchCoverUrls } from "@/lib/covers";
 import { MapBrowse, type MapListing } from "@/components/MapBrowse";
 
 export const metadata: Metadata = {
@@ -17,7 +18,7 @@ export default async function MapPage() {
   const { data: rawListings, error } = await supabase
     .from("listings")
     .select(
-      "id, slug, title, price_info, status, is_active, is_featured, featured_until, created_at, regions(name, slug)"
+      "id, slug, title, price_info, status, is_active, is_featured, featured_until, is_sponsored, sponsored_until, created_at, regions(name, slug)"
     )
     .eq("status", "approved")
     .eq("is_active", true);
@@ -25,29 +26,16 @@ export default async function MapPage() {
 
   const listings: MapListing[] = [];
   if (rawListings && rawListings.length > 0) {
+    const ids = rawListings.map((l) => l.id);
+    const coverUrls = await fetchCoverUrls(supabase, ids);
+
     for (const listing of rawListings) {
-      const { data: imageRow } = await supabase
-        .from("listing_images")
-        .select("storage_path")
-        .eq("listing_id", listing.id)
-        .eq("is_cover", true)
-        .single();
-
-      let cover_url: string | null = null;
-      if (imageRow?.storage_path) {
-        const { data } = supabase.storage
-          .from("listing-images")
-          .getPublicUrl(imageRow.storage_path);
-        cover_url = data.publicUrl;
-      }
-
       const region = (
         listing as unknown as { regions?: { name: string; slug: string } | null }
       ).regions;
-
       listings.push({
         ...listing,
-        cover_url,
+        cover_url: coverUrls.get(listing.id) ?? null,
         region: region?.name ?? null,
         regionSlug: region?.slug ?? null,
       });
@@ -78,7 +66,24 @@ export default async function MapPage() {
         </Link>
       </div>
 
-      <MapBrowse listings={sorted} />
+      {sorted.length > 0 ? (
+        <MapBrowse listings={sorted} />
+      ) : (
+        <div className="card flex flex-col items-center gap-4 px-8 py-24 text-center">
+          <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-linen text-brand">
+            <MapPin className="h-7 w-7" strokeWidth={1.5} />
+          </span>
+          <h2 className="text-xl font-semibold text-ink">No listings on the map yet</h2>
+          <p className="max-w-sm text-muted">
+            Verified services will appear here as they go live. Check back soon,
+            or browse the full directory in list view.
+          </p>
+          <Link href="/listings" className="btn btn-primary mt-2">
+            <List className="h-4 w-4" strokeWidth={2} />
+            Browse all listings
+          </Link>
+        </div>
+      )}
     </div>
   );
 }

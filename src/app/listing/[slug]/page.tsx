@@ -6,13 +6,16 @@ import {
   ChevronRight,
   Globe,
   ImageIcon,
+  Info,
   Mail,
   MessageCircle,
   Phone,
   ShieldCheck,
 } from "lucide-react";
 import { createServerClient } from "@/lib/supabase/server";
-import { isCurrentlyFeatured } from "@/lib/featured";
+import { isCurrentlyFeatured, isCurrentlySponsored } from "@/lib/featured";
+import { fetchCoverUrls } from "@/lib/covers";
+import { ListingCard } from "@/components/ListingCard";
 
 type Params = Promise<{ slug: string }>;
 
@@ -51,14 +54,20 @@ export async function generateMetadata({
     coverUrl = data.publicUrl;
   }
 
+  const desc = listing.description
+    ? listing.description.slice(0, 160)
+    : `Discover ${listing.title} on Ceylon Directory — verified Sri Lanka tourist services.`;
+
   return {
     title: `${listing.title} — Ceylon Directory`,
-    description: listing.description
-      ? listing.description.slice(0, 160)
-      : `Discover ${listing.title} on Ceylon Directory — verified Sri Lanka tourist services.`,
-    openGraph: coverUrl
-      ? { images: [{ url: coverUrl }] }
-      : undefined,
+    description: desc,
+    openGraph: coverUrl ? { images: [{ url: coverUrl }] } : undefined,
+    twitter: {
+      card: "summary_large_image",
+      title: `${listing.title} — Ceylon Directory`,
+      description: desc,
+      ...(coverUrl ? { images: [coverUrl] } : {}),
+    },
   };
 }
 
@@ -70,7 +79,7 @@ export default async function ListingDetailPage({ params }: { params: Params }) 
   const { data: listing, error: listingErr } = await supabase
     .from("listings")
     .select(
-      "id, slug, title, description, price_info, contact_phone, contact_whatsapp, contact_email, website, status, is_active, is_featured, featured_until, created_at, category_id, region_id"
+      "id, slug, title, description, price_info, contact_phone, contact_whatsapp, contact_email, website, status, is_active, is_featured, featured_until, is_sponsored, sponsored_until, created_at, category_id, region_id"
     )
     .eq("slug", slug)
     .eq("status", "approved")
@@ -115,6 +124,38 @@ export default async function ListingDetailPage({ params }: { params: Params }) 
     : { data: null };
 
   const featured = isCurrentlyFeatured(listing);
+  const sponsored = isCurrentlySponsored(listing);
+
+  // Related: up to 3 listings in the same category, excluding this one
+  const relatedRaw = listing.category_id
+    ? (
+        await supabase
+          .from("listings")
+          .select("id, slug, title, price_info, status, is_active, is_featured, featured_until, is_sponsored, sponsored_until, created_at, regions(name)")
+          .eq("status", "approved")
+          .eq("is_active", true)
+          .eq("category_id", listing.category_id)
+          .neq("id", listing.id)
+          .limit(3)
+      ).data ?? []
+    : [];
+
+  type RelatedListing = {
+    id: string; slug: string; title: string; price_info: string | null;
+    status: string; is_active: boolean; is_featured: boolean;
+    featured_until: string | null; is_sponsored: boolean;
+    sponsored_until: string | null; created_at: string;
+    cover_url?: string | null; region?: string | null;
+  };
+
+  const related: RelatedListing[] = [];
+  if (relatedRaw.length > 0) {
+    const coverUrls = await fetchCoverUrls(supabase, relatedRaw.map((r) => r.id));
+    for (const r of relatedRaw) {
+      const regionName = (r as unknown as { regions?: { name: string } | null }).regions?.name ?? null;
+      related.push({ ...r, cover_url: coverUrls.get(r.id) ?? null, region: regionName });
+    }
+  }
 
   // WhatsApp: strip non-digits from number
   const whatsappNumber = listing.contact_whatsapp
@@ -138,7 +179,32 @@ export default async function ListingDetailPage({ params }: { params: Params }) 
     listing.contact_email ||
     safeWebsite;
 
+  const siteBase = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ceylondirectory.com";
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "TouristAttraction",
+    name: listing.title,
+    description: listing.description ?? undefined,
+    url: `${siteBase}/listing/${listing.slug}`,
+    ...(coverImage ? { image: coverImage.publicUrl } : {}),
+    ...(region ? { address: { "@type": "PostalAddress", addressRegion: region.name, addressCountry: "LK" } } : {}),
+    ...(category ? { touristType: category.name } : {}),
+    ...(listing.contact_phone ? { telephone: listing.contact_phone } : {}),
+    ...(listing.contact_email ? { email: listing.contact_email } : {}),
+    ...(safeWebsite ? { sameAs: safeWebsite } : {}),
+  };
+
   return (
+    <>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(jsonLd)
+          .replace(/</g, "\\u003c")
+          .replace(/>/g, "\\u003e")
+          .replace(/&/g, "\\u0026"),
+      }}
+    />
     <div className="mx-auto max-w-[1320px] px-6 py-10">
       {/* Breadcrumb */}
       <nav
@@ -146,7 +212,7 @@ export default async function ListingDetailPage({ params }: { params: Params }) 
         aria-label="Breadcrumb"
       >
         <Link href="/listings" className="transition-colors hover:text-accent">
-          Browse
+          All listings
         </Link>
         {category && (
           <>
@@ -176,6 +242,17 @@ export default async function ListingDetailPage({ params }: { params: Params }) 
         </span>
       </nav>
 
+      {/* Sponsored disclosure — shown before cover, unmissable */}
+      {sponsored && (
+        <div className="mt-6 flex items-start gap-3 rounded-xl border border-brand/20 bg-brand/[0.06] px-5 py-3.5 text-sm">
+          <Info className="mt-0.5 h-4 w-4 shrink-0 text-brand" strokeWidth={2} aria-hidden="true" />
+          <p className="text-muted">
+            <span className="font-semibold text-ink">Sponsored placement.</span>{" "}
+            This provider pays for priority placement on Ceylon Directory. All sponsored listings meet the same verification standards as every other listing.
+          </p>
+        </div>
+      )}
+
       {/* Cover */}
       <div className="relative mt-6 aspect-[21/9] w-full overflow-hidden rounded-[1.5rem] border border-hairline bg-linen">
         {coverImage ? (
@@ -192,8 +269,13 @@ export default async function ListingDetailPage({ params }: { params: Params }) 
             <ImageIcon className="h-12 w-12" strokeWidth={1.25} />
           </div>
         )}
+        {sponsored && (
+          <span className="chip chip-sponsored absolute left-4 top-4 shadow-sm">
+            Sponsored
+          </span>
+        )}
         {featured && (
-          <span className="chip chip-featured absolute right-4 top-4 shadow-sm backdrop-blur-sm">
+          <span className="chip chip-featured absolute right-4 top-4 shadow-sm">
             Featured
           </span>
         )}
@@ -249,14 +331,14 @@ export default async function ListingDetailPage({ params }: { params: Params }) 
             <div>
               <h2 className="text-xl font-semibold text-ink">Gallery</h2>
               <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
-                {images.map((img) => (
+                {images.map((img, i) => (
                   <div
                     key={img.id}
                     className="relative aspect-square overflow-hidden rounded-xl border border-hairline bg-linen"
                   >
                     <Image
                       src={img.publicUrl}
-                      alt={listing.title}
+                      alt={i === 0 ? listing.title : `${listing.title} — photo ${i + 1}`}
                       fill
                       sizes="(min-width: 640px) 22vw, 45vw"
                       className="object-cover transition-transform duration-500 ease-out hover:scale-[1.04]"
@@ -330,6 +412,20 @@ export default async function ListingDetailPage({ params }: { params: Params }) 
           </div>
         </div>
       </div>
+
+      {related.length > 0 && (
+        <section className="mt-16 border-t border-hairline pt-12">
+          <h2 className="text-xl font-semibold text-ink">
+            More {category?.name ?? "listings"} in Sri Lanka
+          </h2>
+          <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {related.map((r) => (
+              <ListingCard key={r.id} listing={r} />
+            ))}
+          </div>
+        </section>
+      )}
     </div>
+    </>
   );
 }

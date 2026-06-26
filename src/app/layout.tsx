@@ -11,6 +11,12 @@ export const metadata: Metadata = {
   title: "Ceylon Directory — Verified Sri Lanka Tourist Services",
   description:
     "Discover trusted hotels, tours, transport, and experiences across Sri Lanka. Every listing verified for quality and authenticity.",
+  twitter: {
+    card: "summary_large_image",
+    title: "Ceylon Directory — Verified Sri Lanka Tourist Services",
+    description:
+      "Discover trusted hotels, tours, transport, and experiences across Sri Lanka. Every listing verified for quality and authenticity.",
+  },
 };
 
 export default async function RootLayout({
@@ -30,8 +36,14 @@ export default async function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body className="min-h-full flex flex-col">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-brand focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-on-brand focus:outline-none"
+        >
+          Skip to content
+        </a>
         <Nav user={user} />
-        <main className="flex-1">{children}</main>
+        <main id="main-content" className="flex-1">{children}</main>
 
         <footer className="bg-shell-deep text-on-shell-muted">
           <div className="mx-auto max-w-[1320px] px-6 py-14">
@@ -61,7 +73,7 @@ export default async function RootLayout({
                 </Link>
               </nav>
             </div>
-            <div className="mt-12 border-t border-white/10 pt-6">
+            <div className="mt-12 border-t border-on-shell-border pt-6">
               <p className="num text-xs">
                 © {new Date().getFullYear()} Ceylon Directory · Colombo, Sri Lanka
               </p>

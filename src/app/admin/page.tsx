@@ -165,7 +165,9 @@ export default async function AdminPendingPage() {
 
                   {/* Reject */}
                   <form action={handleReject} className="flex flex-1 items-start gap-2">
+                    <label htmlFor={`reject-note-${listing.id}`} className="sr-only">Rejection reason (optional)</label>
                     <textarea
+                      id={`reject-note-${listing.id}`}
                       name="note"
                       rows={1}
                       placeholder="Rejection reason (optional)"

@@ -21,7 +21,16 @@ export default function LoginPage() {
     const { error } = await supabase.auth.signInWithPassword({ email, password });
 
     if (error) {
-      setError(error.message);
+      const msg = error.message.toLowerCase();
+      setError(
+        msg.includes("invalid login credentials") || msg.includes("invalid credentials")
+          ? "Incorrect email or password. Please try again."
+          : msg.includes("email not confirmed")
+          ? "Please verify your email address before signing in."
+          : msg.includes("too many")
+          ? "Too many attempts. Please wait a few minutes and try again."
+          : error.message
+      );
       setLoading(false);
       return;
     }
@@ -35,7 +44,7 @@ export default function LoginPage() {
       <p className="eyebrow">Welcome back</p>
       <h1 className="mt-2 text-3xl font-bold tracking-tight text-ink">Sign in</h1>
       <p className="mt-2 text-sm text-muted">
-        Manage your listings on Ceylon Directory.
+        Sign in to manage your Sri Lanka listings.
       </p>
 
       <form onSubmit={handleSubmit} noValidate className="mt-8 space-y-5">
@@ -67,9 +76,17 @@ export default function LoginPage() {
         </div>
 
         <div>
-          <label htmlFor="password" className="mb-1.5 block text-sm font-medium text-ink">
-            Password
-          </label>
+          <div className="flex items-center justify-between">
+            <label htmlFor="password" className="mb-1.5 block text-sm font-medium text-ink">
+              Password
+            </label>
+            <Link
+              href="/forgot-password"
+              className="mb-1.5 text-xs text-muted underline-offset-2 hover:text-accent hover:underline"
+            >
+              Forgot password?
+            </Link>
+          </div>
           <input
             id="password"
             type="password"

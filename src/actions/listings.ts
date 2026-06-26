@@ -168,10 +168,24 @@ export async function deleteListing(id: string): Promise<ActionResult> {
     return { ok: false, errors: null, message: "Not authorised." };
   }
 
+  // Collect storage paths before deleting so we can clean up orphaned objects.
+  const { data: imageRows } = await supabase
+    .from("listing_images")
+    .select("storage_path")
+    .eq("listing_id", id);
+
   const { error } = await supabase.from("listings").delete().eq("id", id);
 
   if (error) {
     return { ok: false, errors: null, message: error.message };
+  }
+
+  // Best-effort storage cleanup — if this fails the listing is already gone
+  // and the orphaned objects are harmless (public bucket, no PII).
+  if (imageRows && imageRows.length > 0) {
+    await supabase.storage
+      .from("listing-images")
+      .remove(imageRows.map((r) => r.storage_path));
   }
 
   revalidatePath("/dashboard");
